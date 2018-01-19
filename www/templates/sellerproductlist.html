@@ -1,0 +1,50 @@
+<ion-view view-title="seller product" cache-view="false">
+  <!-- <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>  -->
+  <ion-content ng-init="sellProductInit()">
+      <div class="search">
+       <label class="item item-input float right">
+          <input type="text" ng-click="serachgo()" ng-model="filterlist" placeholder="Search">
+          <!--  <i class="icon ion-ios-search-strong searchicon" ng-click="searchBtn()"></i> -->
+       </label>
+      </div>
+      <a class="item item-icon-right" ng-show="check==true" ng-click="productdelval(product_id)">
+         <i class="icon ion-trash-a"></i>
+      </a>
+      <div class="card" ng-repeat="sellpro in sellerproduct | filter : filterlist track by $index"> 
+      
+         <div class="row">
+         <div class="col col-30">
+           <ion-checkbox ng-model="check" ng-checked="check" ng-change="selllistCheck(sellpro.id,check)">
+             <img ng-src="{{imgurl}}{{sellpro.image}}" style="width: 60px;height: 60px;">
+           </ion-checkbox>
+         </div>
+         <div class="col col-50">
+           <p>{{sellpro.name}}</p><p>SKU-{{sellpro.sku}}</p>
+         </div>
+         <div class="col col-20 item-center" ng-click="sellerlist(sellpro)">
+           <i class="ion-chevron-right"></i>
+         </div>
+         </div>  
+      </div>
+            
+  </ion-content>
+</ion-view>
+
+<!-- <div class="card" ng-repeat="sellpro in sellerproduct | filter : filterlist"> 
+                 <div class="row" style="border-bottom: 1px solid #ddd;"  >       -->
+                    <!--  <div class="col col-20">  --> 
+                 <!-- <div class="row">
+                  <div class="col col-30">
+                    <input type="checkbox" ng-model="sellid">
+                    <img ng-src="{{imgurl}}{{sellpro.image}}" style="width: 60px;height: 60px;">
+                  </div>
+                    <div class="col col-30">
+                      <p class="sellName">{{sellpro.name}}</p><p>SKU-{{sellpro.sku}}</p>
+                    </div> 
+                    <div class="col col-30">
+                    </div>
+                 </div>           
+                </div> --> 

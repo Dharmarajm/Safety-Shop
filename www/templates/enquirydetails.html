@@ -1,0 +1,76 @@
+<ion-view view-title="Enquiry Emails" cache-view="false">
+ <link href="css/enquiry.css" rel="stylesheet" cache-view="false">  
+  <!-- <ion-nav-buttons side="left">
+     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+     </button>
+  </ion-nav-buttons> -->
+  <ion-content>
+
+   <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized">
+    <ion-tab title="Inbox" ui-sref="inbox">
+      <ion-nav-view name="inbox">
+        <ion-content ng-init="enquiryinit()">
+          
+          <div class="list">
+            <div ng-show="longPress">
+              <button ng-click="messagedel()" style="background-color: grey;width:100%;">Delete</button>
+            </div>
+            <a class="item item-avatar" ng-repeat="list in enquirylist track by $index" on-long-press="itemOnLongPress(list)" on-touch-end="itemOnTouchEnd(list)" ng-click="longpress(list.quickrfq_id)">
+              <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}" ng-hide="longPress" ng-click="setIconClick(list.quickrfq_id)">
+              <i ng-show="longPress" class="icon ion-checkmark-circled" ng-click="setIconClick(list.quickrfq_id)"></i>
+              <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
+              <p>{{list.overview}}</p></span>
+              <div class="icon item-icon-right" ng-click="moveimportant(list)">
+                <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
+              </div> 
+            </a>
+          </div>
+
+          <!-- <ion-list can-swipe="true">
+            <ion-item ng-repeat="list in enquirylist track by $index" class="item item-avatar item-remove-animate">
+              <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}">
+              <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
+              <p>{{list.overview}}</p></span>
+              <div class="icon item-icon-right" ng-click="moveimportant(list)">
+                <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
+              </div> 
+              <ion-option-button class="button-assertive icon ion-trash-a" ng-click="messagedel(list) ">
+              </ion-option-button>
+            </ion-item>
+          </ion-list> -->
+
+        </ion-content> 	
+      </ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Sent" ui-sref="sent">
+       <ion-nav-view name="sent">
+         <ion-content>
+          <div class="list">
+            <a class="item item-avatar" ng-repeat="list in sentlist" ng-click="sentdetail(list)">
+              <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}">
+              <h2>{{list.contact_name}}</h2>
+              <p>{{list.reply_subject}}</p>
+            </a>   
+          </div>
+        </ion-content>
+       </ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Important" ui-sref="important">
+      <ion-nav-view name="important">
+        <ion-content>
+          <div class="list">
+            <a class="item item-avatar" ng-repeat="list in importantlist" on-long-press="itemOnLongPress(list.quickrfq_id)" on-touch-end="itemOnTouchEnd(list.quickrfq_id)">
+              <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}">
+              <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
+              <p>{{list.overview}}</p></span>
+              <div class="icon item-icon-right" ng-click="moveimportant(list)">
+                <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
+              </div> 
+            </a>
+          </div>
+        </ion-content>
+      </ion-nav-view>
+    </ion-tab>
+   </ion-tabs>
+  </ion-content>   
+</ion-view>

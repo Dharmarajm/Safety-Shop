@@ -1,0 +1,197 @@
+/* Empty. Add your own CSS if you like */
+.titletext{
+      font-weight: bold;
+      color: grey;
+      text-align: center;
+      font-size: 15px;
+      font-family:"Montserrat";
+}
+
+.titlebutton {
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      font-family: "Montserrat";
+      padding: 10px 20px;
+      margin: 10px 2px;
+      color: white; 
+      border: none;
+}
+.btn{
+  background: grey;
+}
+.btn:focus{
+  background: grey;
+}
+
+.mainbutton{
+    background-color: #C3C3C3;
+    width: 95%;
+    padding: 15px 15px;
+    margin: 0px 10px;
+    border: none;
+    border-bottom: 1px solid white;
+    text-align: left;
+    font-family: "Montserrat";
+    font-size: 18px;
+}
+.subbutton{
+    background-color: #DADADA;
+    width: 95%;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right:10px;
+    border: none;
+    border-bottom: 1px solid white;
+    border-left:solid  5px #F69222;
+    font-family:"Montserrat";
+}
+
+.bar.bar-profile {
+    background-color: #444;
+    height: 170px;
+}
+
+.bar .profile {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.profile .name {
+    color: #FFFFFF;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.profile-picture {
+    border-radius: 50%;
+}
+
+.menu .has-header
+{
+    top: 169px;
+}
+
+.row .p
+{
+  font-size: 15px;
+}
+
+.button.button-small {
+    margin-bottom: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+.button.button-small.button-positive.float-right {
+    margin-bottom: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    float:right;
+  }  
+
+ //css for tab
+
+  .table th {
+  background-color: #fff!important;
+}
+
+.table-striped > tbody > tr:nth-child(odd) {
+    background-color: #EBECEB;
+}
+
+.table-striped > tbody > tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd !important;
+    line-height: 40px;
+}
+
+.table td{
+    border-right: 1px solid #DBDBD4;
+    padding: 1px 9px;
+    font-size: 13px;
+}
+
+.table th {
+    border-right: 1px solid #DBDBD4;
+    padding: 1px 2px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.table-curved {
+    border-collapse: separate;
+}
+.table-curved {
+    border: solid #ccc 1px;
+    border-radius: 10px;
+    border-left:0px;
+}
+.table-curved td, .table-curved th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.table-curved th {
+    border-top: none;
+}
+.table-curved th:first-child {
+    border-radius: 6px 0 0 0;
+}
+.table-curved th:last-child {
+    border-radius: 0 6px 0 0;
+}
+.table-curved th:only-child{
+    border-radius: 6px 6px 0 0;
+}
+.table-curved tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+.table-curved tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > p  {
+    background-color: #fff;
+}
+
+.table-striped > tbody > tr:nth-child(even) > p {
+    background-color: #EBECEB;
+}
+.badge.badge-assertive {
+    background-color: #ef473a;
+    color: #fff;
+    right: 7px;
+    text-align: center;
+}
+
+.msgattach{
+  margin-left: 21px;
+}
+
+i.icon.ion-ios-circle-outline,i.icon.ion-checkmark-circled {
+position: absolute;
+left: 20px;
+font-size: 30px;
+}

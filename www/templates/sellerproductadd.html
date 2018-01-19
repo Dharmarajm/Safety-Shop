@@ -1,0 +1,267 @@
+<ion-view view-title="{{selldata}} a product" cache-view="false">
+  <ion-nav-buttons side="left">
+      <button ng-show="selldata=='Edit'" class="button button-clear" ng-click="myGoBack()" >
+      <i class="icon ion-ios-arrow-back"></i>
+      </button>
+      <button ng-show="selldata=='Add'" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+     </button>
+  </ion-nav-buttons>
+<ion-content>
+  <ion-scroll direction="x" class="wide-as-needed">
+     <a class="button" ng-click="category(1)">Categories</a>
+     <a class="button" ng-click="category(2)">Product Info</a>
+     <a class="button" ng-click="category(3)">Spec</a>
+     <a class="button" ng-click="category(4)">Description</a>
+     <a class="button" ng-click="category(5)">Images</a>    
+  </ion-scroll>
+    <form name="categoryform">
+       <div class="list" ng-show="category1==1">
+         <label class="item item-input" >
+          <span class="input-label col col-50">Root Category</span>:<span class="col col-50">
+          <select name="prodCategory1" ng-model="proadd.prodCategory1" ng-options="cat.id as cat.name for cat in rootCat" ng-change="rootcat(proadd.prodCategory1)" ng-required="true">
+          <option value="">Select Root category</option>
+          </select></span>
+        </label>
+
+        <label class="item item-input" ng-show="rootCat1!=null" ng-hide="proadd.prodCategory1==undefined || proadd.prodCategory1==''">
+          <span class="input-label col col-50" >Sub Category</span>:<span class="col col-50">
+          <select name="prodCategory2" ng-model="proadd.prodCategory2" ng-options="cat.id as cat.name for cat in rootCat1" ng-change="subcat1(proadd.prodCategory2)"  ng-required="true">
+          <option value="">Select Sub category</option>
+          </select></span>
+        </label>
+
+         <label class="item item-input" ng-show="rootCat2!=null" ng-hide="rootCat2.length==0 || proadd.prodCategory2==undefined || proadd.prodCategory1==undefined || proadd.prodCategory1=='' || proadd.prodCategory2==''">
+          <span class="input-label col col-50">Sub Category</span>:<span class="col col-50">
+          <select name="prodCategory3" ng-model="proadd.prodCategory3" ng-options="cat.id as cat.name for cat in rootCat2" ng-change="subcat2(proadd.prodCategory3)"  ng-required="true">
+          <option value="">Select Sub category</option>
+          </select></span>
+        </label>
+     
+        <button class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0" ng-click="categoryCheck(2)">Next</button> <!-- ng-disabled="proadd.prodCategory1=='' || proadd.prodCategory2=='' || proadd.prodCategory3=='' && rootCat2!=null || proadd.prodCategory3=='' && rootCat2.length!=0" -->
+       </div> 
+  
+
+       <div class="list" ng-show="category1==2"> 
+        <label class="item item-input">
+          <span class="input-label col col-50">Product Type</span>:<span class="col col-50">
+          <select name="productcategory" ng-model="proadd.productcategory" ng-options="pro.value as pro.name for pro in productconfig"  ng-required="true">
+          <option value="">Select Product Type</option>
+          </select></span>
+        </label>
+        
+        <label class="item item-input">
+          <span class="input-label col col-50">Product Display Name</span>:<span class="col col-50">
+          <input name="ProName" type="text" ng-model="proadd.ProName" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">SKU</span>:<span class="col col-50">
+          <input name="sku" type="text" ng-model="proadd.sku" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Price</span>:<span class="col col-50">
+          <input name="price" type="text" ng-model="proadd.price" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Quantity</span>:<span class="col col-50">
+          <input name="quantity" type="text" ng-model="proadd.quantity" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Stock Status</span>:<span class="col col-50">
+          <select name="stockState" ng-model="proadd.stockState" ng-options="stock.value as stock.name for stock in stockState1"  ng-required="true">
+          <option value="">Select Stock Status</option>
+          </select></span>
+        </label>
+        
+        <!-- <label class="item item-input">
+          <span class="input-label col col-50">Weight</span>:<span class="col col-50">
+          <input name="weight" type="text" ng-model="proadd.weight" ng-required="true"></span>
+        </label> -->
+        <button class="button button-small button-positive" ng-disabled="categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="categoryCheck(3)">Next</button>
+       </div> 
+    
+
+       <div class="container" ng-show="category1==3">
+        <button type="submit" class="button button-small button-positive" ng-click="addfield()">Add Spec</button>
+         <table class="table table-striped table-bordered table-curved">
+           <thead>
+             <tr class="bg-color">
+               <th>Spec Name</th>
+               <th>Spec Value</th>
+               <th>Sort Order</th>
+               <th>Action</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr ng-repeat="item in inputs">  
+               <td><input type="text" ng-model="item.spec_name" style="width:100%" ng-required="true"></td>
+               <td><input type="text" ng-model="item.spec_value" style="width:100%" ng-required="true"></td>
+               <td><input type="text" ng-model="item.sort_order" style="width:100%" ng-required="true"></td>
+               <td ng-click="spectdel($index)"><a style="font-size:30px"><i class="icon ion-ios-trash-outline"></i></a></td>          
+             </tr>
+           </tbody>
+         </table>
+       
+       <button class="button button-small button-positive" ng-click="add(inputs)">Next</button>
+       </div>
+
+        <div class="list" ng-show="category1==4">     
+          <label class="item item-input">
+            <span class="input-label col col-50">Description</span>:<span class="col col-50">
+            <textarea name="describe" ng-model="proadd.describe" ng-required="true"></textarea></span>
+          </label>
+      
+          <label class="item item-input">
+            <span class="input-label col col-50">Short Description</span>:<span class="col col-50">
+            <textarea name="shortdescribe" ng-model="proadd.shortdescribe" ng-required="true"></textarea></span>
+          </label>
+
+          <button class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid" ng-click="categoryCheck(5)">Next</button>
+        </div>
+
+    
+      <div class="list" ng-show="category1==5">     
+          <label class="item item-input">
+            <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
+            <input type="file" ng-model="proadd.mainImag" ng-click="upload(proadd.mainImag)">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
+            <input type="file" ng-model="proadd.addImag1" ng-click="upload1()">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label col col-50">Additional image 2</span>:<span class="col col-50">
+            <input type="file" ng-model="proadd.addImag2" ng-click="upload2()">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label col col-50">Additional image 3</span>:<span class="col col-50">
+            <input type="file" ng-model="proadd.addImag3">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label col col-50">Additional image 4</span>:<span class="col col-50">
+            <input type="file" ng-model="proadd.addImag4">
+          </label>
+
+          <!-- <div class="account-picture">
+             <button ng-click="ShowPictures()">Select Picture</button>
+             <img ng-src="data.ImageURI" id="smallimage">
+             <input type="text" ng-model="data.ImageURI" size="30"/>
+          </div> -->
+
+          <button class="button button-small button-positive" type="submit" ng-disabled="describe.$invalid" ng-click="productdetailsadd(proadd)">Product {{template}}</button>
+        </div>
+    </form>
+
+
+      <!--    <input type="file" ng-model="imagetest" >
+
+      
+         <button class="button button-block button-positive" type="submit" ng-click="productdetailsadd(proadd,item)">Register</button>
+-->
+      <!--  </div> -->
+    <!-- /form> -->
+
+    <!-- <form name="sigupform" ng-show="category==2">
+      <div class="list">      
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Fist Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.firstname" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Last Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.lastname" ng-required="true"></span>
+        </label>
+        
+        <label class="item">
+         <button ng-click="dosignup()"  ng-disabled="sigupform.$pristine|| sigupform.$invalid" class="button button-block button-positive" category="submit">Register</button>
+        </label>
+
+       </div>
+    </form>
+    <form name="sigupform" ng-show="category==3">
+      <div class="list">      
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Fist Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.firstname" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Last Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.lastname" ng-required="true"></span>
+        </label>
+        
+        <label class="item">
+         <button ng-click="dosignup()"  ng-disabled="sigupform.$pristine|| sigupform.$invalid" class="button button-block button-positive" category="submit">Register</button>
+        </label>
+
+       </div>
+    </form>
+    <form name="sigupform" ng-show="category==4">
+      <div class="list">      
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Fist Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.firstname" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Last Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.lastname" ng-required="true"></span>
+        </label>
+        
+        <label class="item">
+         <button ng-click="dosignup()"  ng-disabled="sigupform.$pristine|| sigupform.$invalid" class="button button-block button-positive" category="submit">Register</button>
+        </label>
+
+       </div>
+    </form>
+    <form name="sigupform" ng-show="category==5">
+      <div class="list">      
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Fist Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.firstname" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Last Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.lastname" ng-required="true"></span>
+        </label>
+        
+        <label class="item">
+         <button ng-click="dosignup()"  ng-disabled="sigupform.$pristine|| sigupform.$invalid" class="button button-block button-positive" category="submit">Register</button>
+        </label>
+
+       </div>
+    </form>
+
+    <form name="sigupform" ng-show="category==6">
+      <div class="list">      
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Fist Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.firstname" ng-required="true"></span>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label col col-50">Last Name </span>:<span class="col col-50">
+          <input category="text" ng-model="signupData.lastname" ng-required="true"></span>
+        </label>
+        
+        <label class="item">
+         <button ng-click="dosignup()"  ng-disabled="sigupform.$pristine|| sigupform.$invalid" class="button button-block button-positive" category="submit">Register</button>
+        </label>
+
+       </div>
+    </form> -->
+</ion-content>

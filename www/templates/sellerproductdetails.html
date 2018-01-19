@@ -1,0 +1,105 @@
+<ion-view view-title="{{sellproductname}}" cache-view="false">
+  <ion-nav-buttons side="left">
+     <button class="button button-clear" ng-click="myGoBack()" >
+     <i class="icon ion-ios-arrow-back"></i>
+     </button>
+  </ion-nav-buttons>
+<ion-content ng-init="isChecked()">
+                
+                <div class="card">  
+                  <div class="row">
+                   <div class="col col-50">
+                    Category Name
+                   </div>
+                   <div class="col col-50">
+                    {{sellid.category}} 
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50 title-center">
+                     Product Image
+                   </div>
+                   <div class="col col-50">
+                    <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{sellid.image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                     Product Name
+                   </div>
+                   <div class="col col-50">
+                     {{sellid.name}}
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                     SKU
+                   </div>
+                   <div class="col col-50">
+                    {{sellid.sku}}
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                    Price
+                   </div>
+                   <div class="col col-50">
+                    {{sellid.price}}
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                    Stock Status
+                   </div>
+                   <div class="col col-50">
+                    <ul class="list">
+                      <li class="item item-toggle" >
+                         <label class="toggle toggle-assertive">
+                           <input type="checkbox" ng-model="sellid.stock_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.stock_status)" ng-change="stockState(sellid.id,sellid.stock_status)">
+                           <div class="track">
+                             <div class="handle"></div>
+                           </div>
+                         </label>
+                      </li>
+                    </ul>
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                   Created Date
+                   </div>
+                   <div class="col col-50">
+                   {{sellid.created_at | date}}
+                   </div>
+                  </div>
+                  <div class="row">
+                   <div class="col col-50">
+                    Display Status
+                   </div>
+                   <div class="col col-50">
+                    <ul class="list">
+                      <li class="item item-toggle">
+                         <label class="toggle toggle-assertive">
+                           <input type="checkbox" ng-model="sellid.display_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.display_status)" ng-change="displayState(sellid.id,sellid.display_status)">
+                           <div class="track">
+                             <div class="handle"></div>
+                           </div>
+                         </label>
+                      </li>
+                    </ul>
+                   </div>
+                  </div>
+                  <!-- <p>Category Name: {{sellid.category}}</p>
+                  <img ng-src="http://safetyshop.in/home/index.php/rest/V1/{{sellid.image}}" alt="Mountain View" style="width:304px;  height:228px;"> -->
+                  <!-- <p>"http://safetyshop.in/home/index.php/rest/V1/{{sellid.image}}"</p> -->
+                  <!-- <p>Product Name : {{sellid.name}}</p>
+                  <p>SKU : {{sellid.sku}}</p>
+                  <p>Price : {{sellid.price}}</p>
+                  <p>Stock Status : {{sellid.stock_status}}</p>
+                  <p>Created Date: {{sellid.created_at}}</p>
+                  <p>Display Status : {{sellid.display_status}}</p> -->
+                </div>
+                <button class="button button-small button-positive float-right" ng-click="prodEdit(sellid)">Edit</button>  
+
+    </ion-content>
+</ion-view>

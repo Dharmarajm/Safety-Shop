@@ -1,0 +1,112 @@
+ <ion-view view-title="Seller Sign in" cache-view="false">
+   <!-- <ion-nav-buttons side="left">
+     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+     </button>
+   </ion-nav-buttons> -->
+  <ion-content >
+    <form name="signinform" ng-hide="show == 2 || show==3">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="sellerloginData.username" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="sellerloginData.password" required>
+        </label>
+
+        <label class="item">
+          <button ng-disabled="signinform.$pristine|| signinform.$invalid" ng-click="dosellerLogin()" class="button button-block button-positive" type="submit">Log in</button>        
+        </label>
+      </div>
+      <a ng-click="forgotPasword()">Forgot Password?</a>
+
+      <button ng-click="show = 3" class="button button-block button-positive" type="submit">Create an seller account</button>
+    </form>
+
+
+ <form name="sellersigupform" ng-show="show==3" style="background-color: #e0e0e0">
+      <div class="list">      
+        <button ng-click="show =1">Back</button>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">First Name</div>
+            <div class="row"><input type="text" name="firstname" ng-model="sell.firstName" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Last Name</div>
+            <div class="row" ><input type="text" name="lastname" ng-model="sell.lastName" ng-required="true"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">Date of Birth</div>
+            <div class="row"><input type="date" name="dob" ng-model="sell.dob"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Gender</div>
+            <div class="row" ><select ng-model="sell.gender" name="gender" ng-options="item.id as item.name for item in names" style="width:100%"></select></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">Email ID</div>
+            <div class="row"><input type="email" name="emailId" ng-model="sell.emailId" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Mobile Number</div>
+            <div class="row" ><input type="number" name="mobileNo" ng-model="sell.mobileNo" ng-minlength="10" ng-required="true"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">Password</div>
+            <div class="row"><input type="password" name="password" ng-model="sell.password" ng-minlength="6" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Confirm Password</div>
+            <div class="row" ><input type="password" name="confirmPassword" ng-model="sell.confirmPassword" ng-minlength="6" ng-required="true"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">Shop Name</div>
+            <div class="row"><input type="text" name="shopName" ng-model="sell.shopName" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Website</div>
+            <div class="row" ><input type="text" name="website" ng-model="sell.website" ng-required="true"></div>
+          </div>
+        </div>
+        <div class="row">
+         <div class="col col-100">
+           <div class="row p">Shop Address</div>
+           <div class="row"><textarea  row="4" name="shopAddress" ng-model="sell.shopAddress" ng-required="true" style="width:100%"></textarea></div>
+         </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">City</div>
+            <div class="row"><input  type="text" name="city" ng-model="sell.city" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">State</div>
+            <div class="row" ><input  type="text" name="state" ng-model="sell.state" ng-required="true"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <div class="row p">Country</div>
+            <div class="row"><input  type="text" name="country" ng-model="sell.country" ng-required="true"></div>
+          </div>
+          <div class="col col-50">
+            <div class="row p">Pin Code</div>
+            <div class="row" ><input  type="number" name="pinCode" ng-model="sell.pinCode" ng-minlength="6" ng-required="true"></div>
+          </div>
+        </div>
+          <button ng-click="sellerSign()"  ng-disabled="sellersigupform.$pristine|| sellersigupform.$invalid" class="button button-block button-positive" type="submit">Register</button>
+       </div>
+    </form>
+
+  </ion-content>
+</ion-view>

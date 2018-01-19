@@ -1,0 +1,47 @@
+<ion-view view-title="Address" cache-view="false">
+ <link href="css/category.css" rel="stylesheet" cache-view="false">  
+
+  <ion-content style="background-color: #e0e0e0">
+   <button  class="addtocart" ng-click="addressadd()" >Add Address</button>
+    
+
+   
+      <div class="card" ng-repeat="add in addresscus.addresses">      
+                   {{add.firstname}}<br>
+                   {{add.street[0]}}<br>
+                   {{add.city}}<br>
+                   {{add.postcode}}<br>
+                   {{add.region.region}}<br>
+                  ph:{{add.telephone}}<br>
+                </div>
+
+
+
+
+  </ion-content>
+
+  <script id="addaddress.html"  type="text/ng-template">
+    <ion-modal-view cache-view="false">
+    
+            <ion-header-bar>                
+                 <div class="row headercolor">      
+                     <div class="col col-10"> <i class="icon ion-android-arrow-back backward" ng-click="closeaddressmodel()"></i></div>
+                     <div class="col col-80"> <p class="titlesub">Add Address</p></div>
+                     <div class="col col-10">  </div>
+                </div>
+            </ion-header-bar>  
+            <ion-content style="background-color: #e0e0e0" cache-view="false">
+            <br>
+        <center><input type="text" ng-model="fullname" placeholder="Full Name"/> <br>
+             <input type="text" ng-model="mobile" placeholder="mobile number"><br>
+          <input type="text" ng-model="pincode" placeholder="Pincode"/><br>
+           <input type="text" ng-model="house" placeholder="flat/house no./floor"/><br>
+            <input type="text" ng-model="street" placeholder="street"/><br>
+             <input type="text" ng-model="landmark" placeholder="landmark"/><br>
+              <input type="text" ng-model="city" placeholder="city"/></center>
+   
+                <button  ng-click="" class="addtocart" >ADD Address</button>
+            </ion-content>
+   </ion-modal-view>
+</script>
+</ion-view>

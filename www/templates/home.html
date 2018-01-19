@@ -1,0 +1,113 @@
+<ion-view cache-view="false">
+ <link href="css/home.css" rel="stylesheet" cache-view="false">  
+  
+  <!-- <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons> -->
+        <!-- <ion-nav-buttons side="right">
+    
+      <img src="img/safety_logo.jpg" style="width: 140px;height: 30px">
+</ion-nav-buttons>
+ -->
+
+  <ion-content ng-init="dashboardinit()">
+     <div class="search">
+                 <label class="item item-input ">
+                    <input type="text" ng-click="serachgo()" placeholder="Search">
+                    <!--  <i class="icon ion-ios-search-strong searchicon" ng-click="searchBtn()"></i> -->
+                 </label>
+             </div>
+           <!--  {{homevalue[0].slider_image}} -->
+
+          <!--   <div ng-repeat="img in homevalue[0].slider_image">{{img}}</div> -->
+       <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000" >
+          <ion-slide >
+            <img ng-src="{{homevalue[0].slider_image[0]}}" style="width: 100%" >
+          </ion-slide>
+          <ion-slide>
+           <img ng-src="{{homevalue[0].slider_image[1]}}" style="width: 100%"  >
+          </ion-slide>
+          <ion-slide>
+            <img ng-src="{{homevalue[0].slider_image[2]}}" style="width: 100%" >
+          </ion-slide>
+        </ion-slide-box>  
+ 
+
+
+          <ion-scroll direction="x" class="wide-as-needed">
+          <a class="button" ng-click="catagory(cate)" ng-repeat="cate in homevalue[0].category_list">{{cate.name}}
+          </a>
+
+      
+      </ion-scroll>
+
+
+<h4>New Arrivals</h4>
+<!-- {{newarrive}} -->
+                    <div class="card" style="background-color: #ffffff">
+                   <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in newarrive    | filter:filterUser" ng-click="productdetails(z.sku,z.name)"
+                    ng-hide="showme">
+
+                      <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
+                      <div class="container">
+                         <p class="titleproduct overme">{{z.name}}</p>   
+                       </div>
+                       
+                   </div>
+                   <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button>
+                    <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
+              </div>  
+
+
+  <h4>Brands</h4>   
+   
+<!--    <ion-scroll direction="x" class="wide-as-needed">
+          <a ng-repeat="brand in homevalue[0].brand_list">
+            <img ng-src="{{brand.image}}">       
+          </a>
+        </ion-scroll> -->         
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000" >
+          <ion-slide >
+            <div class="row">
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[0].image}}" style="width: 100%">
+             </div>
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[1].image}}" style="width: 100%">   
+             </div>
+            </div> 
+          </ion-slide>
+          <ion-slide>
+            <div class="row">
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[2].image}}" style="width: 100%">
+             </div>
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[3].image}}" style="width: 100%">
+             </div>
+            </div> 
+          </ion-slide>
+          <ion-slide>
+            <div class="row">
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[4].image}}" style="width: 100%">
+             </div>
+             <div class="col col-50">
+               <img ng-src="{{homevalue[0].brand_list[5].image}}" style="width: 100%">
+             </div>
+            </div> 
+          </ion-slide>
+        </ion-slide-box>  
+     
+
+
+
+
+ 
+             <!--  <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
+
+
+
+  </ion-content>
+</ion-view>

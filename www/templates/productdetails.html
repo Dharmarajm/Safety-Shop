@@ -1,0 +1,150 @@
+<ion-view cache-view="false" view-title="{{productname}}">
+     <link href="css/category.css" rel="stylesheet" cache-view="false">
+
+           <!--  <ion-header-bar>                
+                 <div class="row headercolor">      
+                     <div class="col col-10"> <i class="icon ion-android-arrow-back backward" ng-click="closeproductdetails()"></i></div>
+                     <div class="col col-80"> <p class="titlesub">{{subname}}</p></div>
+                     <div class="col col-10"> <i class="icon ion-android-cart shoppingcart"><span class="badgetools">{{count}}</span></i> </div>
+                </div>
+            </ion-header-bar>   -->
+            <ion-nav-buttons side="left">
+               <button class="button button-clear" ng-click="myGoBack()" >
+               <i class="icon ion-ios-arrow-back"></i>
+               </button>
+            </ion-nav-buttons>
+            <ion-content style="background-color: #e0e0e0">
+
+                   <!--  <div style="background-color: #ffffff">
+                    <img src="{{Image}}" class="imgproduct">
+                    </div> -->
+                   <div style="background-color: #ffffff;margin: 6px;">
+                    <center><img src="{{Image}}" class="imgproduct"></center>
+                </div>
+
+                    <center><p class="productdesc">{{productRes.name}}</p></center>
+                    <p class="productdesc">{{productRes.sku}}</p>
+
+                 <!--    <div ng-repeat=" value in spec">
+                    {{value.label}}  :  {{value.value}}
+
+                    </div> -->
+                       <span class="stars alignright">
+                    <span ng-style="{ 'width': getStars(ratings[0].number) }"></span>
+                    </span>
+                    <div>
+                       <div class="row" style="padding: 0px" ng-repeat=" value in spec">
+                      <div class="col" style="border: 1px solid">{{value.label}}</div>
+                     <div class="col" style="border: 1px solid">{{value.value}}</div>
+                    </div>
+                </div>
+                   <!--  <div class="row" >
+                      <div class="col" ng-repeat=" specs in spec">{{specs.value}}</div>
+                   
+                    </div>
+ -->
+        <br>
+                    <div class="card" ng-show="desc !=null">  
+                     
+                    <p ng-bind-html="desc"></p>
+                   </div>
+
+
+
+                 
+
+
+                    <div class="row">      
+                    <div class="center">
+                    <button  ng-click="customer()" class="addtocart" >Ask for price</button>
+                    </div>
+
+                    </div>     
+                    <button ng-click="reviewBtn()" class="addtocart" >Review</button>
+                   
+                 
+                    </ion-content>
+
+
+
+            <script id="customerdetails.html"  type="text/ng-template">
+          
+    <ion-modal-view>
+    
+            <ion-header-bar>                
+            <div class="row headercolor">      
+
+            <div class="col col-90"> <p class="titlesub">Customer Details</p></div>
+            <div class="col col-10"> <i class="icon ion-close-round" ng-click="closeproductdetails()"></i></div>
+            </div>
+            </ion-header-bar>  
+            <ion-content style="background-color: #e0e0e0">               
+
+            <form name=customer novalidate>
+            <p class="qusproduct">Name</p>
+            <input type="text" name="input" ng-model="data.Name" ng-required="true" class="customerinput">
+
+            <p class="qusproduct">Phone Number</p>
+            <input type="number" name="input" ng-model="data.PhoneNumber"  ng-minlength="10"
+            ng-maxlength="10" ng-required="true" class="customerinput">
+
+            <p class="qusproduct">Email-ID</p>
+            <input type="email" name="input" ng-model="data.EmailID" ng-required="true" class="customerinput">
+
+            <p class="qusproduct">City</p>
+            <input type="text" name="input" ng-model="data.city" class="customerinput">
+
+            <p class="qusproduct">Brief Overview</p>
+            <!-- <input type="textarea" ng-model="data.BriefOverview" class="customerinput" > -->
+            <textarea ng-model="data.BriefOverview" style="height: 100px;" class="customerinput"></textarea>
+
+            <button style="background-color: #F69222" ng-disabled="customer.$invalid" ng-click="customerSubmit(data)" class="addtocart" >SUBMIT</button>
+            </form>               
+
+            </ion-content>
+   </ion-modal-view>
+</script>
+
+
+ <script id="reviewdetails.html"  type="text/ng-template">
+          
+    <ion-modal-view>
+    
+                <ion-header-bar>                
+                <div class="row headercolor">      
+
+                <div class="col col-90"> <p class="titlesub">Review Details</p></div>
+                <div class="col col-10"> <i class="icon ion-close-round" ng-click="closereviewdetails()"></i></div>
+                </div>
+                </ion-header-bar>  
+                <ion-content style="background-color: #e0e0e0">  
+                 <div ng-show="authCode == null">   
+                <a ng-click="loginpage()">Login</a>             
+                 </div>
+
+                <div ng-show="authCode != null">
+                <form name="revie" novalidate>
+                <p class="qusproduct">You're Reviewing</p>
+                <h4>{{productRes.name}}</h4>
+
+                <p class="qusproduct">Quality</p>
+                <ionic-ratings style="font-size: 39px;" ratingsobj='ratingsObject' index='0'></ionic-ratings>
+
+                <p class="qusproduct">Nice Name</p>
+                <input type="text" name="input" readonly="true" ng-model="review.name"  ng-required="true" class="customerinput">
+
+                <p class="qusproduct">Summay</p>
+                <input type="text" name="input" ng-model="review.summay" ng-required="true" class="customerinput">
+
+                <p class="qusproduct">Review</p>
+
+                <textarea ng-model="review.detail" ng-required="true" style="height: 100px;" class="customerinput"></textarea>
+
+                <button style="background-color: #F69222" ng-disabled="revie.$invalid" ng-click="reviewSubmit(review)" class="addtocart" >SUBMIT</button>
+                </form>               
+                </div>
+                </ion-content>
+   </ion-modal-view>
+</script>
+
+   </ion-view>

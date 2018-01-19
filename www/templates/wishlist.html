@@ -1,0 +1,16 @@
+	<ion-view view-title="Wishlist" cache-view="false">
+ <link href="css/category.css" rel="stylesheet" cache-view="false">  
+  <ion-content style="background-color: #e0e0e0" ng-init="wishinit()">
+ {{wishstatus}}
+   <div class="row cardproductlist" ng-repeat="wishget in getWishlist" 
+                 >      
+                     <div class="col col-30">  
+                        <img ng-src="http://tools.yantra24x7.com/sample/pub/media/catalog/product{{wishget.product.small_image}}" class="listimg">
+                     </div>
+                     <div class="col col-70"> 
+                        <p class="titleproduct">{{wishget.product.name}}</p> 
+                        <button ng-click="wishRemove(wishget)">remove</button>  
+                     </div>
+                </div>
+</ion-content>
+</ion-view>

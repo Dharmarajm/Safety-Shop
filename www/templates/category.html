@@ -1,0 +1,65 @@
+<ion-view view-title="Category" cache-view="false">
+ <link href="css/category.css" rel="stylesheet" cache-view="false">  
+  <ion-content ng-init="categoryinit()">
+
+
+              <div ng-repeat="catvalue in resvalue | filter:filtercat" ng-show="catvalue.is_active == true;" >
+              <button class="mainbutton" type="submit"  ng-click="mainCategory(catvalue.id)">{{catvalue.name}}</button><br>
+
+              <div class="subbutton"  ng-repeat="subcat in resvalue1" ng-show ="IsVisible" 
+              ng-click="subCategory(subcat)" ng-hide="subcat.is_active == false" ng-if="catvalue.id == subid"><p class="subtab">{{subcat.name}}</p>
+                
+                 </div> 
+             </div>
+      
+       </ion-content>
+
+
+
+
+<!-- <script id="productdetails.html"  type="text/ng-template" ng-controller="CategoryCtrl">
+    <ion-modal-view cache-view="false">
+    
+            <ion-header-bar>                
+                 <div class="row headercolor">      
+                     <div class="col col-10"> <i class="icon ion-android-arrow-back backward" ng-click="closeproductdetails()"></i></div>
+                     <div class="col col-80"> <p class="titlesub">{{subname}}</p></div>
+                     <div class="col col-10"> <i class="icon ion-android-cart shoppingcart"><span class="badgetools">{{count}}</span></i> </div>
+                </div>
+            </ion-header-bar>  
+            <ion-content style="background-color: #e0e0e0">
+                
+                <div style="background-color: #ffffff">
+                 <img src="{{Image}}" class="imgproduct">
+                 </div>
+                
+                
+                 <center><p class="productdesc">{{Desc}}</p></center>
+
+                 <p class="qusproduct">Item ID</p>
+                 <p class="ansproduct">{{Itemid}}</p>
+
+                 <p class="qusproduct">Manufacturer Part Number</p>
+                 <p class="ansproduct">-</p>
+
+                 <p class="qusproduct">Product Name</p>
+                 <p class="ansproduct">{{productname}}</p>
+
+                 <p class="qusproduct">Manufacturer Name</p>
+                 <p class="ansproduct">-</p>
+                  <br>
+            <input type="text" ng-model="qtyvalue" placeholder="Quantity">
+                 <div class="row">      
+                   <div class="col col-50">
+                      <button  ng-click="opencustomerdetails()" class="addtocart" >BUY NOW</button>
+                   </div>
+                   <div class="col col-50">
+             <!         <button  ng-click="cartAdd(productRes,qtyvalue)" class="addtocart" >ADD TO CART</button>
+                  </div>
+                </div>     
+                <button  ng-click="wishAdd(productRes)" class="addtocart" >Wish List</button> 
+            </ion-content>
+   </ion-modal-view>
+</script>
+ -->
+</ion-view>
