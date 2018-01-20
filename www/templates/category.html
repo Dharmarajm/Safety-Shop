@@ -1,8 +1,6 @@
 <ion-view view-title="Category" cache-view="false">
  <link href="css/category.css" rel="stylesheet" cache-view="false">  
   <ion-content ng-init="categoryinit()">
-
-
               <div ng-repeat="catvalue in resvalue | filter:filtercat" ng-show="catvalue.is_active == true;" >
               <button class="mainbutton" type="submit"  ng-click="mainCategory(catvalue.id)">{{catvalue.name}}</button><br>
 

@@ -20,6 +20,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                       {                   
                      // console.log(response);
                       $scope.homevalue=response.data;
+                      console.log($scope.homevalue)
                       console.log($scope.homevalue[0].brand_list[2].image)
                       $scope.newarrive=[];
                       $scope.newarrstatus=0;

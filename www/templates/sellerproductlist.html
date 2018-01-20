@@ -10,14 +10,14 @@
           <!--  <i class="icon ion-ios-search-strong searchicon" ng-click="searchBtn()"></i> -->
        </label>
       </div>
-      <a class="item item-icon-right" ng-show="check==true" ng-click="productdelval(product_id)">
-         <i class="icon ion-trash-a"></i>
+      <a class="testc" ng-show="Checktic" ng-hide="Checktic!=true" style="background-color: grey;width:100%;" ng-click="productdelval(product_id)">
+         <i class="icon ion-trash-a item-center"></i>
       </a>
       <div class="card" ng-repeat="sellpro in sellerproduct | filter : filterlist track by $index"> 
       
          <div class="row">
          <div class="col col-30">
-           <ion-checkbox ng-model="check" ng-checked="check" ng-change="selllistCheck(sellpro.id,check)">
+           <ion-checkbox ng-model="sellpro.status" ng-checked="sellpro.status" ng-change="selllistCheck(sellpro.id,sellpro.status)">
              <img ng-src="{{imgurl}}{{sellpro.image}}" style="width: 60px;height: 60px;">
            </ion-checkbox>
          </div>

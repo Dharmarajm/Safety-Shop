@@ -195,3 +195,14 @@ position: absolute;
 left: 20px;
 font-size: 30px;
 }
+
+a.testc{
+ padding-left: 45%;
+ padding-right: 47%;
+ margin-left: 10px;
+ margin-right: 10px;
+}
+
+.ion-trash-a:before{
+ color: crimson; 
+}

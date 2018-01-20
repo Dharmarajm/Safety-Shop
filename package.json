@@ -16,5 +16,6 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-console"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [],
+  "dependencies": {}
 }
