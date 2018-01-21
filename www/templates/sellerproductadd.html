@@ -128,12 +128,35 @@
             <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload()">Add Image</button></span>
           </label>
+<!-- 
+          <label class="item item-input">
+            <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
+            <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
+          </label>
+          <label class="item item-input">
+            <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
+            <button class="button button-full button-energized" ng-click="upload()">Add Image</button></span>
+          </label>
 
           <label class="item item-input">
             <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
+          <div ng-repeat="test in uploadimageMain">
+            {{test}}-1 
+          </div>
+          <div ng-repeat="test in uploadimageAddition">
+            {{test}}-2 
+          </div> 
+          <div ng-repeat="test in uploadimageMain">
+            <img ng-src="{{test[0].file}}" style="width: 120px;height: 80px;">
+            <img ng-src="{{test[0].format}}" style="width: 120px;height: 80px;">
+          </div>
+          <div ng-repeat="test in uploadimageAddition">
+            <img ng-src="{{test.file}}" style="width: 120px;height: 80px;">
+            <img ng-src="{{test.format}}" style="width: 120px;height: 80px;">
 
+          </div>  -->
           <!-- <label class="item item-input">
             <span class="input-label col col-50">Additional image 2</span>:<span class="col col-50">
             <input type="file" ng-model="proadd.addImag2" ng-click="upload()"></span>
