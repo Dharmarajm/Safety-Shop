@@ -11,7 +11,9 @@ $scope.imgurl=imageUrl;
                 showDelay: 0
                 });
   $scope.sellerproduct=[];
-
+  $rootScope.product_id=null;
+  $rootScope.Checktic = false;
+   
   $scope.sellProductInit=function(){
     $http.get(baseUrl+'seller/product/'+$rootScope.customerDetails.id,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
@@ -23,7 +25,6 @@ $scope.imgurl=imageUrl;
       
        for(var i in response.data[0].products){
          $scope.sellerproduct.push({"id":response.data[0].products[i].id ,"name":response.data[0].products[i].name,"image":response.data[0].products[i].image,"sku":response.data[0].products[i].sku,"stock_status":response.data[0].products[i].stock_status,"display_status":response.data[0].products[i].display_status,"status":false,"category":response.data[0].products[i].category,"price":response.data[0].products[i].price,"created_at":response.data[0].products[i].created_at});
-         console.log($scope.sellerproduct)
        }          
       })      
   }
@@ -38,7 +39,6 @@ $scope.imgurl=imageUrl;
  /*$scope.sellproductname=$stateParams.selldetailid.name; */
 
  $scope.productdelval=function(id){
-       console.log(id)
        if(id==undefined || id==""){
          alert("Please select the Product")
         return 
@@ -72,6 +72,7 @@ $scope.imgurl=imageUrl;
                    $scope.sellProductInit()
                 })
  }
+ 
  
  $scope.selllistCheck=function(id,check){
    $rootScope.arr=[];

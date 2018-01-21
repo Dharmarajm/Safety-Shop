@@ -126,28 +126,28 @@
       <div class="list" ng-show="category1==5">     
           <label class="item item-input">
             <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
-            <input type="file" ng-model="proadd.mainImag" ng-click="upload(proadd.mainImag)">
+            <button class="button button-full button-energized" ng-click="upload()">Add Image</button></span>
           </label>
 
           <label class="item item-input">
             <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
-            <input type="file" ng-model="proadd.addImag1" ng-click="upload1()">
+            <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
 
-          <label class="item item-input">
+          <!-- <label class="item item-input">
             <span class="input-label col col-50">Additional image 2</span>:<span class="col col-50">
-            <input type="file" ng-model="proadd.addImag2" ng-click="upload2()">
-          </label>
+            <input type="file" ng-model="proadd.addImag2" ng-click="upload()"></span>
+          </label> -->
 
-          <label class="item item-input">
+          <!-- <label class="item item-input">
             <span class="input-label col col-50">Additional image 3</span>:<span class="col col-50">
-            <input type="file" ng-model="proadd.addImag3">
+            <input type="file" ng-model="proadd.addImag3"></span>
           </label>
 
           <label class="item item-input">
             <span class="input-label col col-50">Additional image 4</span>:<span class="col col-50">
-            <input type="file" ng-model="proadd.addImag4">
-          </label>
+            <input type="file" ng-model="proadd.addImag4"></span>
+          </label> -->
 
           <!-- <div class="account-picture">
              <button ng-click="ShowPictures()">Select Picture</button>
@@ -155,7 +155,7 @@
              <input type="text" ng-model="data.ImageURI" size="30"/>
           </div> -->
 
-          <button class="button button-small button-positive" type="submit" ng-disabled="describe.$invalid" ng-click="productdetailsadd(proadd)">Product {{template}}</button>
+          <button class="button button-small button-positive" type="submit" ng-click="productdetailsadd(proadd)">Product {{template}}</button>
         </div>
     </form>
 

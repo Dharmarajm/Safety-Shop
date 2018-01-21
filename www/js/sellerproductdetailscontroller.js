@@ -8,20 +8,17 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
  $scope.sellproductname=$stateParams.selldetailid.name;
  
  $scope.stockState=function(id,state){
-  console.log(id,state)
   var data={"product_id":id,"status":state};
   
   $http.post(baseUrl+'seller/product/stockstatus',data,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){                     
       $scope.stockStateres=response.data;
-      console.log($scope.stockStateres.msg);
       return $scope.isChecked(id,state);                
   })      
  }
 
  $scope.displayState=function(id,state){
-  console.log(id,state)
   if(state==true){
     $scope.displayStateC=1;
   }
@@ -30,7 +27,6 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
     $scope.displayStateC=2
   }
 
-  console.log($scope.displayStateC)
   var data={"product_id":id,"status": $scope.displayStateC}
   $http.post(baseUrl+'seller/product/status',data,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
@@ -41,7 +37,6 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
  }
 
   $scope.isChecked = function(id, matches) {
-     console.log(id,matches)
      var isChecked = id; 
      if(matches == true || matches == 1) {
         isChecked = true;

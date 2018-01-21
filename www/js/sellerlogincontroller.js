@@ -37,7 +37,6 @@ $scope.sellerSign=function(){
 
   $http.post(baseUrl+'seller/signup',data).then(function(response){
     $scope.data=response.data;
-    console.log($scope.data)
   })        
 }
 
@@ -78,9 +77,7 @@ $scope.sellerloginData = {username :"", password :""};
 
                              $http.get(baseUrl+'customers/me',{
                                     headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-                                     }).then(function(response)
-                                  { 
-                                    console.log(response);
+                                     }).then(function(response){ 
                                     $rootScope.groupID=response.data.group_id;
                                     localStorage.setItem("sscustomer",JSON.stringify(response.data))
                                  $state.go('app.sellerproduct');

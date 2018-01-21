@@ -17,5 +17,12 @@
     "cordova-plugin-console"
   ],
   "cordovaPlatforms": [],
-  "dependencies": {}
+  "dependencies": {
+    "cordova-plugin-camera": "^4.0.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-camera": {}
+    }
+  }
 }

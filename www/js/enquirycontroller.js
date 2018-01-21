@@ -1,5 +1,5 @@
 angular.module('enquiry', [])
-.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading) {
+.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker) {
  
  $scope.enquiryinit=function(){
   var data={
@@ -11,7 +11,6 @@ angular.module('enquiry', [])
  $http.post(baseUrl+'seller/enquiry/inbox',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.enquirylist=response.data[0].inbox;
-     console.log($scope.enquirylist)
     })
  
  
@@ -20,7 +19,6 @@ angular.module('enquiry', [])
   }).then(function(response){ 
      if(response.data[0]!=undefined){
       $rootScope.importantlist=response.data[0].important;
-      console.log($rootScope.importantlist)	
       }else{
       $rootScope.importantlist=[];
      }         
@@ -31,7 +29,6 @@ angular.module('enquiry', [])
  $http.get(baseUrl+'seller/enquiry/reply/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.sentlist=response.data[0].reply;
-     console.log($scope.sentlist)
     }) 
 
   
@@ -47,7 +44,6 @@ angular.module('enquiry', [])
  
 
  $scope.moveimportant=function(Id){
-  console.log(Id)
   if($scope.longPress!=true){
    if(Id.move_to=="Important"){
     var data={
@@ -61,7 +57,6 @@ angular.module('enquiry', [])
        $scope.moveToimport=response.data;
        $scope.enquiryinit();
        $scope.getStyle(Id)
-       console.log($scope.moveToimport)
       })
   }else{
       
@@ -74,10 +69,8 @@ angular.module('enquiry', [])
    $http.post(baseUrl+'seller/enquiry/move',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
     }).then(function(response){                     
        $scope.moveToimport=response.data;
-       console.log('elsefirst')
        $scope.enquiryinit();
        $scope.getStyle(Id)
-       console.log($scope.moveToimport)
       })
   }
   } 
@@ -101,7 +94,6 @@ angular.module('enquiry', [])
   $rootScope.getsentId=id;
   $rootScope.getinboxId=null;
   $rootScope.getimportantId=null;
-  console.log($rootScope.getsentId)
   $state.go("app.emaildetails");
  }
  
@@ -156,7 +148,6 @@ angular.module('enquiry', [])
   }
 
   $scope.messagedel=function(li){
-   console.log(li)
    /*if($rootScope.listid!=null){
     var data={
                 "enquiry_id": $rootScope.listid.quickrfq_id,

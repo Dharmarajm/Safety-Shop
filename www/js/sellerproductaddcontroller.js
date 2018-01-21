@@ -17,7 +17,6 @@ angular.module('sellerproductadd', [])
   $http.get(baseUrl+'seller/product/edit/'+data.id,{headers:{ "Authorization": 'Bearer' +$rootScope.authCode }
    }).then(function(res){
       $scope.proEdit=res.data[0];
-       console.log($scope.proEdit)
                
                $scope.proadd ={ 
                                 "prodCategory1": $scope.proEdit.product.category_ids[0],
@@ -49,17 +48,14 @@ angular.module('sellerproductadd', [])
                               $http.get(baseUrl+'seller/subcategory/'+$scope.proEdit.product.category_ids[0],{ headers: { "Authorization": 'Bearer '+$rootScope.authCode } 
                                }).then(function(res){
                                    $rootScope.rootCat1=res.data[0].sub_categories;
-                                   console.log($rootScope.rootCat1)
                                  })
                               $http.get(baseUrl+'seller/subcategory/'+$scope.proEdit.product.category_ids[1],{ headers: { "Authorization": 'Bearer '+$rootScope.authCode } 
                                }).then(function(res){
                                    $rootScope.rootCat2=res.data[0].sub_categories;
-                                   console.log($rootScope.rootCat2.length)
                                  })
                                $http.get(baseUrl+'seller/subcategory/'+$scope.proEdit.product.category_ids[2],{ headers: { "Authorization": 'Bearer '+$rootScope.authCode } 
                                }).then(function(res){
                                    $rootScope.rootCat3=res.data[0].sub_categories;
-                                   console.log($rootScope.rootCat3)
                                  })   
                               
 
@@ -117,9 +113,8 @@ angular.module('sellerproductadd', [])
          $rootScope.getCategory.push(id);
          $scope.proadd.prodCategory2="";
          $scope.proadd.prodCategory3="";
-         /*console.log($scope.rootCat1)
-         console.log($rootScope.getCategory)*/
-          console.log($rootScope.rootCat2)
+         console.log($rootScope.getCategory) 
+         /*console.log($rootScope.rootCat2)
          console.log($rootScope.rootCat1=='')
          console.log($rootScope.rootCat1!=null)
          console.log($rootScope.rootCat1.value=='')
@@ -128,13 +123,14 @@ angular.module('sellerproductadd', [])
          console.log($rootScope.rootCat1==null)
          console.log($scope.proadd.prodCategory1==undefined)
          console.log($scope.proadd.prodCategory2==undefined)
-         console.log($scope.proadd.prodCategory2==null)  
+         console.log($scope.proadd.prodCategory2==null)  */
        })
   }
   if(id==null || id==''){
     $rootScope.getCategory=[];
     $rootScope.rootCat2=""
     $rootScope.rootCat3="";
+    console.log($rootScope.getCategory) 
   }
  }
 
@@ -143,37 +139,39 @@ angular.module('sellerproductadd', [])
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
  	       $rootScope.rootCat2=res.data[0].sub_categories;
+         $rootScope.getCategory.length=1;
          $rootScope.getCategory.push(id);
          $scope.proadd.prodCategory3='';
- 	       console.log($rootScope.rootCat2)
+ 	       console.log($rootScope.getCategory) 
+         /*console.log($rootScope.rootCat2)
          console.log($rootScope.rootCat2=='')
          console.log($rootScope.rootCat2.length==0)
          console.log($rootScope.rootCat2==undefined)
          console.log($rootScope.rootCat2==null)
          console.log($scope.proadd.prodCategory2==undefined)
          console.log($scope.proadd.prodCategory1==undefined)
-         console.log($scope.proadd.prodCategory2=='')
+         console.log($scope.proadd.prodCategory2=='')*/
        })
   }
   if(id==null || id==''){
-    $rootScope.getCategory.splice(1,2);
+    $rootScope.getCategory.length=1;
     console.log($rootScope.getCategory)
   }
  }
 
  $scope.subcat2=function(id){
   if(id!=null || id!=undefined){
-    console.log(id)
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
         $rootScope.rootCat3=res.data[0].sub_categories;
+        $rootScope.getCategory.length=2;
         $rootScope.getCategory.push(id);
-        console.log($scope.rootCat3)
         console.log($rootScope.getCategory)  
        })
   }
   if(id==null || id==''){
-    $rootScope.getCategory.splice(2,$rootScope.getCategory.length);
+    $rootScope.getCategory.length=2;
+    /*$rootScope.getCategory.splice(1,3);*/
     console.log($rootScope.getCategory)
   }
  }
@@ -190,29 +188,29 @@ angular.module('sellerproductadd', [])
                               "spec_value": "",
                               "sort_order": ""
                           })
-    console.log($scope.inputs);
   }  
   
  $scope.add=function(addval){
+   console.log(addval)
    $rootScope.addspec=addval;
    return $scope.categoryCheck(4);
  } 
 
  $scope.spectdel=function(index){
-  console.log(index)
   $rootScope.inputs.splice(index,1);
  
  }
 
  $scope.productdetailsadd=function(detail,spec){
-
-  var data={
+  
+  if($rootScope.selldata=="Add"){
+    var data={
             "product": {
               "id": 0,
               "sku": detail.sku,
               "name": detail.ProName,
               "type_id":detail.productcategory ,
-              "status":"1" ,
+              "status":"1",
               "price": detail.price,
               "stock_status": detail.stockState,
               "qty": detail.quantity,
@@ -224,8 +222,8 @@ angular.module('sellerproductadd', [])
                  "file": "",
                  "name": ""
                },
-               "additional_images": [ {"file": "{{base 64 format}}",
-                                       "name": "{{filename}}",
+               "additional_images": [ {"file": "",
+                                       "name": "",
                                        "delete": 0
                                      } ]
              },
@@ -233,88 +231,132 @@ angular.module('sellerproductadd', [])
             "id": 0,
             "seller_id": 2
            } 
-      console.log(data);    
-
-  $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-   }).then(function(res){
-      $rootScope.productSave=res.data;
-      $rootScope.getCategory="";
-      $rootScope.addspec="";
-      $rootScope.rootCat1=""
-      $rootScope.rootCat2=""
-      $rootScope.rootCat3="";
-     })
+    console.log(data)
+    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+     }).then(function(res){
+        $rootScope.productSave=res.data;
+        $rootScope.getCategory="";
+        $rootScope.addspec="";
+        $rootScope.rootCat1=""
+        $rootScope.rootCat2=""
+        $rootScope.rootCat3="";
+     })   
+  }
+  
  }
  
 
- $scope.uploadimage=[];
+ $scope.uploadimageMain=[];
 
  $scope.upload = function(){
 
   var options = {
-   maximumImagesCount: 1,
-   width: 800,
-   height: 800,
-   quality: 80
-  };
+      maximumImagesCount: 1,
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 100,
+      targetHeight: 100,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+    correctOrientation:true
+    };
 
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
       
         console.log('Image URI: ' + results[0]);
         alert(results[0]);
-        $scope.img = results[0];
-        $scope.uploadimage.push($scope.img)
+        $scope.uploadimageMain.push({"file":results[0].file})
+        window.resolveLocalFileSystemURI(results[0],
+            function (fileEntry) {
+                // convert to Base64 string
+
+
+                fileEntry.file(
+                    function(file) {
+                        //got file
+                        var reader = new FileReader();
+                        reader.onloadend = function (evt) {
+                            var imgData = evt.target.result; // this is your Base64 string
+                            $scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});
+                        };
+                        reader.readAsDataURL(file);
+                    }, 
+                function (evt) { 
+                    //failed to get file
+                });
+            },
+            // error callback
+            function () { }
+        )
+
+
+      $scope.results=results;     
     }, function(error) {
       // error getting photos
       alert(error);
     })
-}
+ }
 
-$scope.upload1 = function(){
+ 
+
+ $scope.uploadimageAddition=[];
+
+ $scope.upload1 = function(){
 
   var options = {
-   maximumImagesCount: 1,
-   width: 800,
-   height: 800,
-   quality: 80
-  };
+      maximumImagesCount: 4,
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 100,
+      targetHeight: 100,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+    correctOrientation:true
+    };
 
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
-      
-        console.log('Image URI: ' + results[0]);
-        alert(results[0]);
-        $scope.img = results[0];
-        $scope.uploadimage.push($scope.img)
+      for (var i = 0; i < results.length; i++) {
+        console.log('Image URI: ' + results[i]);
+        
+           window.resolveLocalFileSystemURI(results[i],
+            function (fileEntry) {
+                // convert to Base64 string
+
+
+                fileEntry.file(
+                    function(file) {
+                        //got file
+                        var reader = new FileReader();
+                        reader.onloadend = function (evt) {
+                            var imgData = evt.target.result; // this is your Base64 string
+                            $scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});
+                        };
+                        reader.readAsDataURL(file);
+                    }, 
+                function (evt) { 
+                    //failed to get file
+                });
+            },
+            // error callback
+            function () { }
+        )
+      }
+
+
+      $scope.results=results;
     }, function(error) {
       // error getting photos
       alert(error);
     })
-}
-
-$scope.upload2 = function(){
-
-  var options = {
-   maximumImagesCount: 1,
-   width: 800,
-   height: 800,
-   quality: 80
-  };
-
-  $cordovaImagePicker.getPictures(options)
-    .then(function (results) {
-      
-        console.log('Image URI: ' + results[0]);
-        alert(results[0]);
-        $scope.img = results[0];
-        $scope.uploadimage.push($scope.img)
-        alert($scope.uploadimage)
-    }, function(error) {
-      // error getting photos
-      alert(error);
-    })
-}
+ }
 
 /*
   // Destination URL 
