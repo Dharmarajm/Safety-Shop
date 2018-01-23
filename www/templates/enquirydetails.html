@@ -16,7 +16,7 @@
     </ion-nav-buttons>  
   <ion-content>
 
-   <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized" ng-init="enquiryinit()">
+   <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized" ng-init="enquiryinit()" ng-click="finish()">
     <ion-tab title="Inbox" ui-sref="inbox">
       <ion-nav-view name="inbox">
           
@@ -55,7 +55,7 @@
                       color="white"
                       letters="1"
                       item="{{list.quickrfq_id}}"
-                     
+                      href="#/tab/enquirylist/{{list.id}}"
                       ng-repeat="list in enquirylist" >
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>
@@ -84,7 +84,7 @@
                       color="white"
                       letters="1"
                       item="{{list.quickrfq_id}}"
-                     
+                      href="#/tab/sentlist/{{list.id}}"
                       ng-repeat="list in sentlist" >
                 <h2>{{list.contact_name}}</h2>
                 <p>{{list.reply_subject}}</p>
@@ -112,6 +112,7 @@
                       border="none"
                       color="white"
                       letters="1"
+                      href="#/tab/importantlist/{{list.id}}"
                       item="{{list.quickrfq_id}}"
                       ng-repeat="list in importantlist" >
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>

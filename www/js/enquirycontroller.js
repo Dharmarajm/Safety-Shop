@@ -34,6 +34,22 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   
  } 
 
+ 
+ if($state.current.name=='app.emaildetails'){
+   var data={
+             "enquiry_id": $rootScope.getinboxId.quickrfq_id,
+             "status": "Read"
+            }
+
+   $http.post(baseUrl+'seller/enquiry/status',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+   }).then(function(response){                     
+     $rootScope.enquirystatus=response.data;
+    })
+
+ }
+
+
+
 
  $scope.$on($ionicLetterAvatarSelector.stateChanged, function($event, selectionActive) {
         $scope.selectionActive = selectionActive;
@@ -41,16 +57,36 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     
     $scope.finish = $ionicLetterAvatarSelector.finish;
     
- $scope.delete = function() {
-     var chats = $rootScope.enquirylist;
+ $scope.delete= function() {
+     /*$ionicPopup.alert({
+                             title: 'Message delete',
+                             template: 'Are you sure want to delete?',
+                             buttons: [
+                             {
+                                text: '<b>Cancel</b>',
+                                type: 'button-dark',
+                                onTap: function(e) {
+                                  return;
+                                }
+                              },
+                              {
+                                text: '<b>OK</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                  return;
+                                }
+                              }]
+                           })  */
+     /*var chats = $rootScope.enquirylist;
      var selectedIDs = $ionicLetterAvatarSelector.getData();
      selectedIDs.forEach(function(id) {
          var chat = chats.filter(function(chat) {
              return chat.id === id;
          })[0];
          chats.splice(chats.indexOf(chat), 1);
-     });
+     });*/
      $scope.finish();
+     console.log(selectedIDs)
  }
 
 
