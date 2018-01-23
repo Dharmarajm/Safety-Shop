@@ -70,14 +70,17 @@
         <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null" menu-close href="#/app/enquirydetails">
          Enquiry Emails 
         </ion-item>
-        <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null" menu-close>
-         Advertisement
-        </ion-item>
         <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1">
           About Us
          </ion-item>
           <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1">
           Contact Us
+         </ion-item>
+         <ion-item menu-close href="#/app/sellerreviews" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null">
+          Reviews
+         </ion-item>
+         <ion-item menu-close href="#/app/selleradvertisement" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null">
+          Advertisements
          </ion-item>
          <ion-item menu-close ng-show="customerDetails.group_id==4 || customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null" ng-click="signOut()">
           sign out

@@ -206,3 +206,47 @@ a.testc{
 .ion-trash-a:before{
  color: crimson; 
 }
+
+#profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  /*line-height: 150px;*/
+  margin: 0px 0;
+}
+
+[data-letters]:before {
+  content:attr(data-letters);
+  top: 12px !important;
+  vertical-align: super;
+  /*display:inline-block;
+  font-size:35px;
+  width:5px;
+  height:5px;
+  line-height:2.5em;
+  text-align:center;
+  border-radius:50%;
+  background:plum;
+  vertical-align:initial;
+  margin-right:1em;
+  margin-left: 10px;*/
+  color:black;
+  }
+
+
+  /*[data-get]:before{
+    content:attr(data-get);
+    float: right;
+    margin-left: 30px;
+    display:inline-block;
+  }*/
+
+  .item-avatar-left.item-complex{
+     padding-top: 0;
+     padding-left: 0;
+     top: 48px;
+  }

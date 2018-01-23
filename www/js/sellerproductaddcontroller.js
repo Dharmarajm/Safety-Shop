@@ -1,5 +1,5 @@
 angular.module('sellerproductadd', [])
-.controller('sellerproductaddCtrl', function($scope,$rootScope,$window,$stateParams, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker) {
+.controller('sellerproductaddCtrl', function($scope,$rootScope,$window,$stateParams, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaImagePicker) {
  
  $scope.category1=1;
  $scope.categoryidentify=[];
@@ -33,13 +33,13 @@ angular.module('sellerproductadd', [])
                                }
                               
                               for(var i in $scope.proEdit.custom_spec){
-                                $rootScope.inputs.push($scope.proEdit.custom_spec[i])
                                 $rootScope.inputs.splice(0,1);
                                 $scope.item = {
                                                "spec_name":$scope.proEdit.custom_spec[i].spec_name,
                                                "spec_value":$scope.proEdit.custom_spec[i].spec_value,
                                                "sort_order":$scope.proEdit.custom_spec[i].sort_order
                                               }           
+                                $rootScope.inputs.push($scope.item)
                               }
                               if($scope.proEdit.custom_spec==null){
                                 $rootScope.inputs=[];
@@ -200,9 +200,23 @@ angular.module('sellerproductadd', [])
   $rootScope.inputs.splice(index,1);
  
  }
-
+ 
+ $scope.datas=[];
  $scope.productdetailsadd=function(detail,spec){
   
+  if($scope.proadd.prodCategory1!=null || $scope.proadd.prodCategory1!=undefined || $scope.proadd.prodCategory1!=""){
+    $scope.datas.length=0;
+    $scope.datas.push($scope.proadd.prodCategory1)
+  }
+  if($scope.proadd.prodCategory2!=null || $scope.proadd.prodCategory2!=undefined || $scope.proadd.prodCategory2!=""){
+    $scope.datas.length=1;
+    $scope.datas.push($scope.proadd.prodCategory2)
+  }
+  if($scope.proadd.prodCategory3!=null || $scope.proadd.prodCategory3!=undefined || $scope.proadd.prodCategory3!=""){
+    $scope.datas.length=2;
+    $scope.datas.push($scope.proadd.prodCategory3)
+  }
+
   if($rootScope.selldata=="Add"){
     var data={
             "product": {
@@ -232,7 +246,7 @@ angular.module('sellerproductadd', [])
             "seller_id": 2
            } 
     console.log(data)
-    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+    /*$http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
         $rootScope.productSave=res.data;
         $rootScope.getCategory="";
@@ -240,17 +254,60 @@ angular.module('sellerproductadd', [])
         $rootScope.rootCat1=""
         $rootScope.rootCat2=""
         $rootScope.rootCat3="";
-     })   
+     })*/   
+  }
+
+  
+
+  if($rootScope.selldata=="Edit"){
+    var data={
+            "product": {
+              "id": 0,
+              "sku": detail.sku,
+              "name": detail.ProName,
+              "type_id":detail.productcategory ,
+              "status":"1",
+              "price": detail.price,
+              "stock_status": detail.stockState,
+              "qty": detail.quantity,
+              "description": detail.describe,
+              "short_description": detail.shortdescribe,
+              "category_ids": $scope.datas,
+              "customspec": $rootScope.inputs,
+              "main_image": {
+                 "file": "",
+                 "name": ""
+               },
+               "additional_images": [ {"file": "",
+                                       "name": "",
+                                       "delete": 0
+                                     } ]
+             },
+            "type": "edit",
+            "id": 0,
+            "seller_id": 2
+           } 
+    console.log(data)
+    /*$http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+     }).then(function(res){
+        $rootScope.productSave=res.data;
+        $rootScope.getCategory="";
+        $rootScope.addspec="";
+        $rootScope.rootCat1=""
+        $rootScope.rootCat2=""
+        $rootScope.rootCat3="";
+     })*/
   }
   
  }
  
 
  $scope.uploadimageMain=[];
+ $scope.uploadmainfile=[]; 
 
  $scope.upload = function(){
 
-  var options = {
+  /*var options = {
       maximumImagesCount: 1,
       quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -262,39 +319,58 @@ angular.module('sellerproductadd', [])
       popoverOptions: CameraPopoverOptions,
       saveToPhotoAlbum: false,
     correctOrientation:true
-    };
+    };*/
 
+    /*$scope.uploadimageMain=[];
+    $scope.uploadmainfile=[];*/
+    
+
+    var options = {
+     maximumImagesCount: 1,
+     width: 800,
+     height: 800,
+     quality: 80
+    };
+ 
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
-      
+        $scope.uploadmainfile=[];
         console.log('Image URI: ' + results[0]);
-        alert(results[0]);
-        $scope.uploadimageMain.push({"file":results[0].file})
-        window.resolveLocalFileSystemURI(results[0],
+        
+        $scope.uploadmainfile.push({"file":results[0]})
+        console.log($scope.uploadmainfile)
+        window.resolveLocalFileSystemURL(results[0],
             function (fileEntry) {
                 // convert to Base64 string
-
-
+                 $scope.uploadimageMain.length=0;
+                 console.log(fileEntry)    
                 fileEntry.file(
                     function(file) {
                         //got file
+                        console.log(file)
+                        
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
+                          console.log(evt)
                             var imgData = evt.target.result; // this is your Base64 string
-                            $scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});
+                            /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
+                            $scope.getimgData=imgData
+                            console.log($scope.getimgData)
                         };
                         reader.readAsDataURL(file);
+                        console.log($scope.getimgData)
+
+                        $scope.uploadimageMain.push({"file":file.name,"format":$scope.getimgData})
                     }, 
                 function (evt) { 
                     //failed to get file
                 });
+
             },
             // error callback
             function () { }
         )
-
-
-      $scope.results=results;     
+      console.log($scope.uploadimageMain)     
     }, function(error) {
       // error getting photos
       alert(error);
@@ -304,10 +380,11 @@ angular.module('sellerproductadd', [])
  
 
  $scope.uploadimageAddition=[];
+ $scope.uploadaddfile=[];
 
  $scope.upload1 = function(){
 
-  var options = {
+ /* var options = {
       maximumImagesCount: 4,
       quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -319,27 +396,52 @@ angular.module('sellerproductadd', [])
       popoverOptions: CameraPopoverOptions,
       saveToPhotoAlbum: false,
     correctOrientation:true
+    };*/
+    
+    $scope.uploadaddfile=[]; 
+    $scope.uploadimageAddition=[];
+
+    /*$scope.dataUImg=[];
+    $scope.dataFile=[]; */
+    var options = {
+     maximumImagesCount: 5,
+     width: 800,
+     height: 800,
+     quality: 80
     };
+    
+
 
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
+      
       for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
-        
-           window.resolveLocalFileSystemURI(results[i],
+              
+           $scope.uploadaddfile.push({"file":results[i]})
+           console.log($scope.uploadaddfile)
+           window.resolveLocalFileSystemURL(results[i],
             function (fileEntry) {
                 // convert to Base64 string
-
-
+                 
+                 console.log(fileEntry)
                 fileEntry.file(
                     function(file) {
                         //got file
+                        /*$scope.dataFile.push({"name":file.name})*/
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
                             var imgData = evt.target.result; // this is your Base64 string
-                            $scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});
+                            /*$scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});*/
+                            console.log(imgData)
+                            $scope.imgpickData=imgData;
+                            console.log($scope.imgpickData)
+                            /*$scope.dataUImg.push({"format":imgData})*/
                         };
                         reader.readAsDataURL(file);
+                        console.log($scope.imgpickData)
+
+                        $scope.uploadimageAddition.push({"file":file.name,"format":$scope.imgpickData})
                     }, 
                 function (evt) { 
                     //failed to get file
@@ -348,10 +450,12 @@ angular.module('sellerproductadd', [])
             // error callback
             function () { }
         )
+      
+       
       }
-
-
-      $scope.results=results;
+      
+      console.log($scope.uploadaddfile)
+      console.log($scope.uploadimageAddition);
     }, function(error) {
       // error getting photos
       alert(error);
@@ -372,7 +476,7 @@ var options = {
      fileKey: "file",
      fileName: filename,
      chunkedMode: false,
-     mimeType: "image/jpg",
+     mimeType: "multipart/form-data",
  params : {'directory':'upload', 'fileName':filename} // directory represents remote directory,  fileName represents final remote file name
  };
       alert("ff");
@@ -388,7 +492,7 @@ var options = {
      // PROGRESS HANDLING GOES HERE
  })
 
-}*/
+}
 
 
 /*$scope.data = { "ImageURI" :  "Select Image" };

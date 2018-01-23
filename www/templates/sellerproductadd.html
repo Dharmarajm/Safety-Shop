@@ -37,7 +37,8 @@
           </select></span>
         </label>
      
-        <button class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0" ng-click="categoryCheck(2)">Next</button> <!-- ng-disabled="proadd.prodCategory1=='' || proadd.prodCategory2=='' || proadd.prodCategory3=='' && rootCat2!=null || proadd.prodCategory3=='' && rootCat2.length!=0" -->
+        <button ng-hide="selldata=='Edit'" class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0" ng-click="categoryCheck(2)">Next</button> <!-- ng-disabled="proadd.prodCategory1=='' || proadd.prodCategory2=='' || proadd.prodCategory3=='' && rootCat2!=null || proadd.prodCategory3=='' && rootCat2.length!=0" -->
+        <button ng-show="selldata=='Edit'" class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
        </div> 
   
 
@@ -61,12 +62,12 @@
 
         <label class="item item-input">
           <span class="input-label col col-50">Price</span>:<span class="col col-50">
-          <input name="price" type="text" ng-model="proadd.price" ng-required="true"></span>
+          <input name="price" type="number" ng-model="proadd.price" ng-required="true"></span>
         </label>
 
         <label class="item item-input">
           <span class="input-label col col-50">Quantity</span>:<span class="col col-50">
-          <input name="quantity" type="text" ng-model="proadd.quantity" ng-required="true"></span>
+          <input name="quantity" type="number" ng-model="proadd.quantity" ng-required="true"></span>
         </label>
 
         <label class="item item-input">
@@ -80,7 +81,8 @@
           <span class="input-label col col-50">Weight</span>:<span class="col col-50">
           <input name="weight" type="text" ng-model="proadd.weight" ng-required="true"></span>
         </label> -->
-        <button class="button button-small button-positive" ng-disabled="categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="categoryCheck(3)">Next</button>
+        <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="categoryCheck(3)">Next</button>
+        <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
        </div> 
     
 
@@ -99,13 +101,14 @@
              <tr ng-repeat="item in inputs">  
                <td><input type="text" ng-model="item.spec_name" style="width:100%" ng-required="true"></td>
                <td><input type="text" ng-model="item.spec_value" style="width:100%" ng-required="true"></td>
-               <td><input type="text" ng-model="item.sort_order" style="width:100%" ng-required="true"></td>
+               <td><input type="number" ng-model="item.sort_order" style="width:100%" ng-required="true"></td>
                <td ng-click="spectdel($index)"><a style="font-size:30px"><i class="icon ion-ios-trash-outline"></i></a></td>          
              </tr>
            </tbody>
          </table>
        
-       <button class="button button-small button-positive" ng-click="add(inputs)">Next</button>
+       <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-click="add(inputs)">Next</button>
+       <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
        </div>
 
         <div class="list" ng-show="category1==4">     
@@ -119,20 +122,21 @@
             <textarea name="shortdescribe" ng-model="proadd.shortdescribe" ng-required="true"></textarea></span>
           </label>
 
-          <button class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid" ng-click="categoryCheck(5)">Next</button>
+          <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid" ng-click="categoryCheck(5)">Next</button>
+          <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid || categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
         </div>
 
     
       <div class="list" ng-show="category1==5">     
-          <label class="item item-input">
+          <!-- <label class="item item-input">
             <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload()">Add Image</button></span>
           </label>
-<!-- 
+
           <label class="item item-input">
             <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
-          </label>
+          </label> -->
           <label class="item item-input">
             <span class="input-label col col-50">Main Image</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload()">Add Image</button></span>
@@ -143,20 +147,21 @@
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
           <div ng-repeat="test in uploadimageMain">
-            {{test}}-1 
+            {{test.file}}work
+            {{test.format}}
           </div>
           <div ng-repeat="test in uploadimageAddition">
-            {{test}}-2 
+            {{test.file}}
+            {{test.format}}
           </div> 
-          <div ng-repeat="test in uploadimageMain">
-            <img ng-src="{{test[0].file}}" style="width: 120px;height: 80px;">
-            <img ng-src="{{test[0].format}}" style="width: 120px;height: 80px;">
-          </div>
-          <div ng-repeat="test in uploadimageAddition">
+          <div ng-repeat="test in uploadmainfile">
             <img ng-src="{{test.file}}" style="width: 120px;height: 80px;">
-            <img ng-src="{{test.format}}" style="width: 120px;height: 80px;">
+            
+          </div>
+          <div ng-repeat="test in uploadaddfile">
+            <img ng-src="{{test.file}}" style="width: 120px;height: 80px;">
+          </div> 
 
-          </div>  -->
           <!-- <label class="item item-input">
             <span class="input-label col col-50">Additional image 2</span>:<span class="col col-50">
             <input type="file" ng-model="proadd.addImag2" ng-click="upload()"></span>
@@ -178,7 +183,7 @@
              <input type="text" ng-model="data.ImageURI" size="30"/>
           </div> -->
 
-          <button class="button button-small button-positive" type="submit" ng-click="productdetailsadd(proadd)">Product {{template}}</button>
+          <button class="button button-small button-positive" type="submit" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd)">Product {{template}}</button>
         </div>
     </form>
 

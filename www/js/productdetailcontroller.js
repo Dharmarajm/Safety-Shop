@@ -160,22 +160,24 @@ angular.module('productdetail', ['ionic-ratings'])
 			              $scope.customerSubmit=function(data){
 			              	//console.log($scope.productRes,data)
 
-			              	
-
-
-			              	/*if($scope.seller_id)*/
-                      
-                       var customerdata={
-                       	"seller_id": $scope.seller_id,
-						"product_id": $scope.productRes.id,
-						"product_sku": $scope.productRes.sku,
-						"contact_name": data.Name,
-						"phone": data.PhoneNumber,
-						"email": data.EmailID,
-						"city": data.city,
-						"overview": data.BriefOverview,
-                       }
-                           // console.log(customerdata)
+			              	if($rootScope.customerDetails.id!=null){
+                             $scope.customerID=$rootScope.customerDetails.id;
+			              	}else{
+                             $scope.customerID=0;
+			              	}
+                           
+	                       var customerdata={
+	                       	"seller_id": $scope.seller_id,
+	                       	"customer_id": $scope.customerID,
+							"product_id": $scope.productRes.id,
+							"product_sku": $scope.productRes.sku,
+							"contact_name": data.Name,
+							"phone": data.PhoneNumber,
+							"email": data.EmailID,
+							"city": data.city,
+							"overview": data.BriefOverview,
+	                       }
+                           console.log(customerdata)
 
                             
                           $http
@@ -185,7 +187,17 @@ angular.module('productdetail', ['ionic-ratings'])
                             data: customerdata  
                           })
                           .success(function(data) {
-                            console.log(data);
+                           $ionicPopup.alert({
+                             title: 'Customer Details',
+                             template: 'Your details has been updated',
+                             buttons: [
+                             {
+                                text: '<b>OK</b>',
+                                onTap: function() {
+                                  return;
+                                }
+                              }]
+                           })
                            
                           }).error(function(data, status, headers, config){
                            //console.log(data.message);
@@ -193,8 +205,6 @@ angular.module('productdetail', ['ionic-ratings'])
                             alert(data.message)
                            }
                            });
-
-
 
 			              }
 
@@ -224,7 +234,17 @@ angular.module('productdetail', ['ionic-ratings'])
                             data: reviewdata  
                           })
                           .success(function(data) {
-                           // console.log(data);
+                           $ionicPopup.alert({
+                             title: 'Review Details',
+                             template: 'Review Updated Sucessfully',
+                             buttons: [
+                             {
+                                text: '<b>OK</b>',
+                                onTap: function() {
+                                  return;
+                                }
+                              }]
+                           })
                            
                           }).error(function(data, status, headers, config){
                            //console.log(data.message);

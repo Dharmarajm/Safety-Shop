@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerproduct','sellerproductdetail','sellerproductadd','ngCordova','enquiry'])
+angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerproduct','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews'])
 
 .run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory) {
   $ionicPlatform.ready(function() {
@@ -232,7 +232,6 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
 
   .state('app.search', {
     url: '/search',
-
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html',
@@ -249,8 +248,48 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
          controller:'SearchCtrl'
       }
     }
-  })    
+  })
 
+  .state('app.sellerreviews', {
+    url: '/sellerreviews',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sellerreviews.html',
+         controller:'sellerreviewsCtrl'
+      }
+    }
+  })
+
+  .state('app.sellerreviewlist', {
+    url: '/sellerreviewlist',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sellerreviewlist.html',
+         controller:'sellerreviewsCtrl'
+      }
+    }
+  })
+
+  .state('app.sellerproductreviews', {
+    url: '/sellerproductreviews',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sellerproductreviews.html',
+         controller:'SellerProductreviewsCtrl'
+      }
+    }
+  })
+
+  .state('app.selleradvertisement', {
+    url: '/selleradvertisement',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/selleradvertisement.html',
+         controller:'SelleradvertiseCtrl'
+      }
+    }
+  })    
+  
   .state('app.single', {
     url: '/home/:playlistId',
     views: {

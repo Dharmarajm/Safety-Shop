@@ -1,5 +1,5 @@
-angular.module('enquiry', [])
-.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker) {
+angular.module('enquiry', ['ionicLetterAvatarSelector'])
+.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker,$ionicLetterAvatarSelector) {
  
  $scope.enquiryinit=function(){
   var data={
@@ -33,6 +33,26 @@ angular.module('enquiry', [])
 
   
  } 
+
+
+ $scope.$on($ionicLetterAvatarSelector.stateChanged, function($event, selectionActive) {
+        $scope.selectionActive = selectionActive;
+    });
+    
+    $scope.finish = $ionicLetterAvatarSelector.finish;
+    
+ $scope.delete = function() {
+     var chats = $rootScope.enquirylist;
+     var selectedIDs = $ionicLetterAvatarSelector.getData();
+     selectedIDs.forEach(function(id) {
+         var chat = chats.filter(function(chat) {
+             return chat.id === id;
+         })[0];
+         chats.splice(chats.indexOf(chat), 1);
+     });
+     $scope.finish();
+ }
+
 
  $scope.getStyle=function(id){
   if(id.move_to=="Important"){

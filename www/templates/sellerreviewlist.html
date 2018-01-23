@@ -1,0 +1,61 @@
+<ion-view title="Product Review" cache-view="false">
+  <ion-nav-buttons side="left">
+     <button class="button button-clear" ng-click="myGoBack()" >
+     <i class="icon ion-ios-arrow-back"></i>
+     </button>
+  </ion-nav-buttons>
+  <ion-content>
+  	<div class="card">  
+	  <div class="row">
+	   <div class="col col-50">
+	    Category Name
+	   </div>
+	   <div class="col col-50">
+	    {{reviewdata.category}} 
+	   </div>
+	  </div>
+	  <div class="row">
+	   <div class="col col-50 title-center">
+	     Product Image
+	   </div>
+	   <div class="col col-50">
+	    <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{reviewdata.image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+	   </div>
+	  </div>
+	  <div class="row">
+	   <div class="col col-50">
+	     Product Name
+	   </div>
+	   <div class="col col-50">
+	     {{reviewdata.name}}
+	   </div>
+	  </div>
+	  <div class="row">
+	   <div class="col col-50">
+	     SKU
+	   </div>
+	   <div class="col col-50">
+	    {{reviewdata.sku}}
+	   </div>
+	  </div>
+	  <div class="row">
+	   <div class="col col-50">
+	    Reviews Count
+	   </div>
+	   <div class="col col-50">
+	    {{reviewdata.reviews_count}}
+	   </div>
+	  </div>
+	  <div class="row">
+	   <div class="col col-50">
+	    Overall Rating
+	   </div>
+	   <div class="col col-50">
+	     <span class="stars alignright">
+                <span ng-style="{ 'width': getStars(reviewdata.overall_rating)}"></span>
+         </span>
+	   </div>
+	  </div>
+	</div>  
+  </ion-content>
+</ion-view>

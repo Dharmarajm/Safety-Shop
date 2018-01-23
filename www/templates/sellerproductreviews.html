@@ -1,0 +1,41 @@
+<ion-view title="{{sellertablelist.name}} Reviews" cache-view="false">
+ 
+  <ion-nav-buttons side="left">
+     <button class="button button-clear" ng-click="myGoBack()" >
+     <i class="icon ion-ios-arrow-back"></i>
+     </button>
+  </ion-nav-buttons>
+  <ion-content>
+   <link href="css/sellerproductreviews.css" rel="stylesheet">
+    <div class="row header">
+      <div class="col">Name</div>
+      <div class="col">Review</div>
+      <div class="col">Date</div>
+      <div class="col">Action</div>
+    </div>
+    <div class="row" ng-repeat="data in productsListReview.reviews">
+      <div class="col">{{data.nickname}}</div>
+      <div class="col">{{data.review}}</div>
+      <div class="col">{{data.date}}</div>
+      <div class="col"><button class="button button-small button-positive" ng-click="reviewListPopup(data)">More</button></div>
+    </div>
+  </ion-content>
+
+   <script id="reviewfulldatail.html"  type="text/ng-template">
+          
+    <ion-modal-view>
+    
+            <ion-header-bar>                
+            <div class="row headercolor">      
+
+            <div class="col col-90"> <p class="titlesub">Customer Details</p></div>
+            <div class="col col-10"> <i class="icon ion-close-round" ng-click="closeproductdetails()"></i></div>
+            </div>
+            </ion-header-bar>  
+            <ion-content style="background-color: #e0e0e0">               
+        
+
+            </ion-content>
+   </ion-modal-view>
+</script>
+</ion-view>

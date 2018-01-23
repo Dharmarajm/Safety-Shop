@@ -27,17 +27,7 @@
     },
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
-    },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
     }
   },
-  "dependent_plugins": {
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
-    }
-  }
+  "dependent_plugins": {}
 }
