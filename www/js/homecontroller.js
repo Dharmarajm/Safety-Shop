@@ -1,5 +1,5 @@
 angular.module('home', [])
-.controller('HomeCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading) {
+.controller('HomeCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$ionicSlideBoxDelegate) {
 
 
 
@@ -125,8 +125,16 @@ $rootScope.ProductList= response.data.items;
                         }
 
                         }
-
-              
+       $scope.interval = 2000;
+       
+       $scope.slideHasChanged = function(index) {
+           $scope.slideIndex = index;
+           if ( ($ionicSlideBoxDelegate.count() -1 ) == index ) {
+               $timeout(function(){
+                   $ionicSlideBoxDelegate.slide(0);
+               },$scope.interval);
+           }
+       };
              
 
 })

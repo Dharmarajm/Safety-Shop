@@ -154,11 +154,11 @@
             {{test.file}}
             {{test.format}}
           </div> 
-          <div ng-repeat="test in uploadmainfile">
+          <div ng-repeat="test in uploadmainfile" ng-if="uploadmainfile.length!=0">
             <img ng-src="{{test.file}}" style="width: 120px;height: 80px;">
             
           </div>
-          <div ng-repeat="test in uploadaddfile">
+          <div ng-repeat="test in uploadaddfile" ng-if="uploadaddfile.length!=0">
             <img ng-src="{{test.file}}" style="width: 120px;height: 80px;">
           </div> 
 

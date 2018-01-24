@@ -21,7 +21,7 @@
            <!--  {{homevalue[0].slider_image}} -->
 
           <!--   <div ng-repeat="img in homevalue[0].slider_image">{{img}}</div> -->
-       <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000" >
+       <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
           <ion-slide >
             <img ng-src="{{homevalue[0].slider_image[0]}}" style="width: 100%" >
           </ion-slide>
@@ -67,7 +67,7 @@
             <img ng-src="{{brand.image}}">       
           </a>
         </ion-scroll> -->         
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000" >
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
           <ion-slide >
             <div class="row">
              <div class="col col-50">
