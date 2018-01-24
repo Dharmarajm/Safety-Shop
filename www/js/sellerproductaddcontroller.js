@@ -321,8 +321,8 @@ angular.module('sellerproductadd', [])
     correctOrientation:true
     };*/
 
-    /*$scope.uploadimageMain=[];
-    $scope.uploadmainfile=[];*/
+    $scope.uploadimageMain=[];
+    $scope.uploadmainfile=[];
     
 
     var options = {
@@ -398,8 +398,8 @@ angular.module('sellerproductadd', [])
     correctOrientation:true
     };*/
     
-    $scope.uploadaddfile=[]; 
     $scope.uploadimageAddition=[];
+    $scope.uploadaddfile=[];
 
     /*$scope.dataUImg=[];
     $scope.dataFile=[]; */
@@ -433,15 +433,14 @@ angular.module('sellerproductadd', [])
                         reader.onloadend = function (evt) {
                             var imgData = evt.target.result; // this is your Base64 string
                             /*$scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});*/
-                            console.log(imgData)
-                            $scope.imgpickData=imgData;
+                            $rootScope.imgpickData=imgData;
                             console.log($scope.imgpickData)
                             /*$scope.dataUImg.push({"format":imgData})*/
                         };
                         reader.readAsDataURL(file);
-                        console.log($scope.imgpickData)
+                        console.log($rootScope.imgpickData)
 
-                        $scope.uploadimageAddition.push({"file":file.name,"format":$scope.imgpickData})
+                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
                     }, 
                 function (evt) { 
                     //failed to get file
