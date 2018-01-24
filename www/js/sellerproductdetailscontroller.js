@@ -38,12 +38,14 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 
   $scope.isChecked = function(id, matches) {
      var isChecked = id; 
+     console.log(id,matches)
      if(matches == true || matches == 1) {
         isChecked = true;
      }
       if(matches == false || matches == 2) {
        isChecked= false;
      }
+     console.log(isChecked)
     return isChecked;
   }
 

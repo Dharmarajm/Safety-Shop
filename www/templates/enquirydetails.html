@@ -11,7 +11,7 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-trash-b" 
                 ng-show="selectionActive" 
-                ng-click="delete()">
+                ng-click="delete(list)">
         </button>
     </ion-nav-buttons>  
   <ion-content>
@@ -54,8 +54,8 @@
                       border="none"
                       color="white"
                       letters="1"
-                      item="{{list.quickrfq_id}}"
-                      href="#/tab/enquirylist/{{list.id}}"
+                      item="{{list}}"
+                      
                       ng-repeat="list in enquirylist" >
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>
@@ -83,8 +83,8 @@
                       border="none"
                       color="white"
                       letters="1"
-                      item="{{list.quickrfq_id}}"
-                      href="#/tab/sentlist/{{list.id}}"
+                      item="{{list.reply_id}}"
+                     
                       ng-repeat="list in sentlist" >
                 <h2>{{list.contact_name}}</h2>
                 <p>{{list.reply_subject}}</p>
@@ -112,8 +112,8 @@
                       border="none"
                       color="white"
                       letters="1"
-                      href="#/tab/importantlist/{{list.id}}"
-                      item="{{list.quickrfq_id}}"
+                      
+                      item="{{list}}"
                       ng-repeat="list in importantlist" >
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>

@@ -11,6 +11,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
  $http.post(baseUrl+'seller/enquiry/inbox',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.enquirylist=response.data[0].inbox;
+     console.log($rootScope.enquirylist)
     })
  
  
@@ -19,6 +20,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }).then(function(response){ 
      if(response.data[0]!=undefined){
       $rootScope.importantlist=response.data[0].important;
+     console.log($rootScope.importantlist)
+
       }else{
       $rootScope.importantlist=[];
      }         
@@ -48,9 +51,6 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 
  }
 
-
-
-
  $scope.$on($ionicLetterAvatarSelector.stateChanged, function($event, selectionActive) {
         $scope.selectionActive = selectionActive;
     });
@@ -58,7 +58,17 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     $scope.finish = $ionicLetterAvatarSelector.finish;
     
  $scope.delete= function() {
-     /*$ionicPopup.alert({
+  
+  var chats = $rootScope.enquirylist;
+  var selectedIDs = $ionicLetterAvatarSelector.getData();
+  selectedIDs.forEach(function(id) {
+   var chat = chats.filter(function(chat) {
+       return chat.quickrfq_id === id.quickrfq_id;
+    })[0];
+   }); 
+    $scope.selectedID=selectedIDs; 
+     
+    $ionicPopup.alert({
                              title: 'Message delete',
                              template: 'Are you sure want to delete?',
                              buttons: [
@@ -73,20 +83,28 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                 text: '<b>OK</b>',
                                 type: 'button-positive',
                                 onTap: function(e) {
-                                  return;
+                                  
+                                   
+                                  console.log($scope.selectedID)
+                                   
+                                   $scope.finish();
+                                   var data={
+                                             "enquiry_id": $scope.selectedID[0].quickrfq_id,
+                                             "seller_id": $scope.selectedID[0].seller_id
+                                            }
+
+                                 $http.post(baseUrl+'seller/enquiry/delete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+                                 }).then(function(response){                     
+                                    $scope.mesdelete=response.data;
+                                    $rootScope.listid=null;
+                                    $scope.enquiryinit();
+                                    $scope.getStyle(Id)
+                                    console.log($scope.moveToimport)
+                                   })
                                 }
                               }]
-                           })  */
-     /*var chats = $rootScope.enquirylist;
-     var selectedIDs = $ionicLetterAvatarSelector.getData();
-     selectedIDs.forEach(function(id) {
-         var chat = chats.filter(function(chat) {
-             return chat.id === id;
-         })[0];
-         chats.splice(chats.indexOf(chat), 1);
-     });*/
-     $scope.finish();
-     console.log(selectedIDs)
+                           })  
+     
  }
 
 
@@ -138,12 +156,11 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }
 
  $scope.inboxdetail=function(id){
-   if($scope.longPress!=true){
+   
      $rootScope.getinboxId=id;
      $rootScope.getsentId=null;
      $rootScope.getimportantId=null;
      $state.go("app.emaildetails");	
-   }
  } 
  
  $scope.sentdetail=function(id){
@@ -218,27 +235,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
       })
    }*/
   }
-  $scope.itemOnLongPress = function(id) {
-  	$rootScope.listid=id;
-  }
-
-  $scope.itemOnTouchEnd = function(id) {
-  	/*alert(id);*/
-  }
- $scope.longpress=function(id){
-  if($rootScope.listid!=null){
-    if($rootScope.listid.quickrfq_id==id){
-  	  alert($rootScope.listid);
-  	   if($scope.longPress==true){
-        alert($scope.longPress);
-        $scope.longPress=false;
-  	    $rootScope.listid=null;
-  	   }
-    }	
-  }
- }
-
- $scope.longPress=false;
+  
+ /*$scope.longPress=false;*/
 
  /*var a = [{"status": false,"id":10},{"status": false,"id":10}], b = [{"status": false,"id":20},{"status": false,"id":50}];
 
@@ -247,24 +245,14 @@ b.forEach(function(value){
   if (a.indexOf(value)==-1) a.push(value); console.log(a)
 });*/
  
- $scope.setdelete=[{"status": false,"id":1000}];
+ /*$scope.setdelete=[{"status": false,"id":1000}];
  $scope.setIconClick=function(id){
- 	/*for(var i in $rootScope.enquirylist){
- 	 if($rootScope.enquirylist[i].quickrfq_id==id){
- 	 	console.log($scope.longPress)
-       $scope.longPress = !$scope.longPress;
-     }	
- 	}*/
+ 
  	for(var i in $rootScope.enquirylist){
      
  	 if($rootScope.enquirylist[i].quickrfq_id==id){
  	 	if($scope.longPress==true){
- 	 	   /*if($scope.setdelete.length!=0){
- 	 	   	if ($scope.setdelete.indexOf($scope.setdelete[i]) !== -1) {
-             $scope.setdelete.push({"status": false,"id":id});
- 	 	     console.log($scope.setdelete)
-            }
- 	 	   }*/
+ 	 	   
  	 	  if($scope.setdelete.length!=0){ 
  	 	   for(var i=0; i < $scope.setdelete.length;i++){
               if ($scope.setdelete[i].indexOf(id) != -1) {
@@ -277,13 +265,6 @@ b.forEach(function(value){
  	 	
 
  	 	if($scope.longPress==false){
- 	 		/*if($scope.setdelete.length!=0){
- 	 	   	if (valuesSoFar.indexOf(value) !== -1) {
-             $scope.setdelete.push({"status": false,"id":id});
- 	 	     console.log($scope.setdelete)
-            }
- 	 	   } */
-
  	 	   if($scope.setdelete.length!=0){ 
  	 	   for(var i=0; i < $scope.setdelete.length;i++){
               if ($scope.setdelete[i].indexOf(id) != -1) {
@@ -296,20 +277,20 @@ b.forEach(function(value){
  	}
    
    
- }
+ }*/
 
-}).directive('onLongPress', function($timeout) {
+})/*.directive('onLongPress', function($timeout) {
 	return {
 		restrict: 'A',
 		link: function($scope, $elm, $attrs) {
 			$elm.bind('touchstart', function(evt) {
 				// Locally scoped variable that will keep track of the long press
-                /*if($scope.longPress==true){
+                if($scope.longPress==true){
                    $scope.longPress=false;
                 }
                 if($scope.longPress==false){
                    $scope.longPress=true;
-                } */
+                } 
                 console.log(evt);
 				$scope.longPress = true;
                  
@@ -327,7 +308,7 @@ b.forEach(function(value){
 				}, 1000);
 			});
 
-			/*$elm.bind('touchend', function(evt) {
+			$elm.bind('touchend', function(evt) {
 				// Prevent the onLongPress event from firing
 				$scope.longPress = false;
 				// If there is an on-touch-end function attached to this element, apply it
@@ -336,7 +317,7 @@ b.forEach(function(value){
 						$scope.$eval($attrs.onTouchEnd)
 					});
 				}
-			});*/
+			});
 		}
 	};
-})
+})*/

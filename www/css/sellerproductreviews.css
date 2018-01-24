@@ -19,3 +19,12 @@ body {
 .row:last-child .col {
     border-bottom: solid 1px grey;
 }
+
+.col.col-10.text,.col.col-90.text{
+ border:none;
+}
+
+.col.col-50{
+  border:none;
+  border-bottom:none;	
+}

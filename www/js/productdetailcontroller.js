@@ -18,10 +18,11 @@ angular.module('productdetail', ['ionic-ratings'])
         callback: function(rating, index) {    //Mandatory 
           //$scope.ratingsCallback(rating, index);
            $scope.ratingstatus=rating;
+           console.log($scope.ratingstatus)
         }
       };
   
- 
+   
 			  $scope.getStars = function(rating) {
 			    // Get the value
 			    var val = parseFloat(rating);
@@ -136,8 +137,11 @@ angular.module('productdetail', ['ionic-ratings'])
 
 			              $scope.closeproductdetails = function() {
 			               $scope.modalproductdetail.hide();
-
-
+                           $scope.data.Name="";
+                           $scope.data.PhoneNumber="";
+                           $scope.data.EmailID="";
+                           $scope.data.city="";
+                           $scope.data.BriefOverview="";
 			              }
 
 			               $ionicModal.fromTemplateUrl('reviewdetails.html', {
@@ -150,70 +154,90 @@ angular.module('productdetail', ['ionic-ratings'])
 
 			              $scope.closereviewdetails = function() {
 			               $scope.reviewdetails.hide();
-
-
+                           $scope.review.name=$rootScope.customerDetails.firstname
+                           $scope.review.summay="";
+                           $scope.review.detail="";
 			              }
 
 
-			              
+			        $scope.data={Name:"",PhoneNumber:"",emailid:"",city:"",BriefOverview:""};      
 
-			              $scope.customerSubmit=function(data){
+			              $scope.customerSubmit=function(customer){
 			              	//console.log($scope.productRes,data)
+                            if(customer.Name.$valid && customer.emailid.$valid){
+	                           if($rootScope.customerDetails.id!=null){
+	                             $scope.customerID=$rootScope.customerDetails.id;
+				              	 }else{
+	                              $scope.customerID=0;
+				              	 }
 
-			              	if($rootScope.customerDetails.id!=null){
-                             $scope.customerID=$rootScope.customerDetails.id;
-			              	}else{
-                             $scope.customerID=0;
-			              	}
-                           
-	                       var customerdata={
-	                       	"seller_id": $scope.seller_id,
-	                       	"customer_id": $scope.customerID,
-							"product_id": $scope.productRes.id,
-							"product_sku": $scope.productRes.sku,
-							"contact_name": data.Name,
-							"phone": data.PhoneNumber,
-							"email": data.EmailID,
-							"city": data.city,
-							"overview": data.BriefOverview,
-	                       }
-                           console.log(customerdata)
+				              	 if($scope.data.PhoneNumber==null){
+				              	 	$scope.data.PhoneNumber="";
+				              	 }
+	                           
+		                       var customerdata={
+		                       	"seller_id": $scope.seller_id,
+		                       	"customer_id": $scope.customerID,
+								"product_id": $scope.productRes.id,
+								"product_sku": $scope.productRes.sku,
+								"contact_name": $scope.data.Name,
+								"phone": $scope.data.PhoneNumber,
+								"email": $scope.data.EmailID,
+								"city": $scope.data.city,
+								"overview": $scope.data.BriefOverview,
+		                       }
+	                           console.log(customerdata)
 
-                            
-                          $http
-                          ({
-                            method: 'post',
-                            url: baseUrl+'quickrfq/',
-                            data: customerdata  
-                          })
-                          .success(function(data) {
-                           $ionicPopup.alert({
-                             title: 'Customer Details',
-                             template: 'Your details has been updated',
-                             buttons: [
-                             {
-                                text: '<b>OK</b>',
-                                onTap: function() {
-                                  return;
-                                }
-                              }]
-                           })
-                           
-                          }).error(function(data, status, headers, config){
-                           //console.log(data.message);
-                           if(data.message != null){
-                            alert(data.message)
-                           }
-                           });
+	                            
+	                          $http
+	                          ({
+	                            method: 'post',
+	                            url: baseUrl+'quickrfq/',
+	                            data: customerdata  
+	                          })
+	                          .success(function(data) {
+	                           $ionicPopup.alert({
+	                             title: 'Customer Details',
+	                             template: 'Your details has been updated',
+	                             buttons: [
+	                             {
+	                                text: '<b>OK</b>',
+	                                onTap: function() {
+	                                  return;
+	                                }
+	                              }]
+	                           })
+	                           
+	                          }).error(function(data, status, headers, config){
+	                           //console.log(data.message);
+	                           /*if(data.message != null){
+	                            alert(data.message)
+	                           }*/
+	                              $ionicPopup.alert({
+	                             title: 'Customer Details',
+	                             template: 'Your details has been updated',
+	                             buttons: [
+	                             {
+	                                text: '<b>OK</b>',
+	                                onTap: function() {
+	                                  return;
+	                                }
+	                              }]
+	                             })
+	                           });
+                            }else{
+                              $scope.submitted=true;
+                            }
+			              	
 
 			              }
 
-
+                         
 			              $scope.reviewSubmit=function(value){
                                 console.log(value)
                      if($rootScope.authCode != null){
 
-
+                                $scope.ratingstatus
 
                                 var reviewdata={
 								"productId": $scope.productRes.id,
@@ -224,7 +248,8 @@ angular.module('productdetail', ['ionic-ratings'])
 								"ratingOptionId": $scope.ratingstatus,
 								"customer_id": $rootScope.customerDetails.id,
 								"store_id": "1"
-                       }
+                                }
+                                console.log(reviewdata)
                             
                           $http
                           ({
@@ -248,9 +273,20 @@ angular.module('productdetail', ['ionic-ratings'])
                            
                           }).error(function(data, status, headers, config){
                            //console.log(data.message);
-                           if(data.message != null){
+                           /*if(data.message != null){
                             alert(data.message)
-                           }
+                           }*/
+                           $ionicPopup.alert({
+                             title: 'Review Details',
+                             template: 'Review Updated failed',
+                             buttons: [
+                             {
+                                text: '<b>OK</b>',
+                                onTap: function() {
+                                  return;
+                                }
+                              }]
+                           })
                            });
                      }
 			              }

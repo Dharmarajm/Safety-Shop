@@ -1,0 +1,83 @@
+<ion-view title="Advertisement" cache-view="false">
+  <ion-nav-buttons side="left">
+               <button class="button button-clear" ng-click="myGoBack()" >
+               <i class="icon ion-ios-arrow-back"></i>
+               </button>
+    </ion-nav-buttons>   
+    <ion-content>
+     <div class="card">  
+        <div class="row">
+         <div class="col col-50">
+          Category Name
+         </div>
+         <div class="col col-50">
+          {{advertiselist.category}} 
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50 title-center">
+           Product Image
+         </div>
+         <div class="col col-50">
+          <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{advertiselist.image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+           Product Name
+         </div>
+         <div class="col col-50">
+           {{advertiselist.name}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+           SKU
+         </div>
+         <div class="col col-50">
+          {{advertiselist.sku}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+          Price
+         </div>
+         <div class="col col-50">
+          {{advertiselist.price}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+          Stock Status
+         </div>
+         <div class="col col-50">
+          {{advertiselist.stock_status}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+          Display Status
+         </div>
+         <div class="col col-50">
+          {{advertiselist.display_status}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+          Share
+         </div>
+         <div class="col col-50">
+          {{advertiselist.reviews_count}}
+         </div>
+        </div>
+        <div class="row">
+         <div class="col col-50">
+          Last Share
+         </div>
+         <div class="col col-50">
+          {{advertiselist.last_share}}
+         </div>
+        </div>
+  </div>  
+   </ion-content>
+</ion-view>

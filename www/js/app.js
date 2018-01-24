@@ -21,32 +21,49 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
       StatusBar.styleDefault();
     }
   });
+  
 
-  $ionicPlatform.registerBackButtonAction(function (event) {
-  if($state.current.name=="app.home"){
-    var myPopup = $ionicPopup.show({
-    title: 'Safety Shop',
-    template:'<center>Are you sure want to exit</center>',
-    buttons: [
-   {
-    text: 'Cancel',
-    onTap: function(e) { 
-      
-    } 
-   },
-   {
-    text: 'Ok',
-    type: 'button-calm',
-    onTap: function(e) { 
-      navigator.app.exitApp();
-    }
-   }]
-  }); //<-- remove this line to disable the exit
-  }
-  else {
-    navigator.app.backHistory();
-  }
-}, 100);
+   /*var permissions = cordova.plugins.permissions;
+     permissions.requestPermission(permissions.CAMERA, success, error);
+    
+   function error() {
+     console.warn('Camera permission is not turned on');
+   }
+    
+   function success( status ) {
+     if( !status.hasPermission ) error();
+   }*/
+
+   $ionicPlatform.registerBackButtonAction(function (event) {
+       e.preventDefault();
+              function showConfirm() {
+                 var myPopup = $ionicPopup.show({
+                 title: 'Safety Shop',
+                 template:'<center>Are you sure want to exit</center>',
+                 buttons: [{
+                           text: 'Cancel',
+                           type : 'button-positive',
+                           onTap: function(e) { 
+                             
+                           } 
+                          },
+                          {
+                           text: 'Ok',
+                           type : 'button-dark',
+                           onTap: function(e) { 
+                             ionic.Platform.exitApp();
+                           }
+                          }]
+                });
+              };
+
+              if($state.current.name=="app.home"){
+                showConfirm();
+              }
+              else {
+                navigator.app.backHistory();
+              }
+            }, 100);
 
   $rootScope.myGoBack = function() {
        $ionicHistory.goBack();
@@ -285,6 +302,16 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
     views: {
       'menuContent': {
         templateUrl: 'templates/selleradvertisement.html',
+         controller:'SelleradvertiseCtrl'
+      }
+    }
+  })
+
+  .state('app.selleradvertisedetails', {
+    url: '/selleradvertisedetails',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/selleradvertisedetails.html',
          controller:'SelleradvertiseCtrl'
       }
     }
