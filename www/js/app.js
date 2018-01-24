@@ -20,10 +20,8 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
-  
 
-   /*var permissions = cordova.plugins.permissions;
+    /*var permissions = cordova.plugins.permissions;
      permissions.requestPermission(permissions.CAMERA, success, error);
     
    function error() {
@@ -33,6 +31,10 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    function success( status ) {
      if( !status.hasPermission ) error();
    }*/
+  });
+  
+
+   
 
    $ionicPlatform.registerBackButtonAction(function (event) {
        e.preventDefault();

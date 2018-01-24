@@ -338,29 +338,23 @@ angular.module('sellerproductadd', [])
         console.log('Image URI: ' + results[0]);
         
         $scope.uploadmainfile.push({"file":results[0]})
-        console.log($scope.uploadmainfile)
         window.resolveLocalFileSystemURL(results[0],
             function (fileEntry) {
                 // convert to Base64 string
                  $scope.uploadimageMain.length=0;
-                 console.log(fileEntry)    
                 fileEntry.file(
                     function(file) {
                         //got file
-                        console.log(file)
                         
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
-                          console.log(evt)
                             var imgData = evt.target.result; // this is your Base64 string
                             /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
-                            $scope.getimgData=imgData
-                            console.log($scope.getimgData)
+                            $rootScope.getimgData=imgData
                         };
                         reader.readAsDataURL(file);
-                        console.log($scope.getimgData)
 
-                        $scope.uploadimageMain.push({"file":file.name,"format":$scope.getimgData})
+                        $scope.uploadimageMain.push({"file":file.name,"format":$rootScope.getimgData})
                     }, 
                 function (evt) { 
                     //failed to get file
@@ -369,8 +363,7 @@ angular.module('sellerproductadd', [])
             },
             // error callback
             function () { }
-        )
-      console.log($scope.uploadimageMain)     
+        )   
     }, function(error) {
       // error getting photos
       alert(error);
@@ -419,12 +412,10 @@ angular.module('sellerproductadd', [])
         console.log('Image URI: ' + results[i]);
               
            $scope.uploadaddfile.push({"file":results[i]})
-           console.log($scope.uploadaddfile)
            window.resolveLocalFileSystemURL(results[i],
             function (fileEntry) {
                 // convert to Base64 string
                  
-                 console.log(fileEntry)
                 fileEntry.file(
                     function(file) {
                         //got file
@@ -434,11 +425,9 @@ angular.module('sellerproductadd', [])
                             var imgData = evt.target.result; // this is your Base64 string
                             /*$scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});*/
                             $rootScope.imgpickData=imgData;
-                            console.log($scope.imgpickData)
                             /*$scope.dataUImg.push({"format":imgData})*/
                         };
                         reader.readAsDataURL(file);
-                        console.log($rootScope.imgpickData)
 
                         $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
                     }, 
@@ -452,9 +441,6 @@ angular.module('sellerproductadd', [])
       
        
       }
-      
-      console.log($scope.uploadaddfile)
-      console.log($scope.uploadimageAddition);
     }, function(error) {
       // error getting photos
       alert(error);
