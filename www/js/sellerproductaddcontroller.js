@@ -221,24 +221,33 @@ angular.module('sellerproductadd', [])
     $scope.datas.length=2;
   }
 
- /* if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
+  if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
     $scope.uploadimageMain[0].format=""
   }
   if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
     $scope.uploadimageMain[0].file=""
   }
-  if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
+  /*if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
     $scope.uploadimageAddition[0].format==""
   }
   if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
     $scope.uploadimageAddition[0].file==""
   }*/
 
-
+console.log($scope.uploadimageAddition.length)
   if($rootScope.selldata=="Add"){
-   /*for(var i=0;i<$scope.uploadimageAddition.length;i++){
-      $scope.getalladdition=$scope.uploadimageAddition[i].push({"delete":0})      
-   }*/
+     
+     $scope.getalladdition=[];
+
+     if($scope.uploadimageAddition.length!=0){
+        for(var i=0;i<$scope.uploadimageAddition.length;i++){
+          $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
+                                      "name": $scope.uploadimageAddition[i].file,
+                                      "delete": 0
+                                     })      
+       }
+     }
+       
 
 
     var data={
@@ -259,17 +268,14 @@ angular.module('sellerproductadd', [])
                  "file": $scope.uploadimageMain[0].format,
                  "name": $scope.uploadimageMain[0].file
                },
-               "additional_images": [ {"file": $scope.uploadimageAddition[0].format,
-                                       "name": $scope.uploadimageAddition[0].file,
-                                       "delete": 0
-                                     } ]
+               "additional_images": $scope.getalladdition
              },
             "type": "new",
             "id": 0,
             "seller_id": 2
            } 
     console.log(data)
-    /*$http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).success(function(res){
         
         if(res){
@@ -281,11 +287,12 @@ angular.module('sellerproductadd', [])
                                   text: '<b>OK</b>',
                                   onTap: function() {
                                    
-                                    $rootScope.getCategory="";
+                                    /*$rootScope.getCategory="";
                                     $rootScope.addspec="";
                                     $rootScope.rootCat1=""
                                     $rootScope.rootCat2=""
-                                    $rootScope.rootCat3="";
+                                    $rootScope.rootCat3="";*/
+                                    return;
                                   }
                                 }]
                                })
@@ -302,12 +309,24 @@ angular.module('sellerproductadd', [])
                                   }
                                 }]
                                })
-       })   */
+       })   
   }
 
   
-
+  
   if($rootScope.selldata=="Edit"){
+     
+     $scope.getalladdition=[];
+
+     if($scope.uploadimageAddition.length!=0){
+        for(var i=0;i<$scope.uploadimageAddition.length;i++){
+          $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
+                                       "name": $scope.uploadimageAddition[i].file,
+                                       "delete": 0
+                                     } )      
+       }
+      }
+
     var data={
             "product": {
               "id": 0,
@@ -323,20 +342,17 @@ angular.module('sellerproductadd', [])
               "category_ids": $scope.datas,
               "customspec": $rootScope.inputs,
               "main_image": {
-                 "file": "",
-                 "name": ""
+                 "file": $scope.uploadimageMain[0].format,
+                 "name": $scope.uploadimageMain[0].file
                },
-               "additional_images": [ {"file": "",
-                                       "name": "",
-                                       "delete": 0
-                                     } ]
+               "additional_images": $scope.getalladdition
              },
             "type": "edit",
             "id": 0,
             "seller_id": 2
            } 
     console.log(data)
-   /* $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).success(function(res){
        if(res){
          $ionicPopup.alert({
@@ -347,11 +363,12 @@ angular.module('sellerproductadd', [])
                                   text: '<b>OK</b>',
                                   onTap: function() {
                                    
-                                    $rootScope.getCategory="";
+                                    /*$rootScope.getCategory="";
                                     $rootScope.addspec="";
                                     $rootScope.rootCat1=""
                                     $rootScope.rootCat2=""
-                                    $rootScope.rootCat3="";
+                                    $rootScope.rootCat3="";*/
+                                    return;
                                   }
                                 }]
                                })
@@ -370,7 +387,7 @@ angular.module('sellerproductadd', [])
                                 }]
                                })
                       
-       })*/
+       })
   }
   
  }
@@ -437,7 +454,8 @@ angular.module('sellerproductadd', [])
             },
             // error callback
             function () { }
-        )   
+        )
+      console.log($scope.uploadimageMain)    
     }, function(error) {
       // error getting photos
       alert(error);
@@ -471,7 +489,7 @@ angular.module('sellerproductadd', [])
     /*$scope.dataUImg=[];
     $scope.dataFile=[]; */
     var options = {
-     maximumImagesCount: 1,
+     maximumImagesCount: 4,
      width: 800,
      height: 800,
      quality: 80
@@ -482,7 +500,7 @@ angular.module('sellerproductadd', [])
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
       
-      /*for (var i = 0; i < results.length; i++) {
+      for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
               
            $scope.uploadaddfile.push({"file":results[i]})
@@ -511,33 +529,8 @@ angular.module('sellerproductadd', [])
         )
       
        
-      }*/
-      $scope.uploadaddfile.push({"file":results[0]})
-      window.resolveLocalFileSystemURL(results[0],
-            function (fileEntry) {
-                // convert to Base64 string
-                fileEntry.file(
-                    function(file) {
-                        //got file
-                        
-                        var reader = new FileReader();
-                        reader.onloadend = function (evt) {
-                            var imgData = evt.target.result; // this is your Base64 string
-                            /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
-                            $rootScope.imgpickData=imgData
-                        };
-                        reader.readAsDataURL(file);
-
-                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
-                    }, 
-                function (evt) { 
-                    //failed to get file
-                });
-
-            },
-            // error callback
-            function () { }
-        )   
+      }
+      console.log($scope.uploadimageAddition)
     }, function(error) {
       // error getting photos
       alert(error);
