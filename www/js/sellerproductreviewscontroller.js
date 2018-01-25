@@ -31,8 +31,13 @@ angular.module('SellerProductreviews', [])
      if(matches == "Approved" || matches == true) {
        isChecked= true;
         console.log(isChecked)
-
      }
+
+     if(matches == "Pending" || matches == false){
+       isChecked=false;
+       console.log(isChecked)
+     }
+
      if(matches == "Not Approved" || matches == false) {
         isChecked = false;
         console.log(isChecked)
@@ -41,22 +46,19 @@ angular.module('SellerProductreviews', [])
    }
 
    $scope.statusState=function(id,state,getId){
-    console.log(id,state)
-    /*if($scope.datalistreview.status==true || $scope.datalistreview.status=="Approved"){
-       $scope.datalistreview.status="Approved"
+    console.log(id,state,getId)
+    if(state=="Approved" || state==true){
+     $scope.displayStateC="3";
+     $scope.datalistreview.status="Approved"
     }
     
-    if($scope.datalistreview.status==false || $scope.datalistreview.status=="Not Approved"){
-       $scope.datalistreview.status="Not Approved"
-    }*/
-
-    if(state=="Approved" || state==true){
+    if(state=="Pending" || state==false){
      $scope.displayStateC="1";
-     $scope.datalistreview.status="Approved"
-
+     $scope.datalistreview.status="Pending"
     }
+
     if(state=="Not Approved" || state==false){
-      $scope.displayStateC="3"
+      $scope.displayStateC="1"
       $scope.datalistreview.status="Not Approved"
     }
     console.log($scope.displayStateC)
@@ -68,13 +70,14 @@ angular.module('SellerProductreviews', [])
              };
     console.log(data)         
 
-    /*$http.post(baseUrl+'seller/review/status',data,{
-      headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+    $http.post(baseUrl+'seller/review/status',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){                     
-         $scope.Statesuccess=response.data;
-         $scope.getreview();
-         return $scope.isChecked(id,state);                
-        })*/
+         $scope.Statesuccess=response.data[0].status;
+         if($scope.Statesuccess=="SUCCESS"){
+            $scope.getreview();
+            return $scope.isChecked(id,state); 
+         }
+        })
    }
 
    $ionicModal.fromTemplateUrl('reviewfulldatail.html', {

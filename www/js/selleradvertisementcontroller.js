@@ -14,4 +14,20 @@ angular.module('advertisement', [])
        $rootScope.advertiselist=list;
        $state.go('app.selleradvertisedetails');
     }
+    
+    if($rootScope.advertiselist!=null){
+      if($scope.advertiselist.stock_status==true){
+       $scope.advertiselist.stock_status="In Stock";
+      }
+      if($scope.advertiselist.stock_status==false){
+       $scope.advertiselist.stock_status="Out of Stack";
+      }
+      if($scope.advertiselist.display_status==1){
+         $scope.advertiselist.display_status="Enabled";
+      }
+      if($scope.advertiselist.display_status==2){
+        $scope.advertiselist.display_status=="Disabled";
+      }  
+    }
+    
 })

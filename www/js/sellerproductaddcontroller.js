@@ -212,15 +212,16 @@ angular.module('sellerproductadd', [])
     $scope.datas.length=1;
     $scope.datas.push($scope.proadd.prodCategory2)
   }
-  if($rootScope.rootCat3!=null || $rootScope.rootCat3!=undefined || $rootScope.rootCat3!=""){
+  if($scope.proadd.prodCategory3!=null || $scope.proadd.prodCategory3!=undefined || $scope.proadd.prodCategory3!=""){
     $scope.datas.length=2;
     $scope.datas.push($scope.proadd.prodCategory3)
   }
-  if($rootScope.rootCat3==undefined){
+
+  if($scope.proadd.prodCategory3==undefined || $scope.proadd.prodCategory3==null || $scope.proadd.prodCategory3==""){
     $scope.datas.length=2;
   }
-    console.log($rootScope.rootCat3)
-  if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
+
+ /* if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
     $scope.uploadimageMain[0].format=""
   }
   if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
@@ -231,10 +232,15 @@ angular.module('sellerproductadd', [])
   }
   if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
     $scope.uploadimageAddition[0].file==""
-  }
+  }*/
 
 
   if($rootScope.selldata=="Add"){
+   /*for(var i=0;i<$scope.uploadimageAddition.length;i++){
+      $scope.getalladdition=$scope.uploadimageAddition[i].push({"delete":0})      
+   }*/
+
+
     var data={
             "product": {
               "id": 0,
@@ -317,11 +323,11 @@ angular.module('sellerproductadd', [])
               "category_ids": $scope.datas,
               "customspec": $rootScope.inputs,
               "main_image": {
-                 "file": $scope.uploadimageMain[0].format,
-                 "name": $scope.uploadimageMain[0].file
+                 "file": "",
+                 "name": ""
                },
-               "additional_images": [ {"file": $scope.uploadimageAddition[0].format,
-                                       "name": $scope.uploadimageAddition[0].file,
+               "additional_images": [ {"file": "",
+                                       "name": "",
                                        "delete": 0
                                      } ]
              },

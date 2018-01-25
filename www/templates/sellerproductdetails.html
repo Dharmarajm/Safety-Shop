@@ -55,7 +55,7 @@
                     <ul class="list">
                       <li class="item item-toggle" >
                          <label class="toggle toggle-assertive">
-                           <input type="checkbox" ng-model="sellid.stock_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.stock_status)" ng-change="stockState(sellid.id,sellid.stock_status)">
+                           <input type="checkbox" ng-model="sellid.stock_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.stock_status)" ng-click="stockState(sellid.id,sellid.stock_status)">
                            <div class="track">
                              <div class="handle"></div>
                            </div>
@@ -80,7 +80,7 @@
                     <ul class="list">
                       <li class="item item-toggle">
                          <label class="toggle toggle-assertive">
-                           <input type="checkbox" ng-model="sellid.display_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.display_status)" ng-change="displayState(sellid.id,sellid.display_status)">
+                           <input type="checkbox" ng-model="sellid.display_status" checklist-value="sellid.id" ng-checked="isChecked(sellid.id,sellid.display_status)" ng-click="displayState(sellid.id,sellid.display_status)">
                            <div class="track">
                              <div class="handle"></div>
                            </div>

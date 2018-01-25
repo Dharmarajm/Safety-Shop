@@ -8,6 +8,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
  $scope.sellproductname=$stateParams.selldetailid.name;
  
  $scope.stockState=function(id,state){
+  console.log(id,state)
   var data={"product_id":id,"status":state};
   
   $http.post(baseUrl+'seller/product/stockstatus',data,{
