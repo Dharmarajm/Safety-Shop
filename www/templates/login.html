@@ -5,7 +5,7 @@
     </button>
   </ion-nav-buttons>
   <ion-content >
-    <form name="signinform" ng-hide="show == 2 || show==3">
+    <form name="signinform" ng-hide="show == 2 || show==3" novalidate>
       
 
       <div class="list">
@@ -28,7 +28,7 @@
     </form>
     
 
-    <form name="sigupform" ng-show="show == 2">
+    <form name="sigupform" ng-show="show == 2" novalidate>
       <div class="list">      
 
         <label class="item item-input">
@@ -64,7 +64,7 @@
        </div>
     </form>
 
-    <form name="sellersigupform" ng-show="show==3">
+    <form name="sellersigupform" ng-show="show==3" novalidate>
       <div class="list">      
         <div class="row">
           <div class="col col-50">

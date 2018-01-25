@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
       StatusBar.styleDefault();
     }
 
-    /*var permissions = cordova.plugins.permissions;
+    var permissions = cordova.plugins.permissions;
      permissions.requestPermission(permissions.CAMERA, success, error);
     
    function error() {
@@ -30,13 +30,21 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
     
    function success( status ) {
      if( !status.hasPermission ) error();
-   }*/
+   }
+  permissions.hasPermission(permissions.CAMERA, function( status ){
+   if ( status.hasPermission ) {
+    console.log("Yes :D ");
+   }
+   else {
+    console.warn("No :( ");
+   }
+  });
   });
   
 
    
 
-   $ionicPlatform.registerBackButtonAction(function (event) {
+   /*$ionicPlatform.registerBackButtonAction(function (event) {
        e.preventDefault();
               function showConfirm() {
                  var myPopup = $ionicPopup.show({
@@ -59,14 +67,48 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
                 });
               };
 
-              if($state.current.name=="app.home"){
+              if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement'){
                 showConfirm();
-              }
-              else {
-                navigator.app.backHistory();
+              }else {
+                $ionicHistory.goBack();
               }
             }, 100);
+*/
 
+
+
+  $ionicPlatform.registerBackButtonAction(function(e) {
+   e.preventDefault();
+   function showConfirm() {
+    var confirmPopup = $ionicPopup.show({
+     title: 'Safety Shop',
+                 template:'<center>Are you sure want to exit</center>',
+                 buttons: [{
+                           text: 'Cancel',
+                           type : 'button-positive',
+                           onTap: function(e) { 
+                             
+                           } 
+                          },
+                          {
+                           text: 'Ok',
+                           type : 'button-dark',
+                           onTap: function(e) { 
+                             ionic.Platform.exitApp();
+                           }
+                         }]
+    });
+   };
+   if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement'){
+          showConfirm();
+          console.log($state.current.name)
+   }else {
+          console.log($state.current.name);
+    $ionicHistory.goBack();
+   } 
+   return false;
+  }, 101);
+ 
   $rootScope.myGoBack = function() {
        $ionicHistory.goBack();
  };

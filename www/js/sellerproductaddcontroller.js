@@ -25,7 +25,7 @@ angular.module('sellerproductadd', [])
                                 "productcategory": $scope.proEdit.product.type_id,
                                 "ProName": $scope.proEdit.product.name,
                                 "sku":$scope.proEdit.product.sku,
-                                "price":$scope.proEdit.product.price,
+                                "price":Math.round($scope.proEdit.product.price),
                                 "quantity":$scope.proEdit.product.quantity_and_stock_status.qty,
                                 "stockState":$scope.proEdit.product.quantity_and_stock_status.is_in_stock,
                                 "describe":$scope.proEdit.product.description,
@@ -37,7 +37,7 @@ angular.module('sellerproductadd', [])
                                 $scope.item = {
                                                "spec_name":$scope.proEdit.custom_spec[i].spec_name,
                                                "spec_value":$scope.proEdit.custom_spec[i].spec_value,
-                                               "sort_order":$scope.proEdit.custom_spec[i].sort_order
+                                               "sort_order":Math.round($scope.proEdit.custom_spec[i].sort_order)
                                               }           
                                 $rootScope.inputs.push($scope.item)
                               }
@@ -212,10 +212,27 @@ angular.module('sellerproductadd', [])
     $scope.datas.length=1;
     $scope.datas.push($scope.proadd.prodCategory2)
   }
-  if($scope.proadd.prodCategory3!=null || $scope.proadd.prodCategory3!=undefined || $scope.proadd.prodCategory3!=""){
+  if($rootScope.rootCat3!=null || $rootScope.rootCat3!=undefined || $rootScope.rootCat3!=""){
     $scope.datas.length=2;
     $scope.datas.push($scope.proadd.prodCategory3)
   }
+  if($rootScope.rootCat3==undefined){
+    $scope.datas.length=2;
+  }
+    console.log($rootScope.rootCat3)
+  if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
+    $scope.uploadimageMain[0].format=""
+  }
+  if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
+    $scope.uploadimageMain[0].file=""
+  }
+  if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
+    $scope.uploadimageAddition[0].format==""
+  }
+  if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
+    $scope.uploadimageAddition[0].file==""
+  }
+
 
   if($rootScope.selldata=="Add"){
     var data={
@@ -233,11 +250,11 @@ angular.module('sellerproductadd', [])
               "category_ids": $rootScope.getCategory,
               "customspec": $rootScope.addspec,
               "main_image": {
-                 "file": "",
-                 "name": ""
+                 "file": $scope.uploadimageMain[0].format,
+                 "name": $scope.uploadimageMain[0].file
                },
-               "additional_images": [ {"file": "",
-                                       "name": "",
+               "additional_images": [ {"file": $scope.uploadimageAddition[0].format,
+                                       "name": $scope.uploadimageAddition[0].file,
                                        "delete": 0
                                      } ]
              },
@@ -247,14 +264,39 @@ angular.module('sellerproductadd', [])
            } 
     console.log(data)
     /*$http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function(res){
-        $rootScope.productSave=res.data;
-        $rootScope.getCategory="";
-        $rootScope.addspec="";
-        $rootScope.rootCat1=""
-        $rootScope.rootCat2=""
-        $rootScope.rootCat3="";
-     })*/   
+     }).success(function(res){
+        
+        if(res){
+         $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Your Product Added Successfully',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                   
+                                    $rootScope.getCategory="";
+                                    $rootScope.addspec="";
+                                    $rootScope.rootCat1=""
+                                    $rootScope.rootCat2=""
+                                    $rootScope.rootCat3="";
+                                  }
+                                }]
+                               })
+                             }
+       }).error(function(error){
+              $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Your Product Added Failed',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                   return;
+                                  }
+                                }]
+                               })
+       })   */
   }
 
   
@@ -275,11 +317,11 @@ angular.module('sellerproductadd', [])
               "category_ids": $scope.datas,
               "customspec": $rootScope.inputs,
               "main_image": {
-                 "file": "",
-                 "name": ""
+                 "file": $scope.uploadimageMain[0].format,
+                 "name": $scope.uploadimageMain[0].file
                },
-               "additional_images": [ {"file": "",
-                                       "name": "",
+               "additional_images": [ {"file": $scope.uploadimageAddition[0].format,
+                                       "name": $scope.uploadimageAddition[0].file,
                                        "delete": 0
                                      } ]
              },
@@ -288,15 +330,41 @@ angular.module('sellerproductadd', [])
             "seller_id": 2
            } 
     console.log(data)
-    /*$http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function(res){
-        $rootScope.productSave=res.data;
-        $rootScope.getCategory="";
-        $rootScope.addspec="";
-        $rootScope.rootCat1=""
-        $rootScope.rootCat2=""
-        $rootScope.rootCat3="";
-     })*/
+   /* $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+     }).success(function(res){
+       if(res){
+         $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Your Product updated Successfully',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                   
+                                    $rootScope.getCategory="";
+                                    $rootScope.addspec="";
+                                    $rootScope.rootCat1=""
+                                    $rootScope.rootCat2=""
+                                    $rootScope.rootCat3="";
+                                  }
+                                }]
+                               })
+                             }
+       }).error(function(error){
+       
+         $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Your Product updated Failed',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                   return;
+                                  }
+                                }]
+                               })
+                      
+       })*/
   }
   
  }
@@ -397,7 +465,7 @@ angular.module('sellerproductadd', [])
     /*$scope.dataUImg=[];
     $scope.dataFile=[]; */
     var options = {
-     maximumImagesCount: 5,
+     maximumImagesCount: 1,
      width: 800,
      height: 800,
      quality: 80
@@ -408,7 +476,7 @@ angular.module('sellerproductadd', [])
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
       
-      for (var i = 0; i < results.length; i++) {
+      /*for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
               
            $scope.uploadaddfile.push({"file":results[i]})
@@ -419,13 +487,10 @@ angular.module('sellerproductadd', [])
                 fileEntry.file(
                     function(file) {
                         //got file
-                        /*$scope.dataFile.push({"name":file.name})*/
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
                             var imgData = evt.target.result; // this is your Base64 string
-                            /*$scope.uploadimageAddition.push({"file":results[i].file,"format":imgData});*/
                             $rootScope.imgpickData=imgData;
-                            /*$scope.dataUImg.push({"format":imgData})*/
                         };
                         reader.readAsDataURL(file);
 
@@ -440,7 +505,33 @@ angular.module('sellerproductadd', [])
         )
       
        
-      }
+      }*/
+      $scope.uploadaddfile.push({"file":results[0]})
+      window.resolveLocalFileSystemURL(results[0],
+            function (fileEntry) {
+                // convert to Base64 string
+                fileEntry.file(
+                    function(file) {
+                        //got file
+                        
+                        var reader = new FileReader();
+                        reader.onloadend = function (evt) {
+                            var imgData = evt.target.result; // this is your Base64 string
+                            /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
+                            $rootScope.imgpickData=imgData
+                        };
+                        reader.readAsDataURL(file);
+
+                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
+                    }, 
+                function (evt) { 
+                    //failed to get file
+                });
+
+            },
+            // error callback
+            function () { }
+        )   
     }, function(error) {
       // error getting photos
       alert(error);

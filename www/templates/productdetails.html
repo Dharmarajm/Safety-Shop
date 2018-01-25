@@ -83,14 +83,14 @@
             <form name=customer ng-submit="customerSubmit(customer)" novalidate>
             <p class="qusproduct">Name *</p>
             <input type="text" name="Name" ng-model="data.Name" ng-required="true" class="customerinput">
-            <span ng-show="customer.Name.$error.required && submitted">Name is required</span>
+            <span style="color:red;margin-left: 19px;" ng-show="customer.Name.$error.required && submitted">Name is required</span>
 
             <p class="qusproduct">Phone Number</p>
             <input type="number" name="test" ng-model="data.PhoneNumber" class="customerinput">
 
             <p class="qusproduct">Email-ID *</p>
             <input type="email" name="emailid" ng-model="data.EmailID" ng-required="true" class="customerinput">
-            <span ng-show="customer.emailid.$error.required && submitted">Email is required</span>
+            <span style="color:red;margin-left: 19px;" ng-show="customer.emailid.$error.required && submitted">Email is required</span>
 
             <p class="qusproduct">City</p>
             <input type="text" ng-model="data.city" class="customerinput">

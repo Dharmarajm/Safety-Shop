@@ -80,7 +80,7 @@ $scope.sellerloginData = {username :"", password :""};
                                      }).then(function(response){ 
                                     $rootScope.groupID=response.data.group_id;
                                     localStorage.setItem("sscustomer",JSON.stringify(response.data))
-                                 $state.go('app.sellerproduct');
+                                 $state.go('app.home');
                                 /*$ionicHistory.goBack();*/
                                 
                                })

@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
  
    $scope.loginData = {username :"", password :""};
-  
+   console.log($scope.loginData.username)
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -20,7 +20,46 @@ angular.module('starter.controllers', [])
                               content: "Please enter your password"
                             })
                       }else{
-                           var login=
+                           if($rootScope.reviewsign==1){
+                                var login=
+                          {
+                            "username": $scope.loginData.username,
+                            "password": $scope.loginData.password
+                          }
+                          $http
+                          ({
+                            method: 'post',
+                            url: baseUrl+'integration/customer/token',
+                            data: login  
+                          })
+                          .success(function(data) {
+                           // console.log(data);
+                            if(data != null){
+                              $rootScope.authCode=data;
+                              localStorage.setItem("ssauthcode",data);
+
+                             $http.get(baseUrl+'customers/me',{
+                                    headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+                                     }).then(function(response)
+                                  { 
+                                   // console.log(response);
+                                    localStorage.setItem("sscustomer",JSON.stringify(response.data))
+                                    $rootScope.reviewsign=0; 
+                                    /*$rootScope.getredirect=1;*/
+                                    /*$state.go('app.productdetails');*/
+                                    $ionicHistory.goBack();
+                                
+                               })
+                                 
+                                }
+                             }).error(function(data, status, headers, config){
+                          // console.log(data.message);
+                           if(data.message != null){
+                            alert(data.message)
+                           }
+                           });  
+                          }else{
+                             var login=
                           {
                             "username": $scope.loginData.username,
                             "password": $scope.loginData.password
@@ -55,7 +94,9 @@ angular.module('starter.controllers', [])
                             alert(data.message)
                            }
                            });
-}
+                          }
+                          
+                        }
 }
 
 $scope.signupData={firstname:"",lastname:"",emailid:"",password:"",confirmpassword:""};
@@ -192,9 +233,10 @@ $scope.signOut=function(){
              
               if($rootScope.customerDetails!=null){
                 console.log('test')
-                $rootScope.customerDetails=""
-                $rootScope.authCode="";
-                console.log($rootScope.authCode)
+                $rootScope.customerDetails=null;
+                $rootScope.authCode=null;
+                $scope.loginData.username = "";
+                $scope.loginData.password = "";
                 localStorage.clear();
                 $state.go('app.home');
                }

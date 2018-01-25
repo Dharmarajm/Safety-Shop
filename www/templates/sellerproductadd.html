@@ -14,7 +14,7 @@
      <a class="button" ng-click="category(4)">Description</a>
      <a class="button" ng-click="category(5)">Images</a>    
   </ion-scroll>
-    <form name="categoryform">
+    <form name="categoryform" novalidate>
        <div class="list" ng-show="category1==1">
          <label class="item item-input" >
           <span class="input-label col col-50">Root Category</span>:<span class="col col-50">
@@ -108,7 +108,7 @@
          </table>
        
        <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-click="add(inputs)">Next</button>
-       <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
+       <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save Product</button>
        </div>
 
         <div class="list" ng-show="category1==4">     
@@ -123,7 +123,7 @@
           </label>
 
           <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid" ng-click="categoryCheck(5)">Next</button>
-          <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid || categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
+          <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.describe.$invalid || categoryform.shortdescribe.$invalid || categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save Product</button>
         </div>
 
     
@@ -146,10 +146,12 @@
             <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
-          
+           <center ng-if="uploadmainfile.length!=0 || uploadmainfile.length!=''" style="font-size: 15px;">Main Image</center>
           <div ng-repeat="test in uploadmainfile" ng-if="uploadmainfile.length!=0 || uploadmainfile.length!=''">
             <center><img ng-src="{{test.file}}" style="width: 200px;height: 170px;"></center>
           </div>
+          <br>
+          <center ng-if="uploadaddfile.length!=0 || uploadaddfile.length!=''" style="font-size: 15px;">Additional Images</center>
           <div ng-repeat="test in uploadaddfile" ng-if="uploadaddfile.length!=0 || uploadaddfile.length!=''">
             <center><img ng-src="{{test.file}}" style="width: 200px;height: 170px;"></center>
           </div> 

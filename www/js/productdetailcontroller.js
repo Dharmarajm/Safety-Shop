@@ -3,9 +3,7 @@ angular.module('productdetail', ['ionic-ratings'])
 .controller('ProductDetailCtrl', function($scope, $sce,$stateParams,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading) {
 
 
-
-
-
+$rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 
    $scope.ratingsObject = {
         iconOn: 'ion-ios-star',    //Optional 
@@ -21,8 +19,8 @@ angular.module('productdetail', ['ionic-ratings'])
            console.log($scope.ratingstatus)
         }
       };
-  
-   
+
+      
 			  $scope.getStars = function(rating) {
 			    // Get the value
 			    var val = parseFloat(rating);
@@ -44,9 +42,11 @@ angular.module('productdetail', ['ionic-ratings'])
 					// $scope.reviewdetails.hide();
 					$state.go('app.login')
 				}
-
+                 
 				$scope.reviewBtn=function(){
                      if($rootScope.authCode == null){
+                     	$rootScope.reviewsign=1;
+                     	/*$rootScope.product=$scope.productname;*/
                      	$state.go('app.login')
                      }else{ 
                      	$scope.review={"name":$rootScope.customerDetails.firstname,"summay":'',"detail":''}
@@ -62,6 +62,11 @@ angular.module('productdetail', ['ionic-ratings'])
 				    maxWidth: 200,
 				    showDelay: 0
 				  });
+
+				  if($rootScope.getredirect==1){
+                   /*$rootScope.product=$scope.productname;*/
+                   $rootScope.getredirect=0;	
+                  }
 
 					$scope.productname=$stateParams.prodetail.name;
 
@@ -142,6 +147,7 @@ angular.module('productdetail', ['ionic-ratings'])
                            $scope.data.EmailID="";
                            $scope.data.city="";
                            $scope.data.BriefOverview="";
+                           $scope.submitted=false;
 			              }
 
 			               $ionicModal.fromTemplateUrl('reviewdetails.html', {
