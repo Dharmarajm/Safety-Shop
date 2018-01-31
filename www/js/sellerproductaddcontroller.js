@@ -43,7 +43,7 @@ angular.module('sellerproductadd', [])
                                               }           
                                 $rootScope.inputs.push($scope.item)
                               }
-                              
+
                               if($scope.proEdit.custom_spec==null){
                                 $rootScope.inputs=[];
                               }
@@ -541,55 +541,4 @@ angular.module('sellerproductadd', [])
     })
  }
 
-/*
-  // Destination URL 
-//var url = "http://192.168.1.74:3000/users/image";
- 
-//File for Upload
-var targetPath = $scope.img;
- 
-// File name only
-var filename = targetPath.split("/").pop();
- 
-var options = {
-     fileKey: "file",
-     fileName: filename,
-     chunkedMode: false,
-     mimeType: "multipart/form-data",
- params : {'directory':'upload', 'fileName':filename} // directory represents remote directory,  fileName represents final remote file name
- };
-      alert("ff");
- $cordovaFileTransfer.upload(baseUrl, targetPath, options).then(function (result) {
-     console.log("SUCCESS: " + JSON.stringify(result.response));
-        alert("sucess");
-       alert(result.response);
- }, function (err) {
-        alert("error");
-     console.log("ERROR: " + JSON.stringify(err));
-     alert(err);
- }, function (progress) {
-     // PROGRESS HANDLING GOES HERE
- })
-
-}
-
-
-/*$scope.data = { "ImageURI" :  "Select Image" };
-
-        function UploadPicture(imageURI) {
-
-            $scope.data.ImageURI =  imageURI;
-            alert($scope.data.ImageURI );
-        }
-
-        $scope.ShowPictures = function(){
-            navigator.camera.getPicture(UploadPicture, function(message) {
-                    alert('get picture failed');
-                    },{
-                    quality: 50,
-                    destinationType: navigator.camera.DestinationType.FILE_URI,
-                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-                }
-            );
-        };*/
 })

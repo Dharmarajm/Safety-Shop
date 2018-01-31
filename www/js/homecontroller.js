@@ -40,6 +40,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                       }
 
                       $scope.newarrivemore=function(){
+                      $scope.interval = 2000;
                       $scope.newarrive=[];
                       $scope.newarrstatus=1;
                       for(var i in $scope.homevalue[0].new_arrivals)

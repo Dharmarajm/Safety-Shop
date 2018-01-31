@@ -199,24 +199,64 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 
   $scope.closemsgdetails = function() {
    $scope.modalproductdetail.hide();
+   $scope.reply.subject="";
+   $scope.reply.message="";
+   $scope.reply.secondarymail="";
+   $scope.reply.attachment="";
   }
+  
+  $scope.reply={ subject:"",message:"",secondarymail:"",attachment:""}
 
   $scope.replySubmit=function(reply,id){
-  	/*console.log(reply,id)
+
+    /*console.log(reply)
+    
+    $cordovaFile.copyFile(cordova.file.dataDirectory, "file.txt", cordova.file.tempDirectory, "new_file.txt")
+      .then(function (success) {
+        // success
+      }, function (error) {
+        // error
+      });
+
+    var targetPath = cordova.file.documentsDirectory + $scope.reply.attachment
+    console.log(targetPath)
+    alert(targetPath)
+  // File name only
+  var filename = targetPath.split("/").pop();
+   
+  var options = {
+       fileKey: "file",
+       fileName: filename,
+       chunkedMode: false,
+       mimeType: "multipart/form-data",
+   };
+
+   $cordovaFileTransfer.upload(baseUrl+'seller/sendreply', targetPath, options).then(function (result) {
+       console.log("SUCCESS: " + JSON.stringify(result.response));
+          alert("sucess");
+         alert(result.response);
+   }, function (err) {
+          alert("error");
+       console.log("ERROR: " + JSON.stringify(err));
+       alert(err);
+   }, function (progress) {
+       // PROGRESS HANDLING GOES HERE
+   })*/
+  	console.log(reply,id)
     var data={
                "enquiry_id": id,
 	           "reply_subject": reply.subject,
 	           "reply_message": reply.message,
 	           "secondary_email": reply.secondarymail,
-	           "attachment_file": "{{base 64 format}}",
-	           "attachment_name": "{{filename}}"
+	           "attachment_file": $scope.getfile[0].format,
+	           "attachment_name": $scope.getfile[0].file
              }
 
     $http.post(baseUrl+'seller/sendreply',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(response){                     
         $scope.replyget=response.data;
         console.log($scope.replyget)
-       })*/
+       })
   }
 
   $scope.messagedel=function(li){
@@ -234,5 +274,76 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
       })
    }*/
   }
-  
+
+  /*$scope.pickfile=function(){
+    fileChooser.open(function(uri) {
+     alert(uri);
+     console.log(uri)
+    });
+  }*/
+
+  $scope.upload = function(){
+    document.getElementById('fileu').click();
+   $scope.fileNameChanged = function(filoename) {
+    alert(filoename.files)
+    console.log(filoename.files);
+    $scope.getfile=[];
+    var preview ="";
+    var reader  = new FileReader(); 
+    reader.addEventListener("load", function () {
+     preview = reader.result;
+     $rootScope.getfileData=preview;
+     $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
+     console.log($scope.getfile[0])
+    }, false);
+
+    if (filoename.files[0]) {
+      reader.readAsDataURL(filoename.files[0]);
+      console.log(reader.readAsDataURL(filoename.files[0]))
+    }
+    /*var uripath = 'content://com.google.android.apps.photos.contentprovider/0/1/content......';
+
+    window.FilePath.resolveNativePath(uripath, successNative, failNative);
+            
+    function failNative(e) {
+        console.error('Houston, we have a big problem :(');
+    }
+
+    function successNative(finalPath) {
+        console.log(finalPath)
+        var path = 'file://'+ finalPath;
+        
+        window.resolveLocalFileSystemURL(path, success, fail);
+            
+        function fail(e) {
+              console.error(e);
+        }
+
+        function success(fileEntry) {
+           fileEntry.file(function(file) {
+                   var reader = new FileReader();
+                   reader.onloadend = function (evt) {
+                     var imgData = evt.target.result; // this is your Base64 string
+                     console.log(imgData);                      
+                     $rootScope.getimgData=imgData
+                   };
+               reader.readAsText(file); // Finally !
+               $scope.getfile.push({"file":file.name,"format":$rootScope.getimgData})
+               console.log($scope.getfile)
+           });
+        }
+    }*/
+
+    /*window.resolveLocalFileSystemURL( filePath, function (fileEntry){
+    console.log('got a file entry');
+      fileEntry.file(function (file) {
+        console.log('created file');
+        console.log(file.localURL);
+      })
+    }, function (e) {
+      console.log('Error resolving fs url', e);
+    });*/
+   }
+  } 
+
 })
