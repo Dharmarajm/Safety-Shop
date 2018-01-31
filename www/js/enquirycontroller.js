@@ -291,15 +291,16 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     var preview ="";
     var reader  = new FileReader(); 
     reader.addEventListener("load", function () {
-     preview = reader.result;
-     $rootScope.getfileData=preview;
-     $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
-     console.log($scope.getfile[0])
+    preview = reader.result;
+    console.log(preview)
+    $rootScope.getfileData=preview;
+    console.log($rootScope.getfileData)
+    $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
+    console.log($scope.getfile)
     }, false);
 
     if (filoename.files[0]) {
       reader.readAsDataURL(filoename.files[0]);
-      console.log(reader.readAsDataURL(filoename.files[0]))
     }
     /*var uripath = 'content://com.google.android.apps.photos.contentprovider/0/1/content......';
 
