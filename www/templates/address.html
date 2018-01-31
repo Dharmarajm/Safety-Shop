@@ -1,26 +1,150 @@
-<ion-view view-title="Address" cache-view="false">
- <link href="css/category.css" rel="stylesheet" cache-view="false">  
+<ion-view view-title="My Dashboard" cache-view="false">
+ <link href="css/address.css" rel="stylesheet" cache-view="false">  
 
   <ion-content style="background-color: #e0e0e0">
-   <button  class="addtocart" ng-click="addressadd()" >Add Address</button>
-    
+      <h4>Account Information</h4>
+      <div class="card">
+       <div class="row">
+        <div class="col col-25">
+         First Name
+        </div>
+        <div class="col col-75">
+         : {{addresscus.firstname}}
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-25">
+         Last Name 
+        </div>
+        <div class="col col-75">
+         : {{addresscus.lastname}}
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-25">
+         Email     
+        </div>
+        <div class="col col-75">
+         : {{addresscus.email}}
+        </div>
+       </div>      
+      </div>
+      <h4>Default Addresses</h4>
+      <div class="test"><h5>Billing Addresses</h5></div>
+      <div class="card" ng-show="billingAddress.length==0">
+       <div class="row">
+        There is no Billing address for this customer.
+       </div>
+      </div>
+      <div class="card" ng-show="billingAddress!=null">
+       <div class="row">
+        <div class="col col-23">
+          Name
+        </div>
+        <div class="col col-75">
+          <span>{{billingAddress.firstname}}</span>&nbsp;&nbsp;<span>{{billingAddress.lastname}}</span>
+        </div>
+       </div>
+       <div class="row"> 
+        <div class="col col-23">
+          Company
+        </div>
+        <div class="col col-75">
+          <p>{{billingAddress.company}}</p>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Street
+        </div>
+        <div class="col col-75">
+          <p>{{billingAddress.street[0]}}</p>
+        </div> 
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          City
+        </div>
+        <div class="col col-75">
+          <span>{{billingAddress.city}}</span>,<span>{{billingAddress.region.region}}</span>,<span>{{billingAddress.postcode}}</span>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Country
+        </div>
+        <div class="col col-75">
+          <p>{{billingAddress.country_id}}</p>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Telephone
+        </div>
+        <div class="col col-75">
+          <p>{{billingAddress.telephone}}</p>
+        </div>
+       </div>
+      </div>
+      <div class="test"><h5>Shipping Addresses</h5></div>
+      <div class="card" ng-show="shippingAddress.length==0">
+       <div class="row">
+        There is no Shipping address for this customer.
+        </div>
+      </div>
+      <div class="card" ng-show="shippingAddress!=null">
+       <div class="row">
+        <div class="col col-23">
+          Name
+        </div>
+        <div class="col col-75">
+          <span>{{shippingAddress.firstname}}</span>&nbsp;&nbsp;<span>{{shippingAddress.lastname}}</span>
+        </div>
+       </div>
+       <div class="row"> 
+        <div class="col col-23">
+          Company
+        </div>
+        <div class="col col-75">
+          <p>{{shippingAddress.company}}</p>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Street
+        </div>
+        <div class="col col-75">
+          <p>{{shippingAddress.street[0]}}</p>
+        </div> 
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          City
+        </div>
+        <div class="col col-75">
+          <span>{{shippingAddress.city}}</span>,<span>{{shippingAddress.region.region}}</span>,<span>{{shippingAddress.postcode}}</span>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Country
+        </div>
+        <div class="col col-75">
+          <p>{{shippingAddress.country_id}}</p>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col col-23">
+          Telephone
+        </div>
+        <div class="col col-75">
+          <p>{{shippingAddress.telephone}}</p>
+        </div>
+       </div>
+      </div>
+</ion-content>
 
-   
-      <div class="card" ng-repeat="add in addresscus.addresses">      
-                   {{add.firstname}}<br>
-                   {{add.street[0]}}<br>
-                   {{add.city}}<br>
-                   {{add.postcode}}<br>
-                   {{add.region.region}}<br>
-                  ph:{{add.telephone}}<br>
-                </div>
-
-
-
-
-  </ion-content>
-
-  <script id="addaddress.html"  type="text/ng-template">
+  <!-- <script id="addaddress.html"  type="text/ng-template">
     <ion-modal-view cache-view="false">
     
             <ion-header-bar>                
@@ -39,9 +163,28 @@
             <input type="text" ng-model="street" placeholder="street"/><br>
              <input type="text" ng-model="landmark" placeholder="landmark"/><br>
               <input type="text" ng-model="city" placeholder="city"/></center>
-   
+                <div class="row">
+                  <div class="col col-50">
+                    <div class="row p">First Name</div>
+                    <div class="row"><input type="text" name="firstname" ng-model="firstname" ng-required="true"></div>
+                  </div>
+                  <div class="col col-50">
+                    <div class="row p">Last Name</div>
+                    <div class="row" ><input type="text" name="" ng-model="lastname" ng-required="true"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-50">
+                    <div class="row p">Company</div>
+                    <div class="row"><input type="text" name="" ng-model="company" ng-required="true"></div>
+                  </div>
+                  <div class="col col-50">
+                    <div class="row p">Phone Number</div>
+                    <div class="row" ><input type="text" name="phoneNumber" ng-model="phoneNumber" ng-minlength="6" ng-required="true"></div>
+                  </div>
+                </div>
                 <button  ng-click="" class="addtocart" >ADD Address</button>
             </ion-content>
    </ion-modal-view>
-</script>
+</script> -->
 </ion-view>

@@ -1,0 +1,25 @@
+<ion-view title="Review Details" cache-view="false">
+ <ion-nav-buttons side="left">
+      <button class="button button-clear" ng-click="myGoBack()" >
+      <i class="icon ion-ios-arrow-back"></i>
+      </button>
+ </ion-nav-buttons>
+ <ion-content>
+   <center>{{getMyreviewall.name}}</center>
+   <center><img ng-src="{{imgurl}}{{getMyreviewall.image}}" style="width: 60px;height: 60px;"></center><br>
+   <h4>Your Review</h4>
+   <div class="row">
+     <div class="col col-20">
+       <p>Quality</p>
+     </div>
+     <div class="col col-80">
+      <span class="stars alignright">
+          <span ng-style="{ 'width': getStars(getMyreviewall.review_value)}"></span>
+      </span> 
+     </div>
+   </div> 
+   <h5>{{getMyreviewall.title}}</h5>
+   <p>{{getMyreviewall.detail}}</p>
+   <i style="color:darkgray">Submitted On {{getMyreviewall.created_at}}</i>
+ </ion-content>
+</ion-view>

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerproduct','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews'])
+angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerproduct','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox'])
 
 .run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory) {
   $ionicPlatform.ready(function() {
@@ -99,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
                          }]
     });
    };
-   if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement'){
+   if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
           showConfirm();
           console.log($state.current.name)
    }else {
@@ -359,7 +359,67 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
          controller:'SelleradvertiseCtrl'
       }
     }
+  })
+
+  .state('app.myproductreviews', {
+    url: '/myproductreviews',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myproductreviews.html',
+         controller:'MyreviewCtrl'
+      }
+    }
+  })
+
+  .state('app.myproductreviewDetails', {
+    url: '/myproductreviewDetails',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myproductreviewDetails.html',
+         controller:'MyreviewCtrl'
+      }
+    }
   })    
+
+  .state('app.myenquiries', {
+    url: '/myenquiries',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myenquiries.html',
+         controller:'MyenquiriesCtrl'
+      }
+    }
+  })
+
+  .state('app.myenquirydetails', {
+    url: '/myenquirydetails',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myenquirydetails.html',
+         controller:'MyenquiriesCtrl'
+      }
+    }
+  })
+
+  .state('app.myinbox', {
+    url: '/myinbox',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myinbox.html',
+         controller:'MyinboxCtrl'
+      }
+    }
+  })
+
+  .state('app.myinboxdetails', {
+    url: '/myinboxdetails',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myinboxdetails.html',
+         controller:'MyinboxCtrl'
+      }
+    }
+  })
   
   .state('app.single', {
     url: '/home/:playlistId',

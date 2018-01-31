@@ -6,8 +6,6 @@ angular.module('wishlist', [])
 
 
 $scope.wishinit=function(){
-
-
    $http.get(baseUrl+'ipwishlist/items',{
     headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response)

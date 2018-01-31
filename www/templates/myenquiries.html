@@ -1,0 +1,21 @@
+<ion-view view-title="My Enquiries" cache-view="false"> 
+  <link href="css/sellerproductreviews.css" rel="stylesheet">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="row header">
+      <div class="col">Date</div>
+      <div class="col">Product</div>
+      <div class="col">Overview</div>
+      <div class="col">Action</div>
+    </div>
+    <div class="row" ng-repeat="data in getMyenquiries[0].enquires">
+      <div class="col">{{data.create_date}}</div>
+      <div class="col">{{data.product_name}}</div>
+      <div class="col">{{data.overview}}</div>
+      <div class="col"><button class="button button-small button-positive" ng-click="myEnquirydetails(data)">More</button></div>
+    </div>
+  </ion-content>
+</ion-view>

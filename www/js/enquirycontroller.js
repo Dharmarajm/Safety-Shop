@@ -1,16 +1,16 @@
 angular.module('enquiry', ['ionicLetterAvatarSelector'])
-.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker,$ionicLetterAvatarSelector) {
+.controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker,$ionicLetterAvatarSelector,$filter) {
  
  $scope.enquiryinit=function(){
+  $scope.datematch= $filter('date')(new Date(), 'yyyy-MM-dd');
   var data={
             "seller_id": $rootScope.customerDetails.id,
   	        "from_date": "2018-01-01",
- 	        "to_date": "2018-01-10"
+ 	          "to_date": $scope.datematch
            } 
- 
  $http.post(baseUrl+'seller/enquiry/inbox',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
-     $rootScope.enquirylist=response.data[0].inbox;
+     $rootScope.enquirylist=response.data;
      console.log($rootScope.enquirylist)
     })
  
@@ -19,9 +19,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   $http.get(baseUrl+'seller/enquiry/important/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){ 
      if(response.data[0]!=undefined){
-      $rootScope.importantlist=response.data[0].important;
-     console.log($rootScope.importantlist)
-
+      $rootScope.importantlist=response.data;
+      console.log($rootScope.importantlist)
       }else{
       $rootScope.importantlist=[];
      }         
@@ -31,7 +30,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   
  $http.get(baseUrl+'seller/enquiry/reply/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
-     $rootScope.sentlist=response.data[0].reply;
+     $rootScope.sentlist=response.data;
     }) 
 
   
@@ -59,7 +58,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     
  $scope.delete= function() {
   
-  var chats = $rootScope.enquirylist;
+  var chats = $rootScope.enquirylist[0].inbox;
   var selectedIDs = $ionicLetterAvatarSelector.getData();
   selectedIDs.forEach(function(id) {
    var chat = chats.filter(function(chat) {
@@ -236,88 +235,4 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
    }*/
   }
   
- /*$scope.longPress=false;*/
-
- /*var a = [{"status": false,"id":10},{"status": false,"id":10}], b = [{"status": false,"id":20},{"status": false,"id":50}];
-
-b.forEach(function(value){
-	console.log(value)
-  if (a.indexOf(value)==-1) a.push(value); console.log(a)
-});*/
- 
- /*$scope.setdelete=[{"status": false,"id":1000}];
- $scope.setIconClick=function(id){
- 
- 	for(var i in $rootScope.enquirylist){
-     
- 	 if($rootScope.enquirylist[i].quickrfq_id==id){
- 	 	if($scope.longPress==true){
- 	 	   
- 	 	  if($scope.setdelete.length!=0){ 
- 	 	   for(var i=0; i < $scope.setdelete.length;i++){
-              if ($scope.setdelete[i].indexOf(id) != -1) {
-                 console.log('test') 
-              }
- 	 	   }
- 	 	  }
- 	 	 	
- 	 	 }	
- 	 	
-
- 	 	if($scope.longPress==false){
- 	 	   if($scope.setdelete.length!=0){ 
- 	 	   for(var i=0; i < $scope.setdelete.length;i++){
-              if ($scope.setdelete[i].indexOf(id) != -1) {
-                 console.log('test') 
-              }
- 	 	   }
- 	 	  }
- 	 	}
-     }	
- 	}
-   
-   
- }*/
-
-})/*.directive('onLongPress', function($timeout) {
-	return {
-		restrict: 'A',
-		link: function($scope, $elm, $attrs) {
-			$elm.bind('touchstart', function(evt) {
-				// Locally scoped variable that will keep track of the long press
-                if($scope.longPress==true){
-                   $scope.longPress=false;
-                }
-                if($scope.longPress==false){
-                   $scope.longPress=true;
-                } 
-                console.log(evt);
-				$scope.longPress = true;
-                 
-				// We'll set a timeout for 600 ms for a long press
-				$timeout(function() {
-					if ($scope.longPress) {
-						// If the touchend event hasn't fired,
-						// apply the function given in on the element's on-long-press attribute
-						$scope.show=true;
-						$scope.$apply(function() {
-							$scope.$eval($attrs.onLongPress)
-							console.log($scope.$eval($attrs.onLongPress));
-						});
-					}
-				}, 1000);
-			});
-
-			$elm.bind('touchend', function(evt) {
-				// Prevent the onLongPress event from firing
-				$scope.longPress = false;
-				// If there is an on-touch-end function attached to this element, apply it
-				if ($attrs.onTouchEnd) {
-					$scope.$apply(function() {
-						$scope.$eval($attrs.onTouchEnd)
-					});
-				}
-			});
-		}
-	};
-})*/
+})

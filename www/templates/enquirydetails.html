@@ -1,6 +1,6 @@
 <ion-view view-title="Enquiry Emails" cache-view="false">
  <link href="css/enquiry.css" rel="stylesheet" cache-view="false">  
-  <ion-nav-buttons side="left">
+    <ion-nav-buttons sidse="left">
         <button ng-hide="selectionActive" class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
         <button class="button button-icon icon ion-checkmark-circled" 
@@ -47,16 +47,15 @@
               </ion-option-button>
             </ion-item>
           </ion-list> -->
-          <ion-list>
+          <ion-list ng-hide="enquirylist.length==0">
           <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name}}"
+                      letters-of="{{list.contact_name[0]}}"
                       background="random"
                       border="none"
                       color="white"
                       letters="1"
                       item="{{list}}"
-                      
-                      ng-repeat="list in enquirylist" >
+                      ng-repeat="list in enquirylist[0].inbox">
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>
                 <div class="icon item-icon-right" ng-click="moveimportant(list)">
@@ -64,7 +63,11 @@
                 </div> 
             </ion-item>
           </ion-list>
-
+          <ion-list ng-show="enquirylist.length==0">
+           <ion-item class="item-remove-animate">
+              You don't have any messages  
+           </ion-item>  
+          </ion-list>
       </ion-nav-view>
     </ion-tab>
     <ion-tab title="Sent" ui-sref="sent">
@@ -76,19 +79,24 @@
               <p>{{list.reply_subject}}</p>
             </a>   
           </div> -->
-          <ion-list>
+          <ion-list ng-hide="sentlist.length==0">
           <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name}}"
+                      letters-of="{{list.contact_name[0]}}"
                       background="random"
                       border="none"
                       color="white"
                       letters="1"
                       item="{{list.reply_id}}"
                      
-                      ng-repeat="list in sentlist" >
+                      ng-repeat="list in sentlist[0].reply" >
                 <h2>{{list.contact_name}}</h2>
                 <p>{{list.reply_subject}}</p>
             </ion-item>
+          </ion-list>
+          <ion-list ng-show="sentlist.length==0">
+           <ion-item class="item-remove-animate">
+              You don't have any Send messages  
+           </ion-item>  
           </ion-list>
        </ion-nav-view>
     </ion-tab>
@@ -105,22 +113,26 @@
             </a>
           </div> -->
 
-          <ion-list>
+          <ion-list ng-hide="importantlist.length==0">
           <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name}}"
+                      letters-of="{{list.contact_name[0]}}"
                       background="random"
                       border="none"
                       color="white"
                       letters="1"
-                      
                       item="{{list}}"
-                      ng-repeat="list in importantlist" >
+                      ng-repeat="list in importantlist[0].important" >
                 <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>
                 <div class="icon item-icon-right" ng-click="moveimportant(list)">
                   <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
                 </div> 
             </ion-item>
+          </ion-list>
+          <ion-list ng-show="importantlist.length==0">
+           <ion-item class="item-remove-animate">
+              You don't have any Important messages  
+           </ion-item>  
           </ion-list>
       </ion-nav-view>
     </ion-tab>

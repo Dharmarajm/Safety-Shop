@@ -10,6 +10,8 @@ angular.module('sellerproductadd', [])
                        "sort_order": ""
                     }] 
 
+ $scope.img=imageUrl;                   
+
  if(localStorage.getItem('editId')){
   $rootScope.selldata="Edit"; 
   $scope.template="Update";
@@ -17,7 +19,7 @@ angular.module('sellerproductadd', [])
   $http.get(baseUrl+'seller/product/edit/'+data.id,{headers:{ "Authorization": 'Bearer' +$rootScope.authCode }
    }).then(function(res){
       $scope.proEdit=res.data[0];
-               
+               console.log($scope.proEdit)
                $scope.proadd ={ 
                                 "prodCategory1": $scope.proEdit.product.category_ids[0],
                                 "prodCategory2": $scope.proEdit.product.category_ids[1],
@@ -41,6 +43,7 @@ angular.module('sellerproductadd', [])
                                               }           
                                 $rootScope.inputs.push($scope.item)
                               }
+                              
                               if($scope.proEdit.custom_spec==null){
                                 $rootScope.inputs=[];
                               }
@@ -234,7 +237,8 @@ angular.module('sellerproductadd', [])
     $scope.uploadimageAddition[0].file==""
   }*/
 
-console.log($scope.uploadimageAddition.length)
+  console.log($scope.uploadimageAddition)
+  console.log($scope.uploadimageMain)
   if($rootScope.selldata=="Add"){
      
      $scope.getalladdition=[];
@@ -248,7 +252,7 @@ console.log($scope.uploadimageAddition.length)
        }
      }
        
-
+    console.log($scope.getalladdition)
 
     var data={
             "product": {
@@ -326,13 +330,13 @@ console.log($scope.uploadimageAddition.length)
                                      } )      
        }
       }
-
+      console.log($scope.getalladdition)
     var data={
             "product": {
-              "id": 0,
+              "id": $scope.proEdit.product.entity_id,
               "sku": detail.sku,
               "name": detail.ProName,
-              "type_id":detail.productcategory ,
+              "type_id":detail.productcategory,
               "status":"1",
               "price": detail.price,
               "stock_status": detail.stockState,
@@ -348,7 +352,7 @@ console.log($scope.uploadimageAddition.length)
                "additional_images": $scope.getalladdition
              },
             "type": "edit",
-            "id": 0,
+            "id": $scope.proEdit.product.entity_id,
             "seller_id": 2
            } 
     console.log(data)

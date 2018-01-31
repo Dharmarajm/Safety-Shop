@@ -1,0 +1,91 @@
+<ion-view view-title="My Message" cache-view="false">
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" ng-click="myGoBack()" >
+      <i class="icon ion-ios-arrow-back"></i>
+      </button>
+   </ion-nav-buttons>
+  <ion-content>
+      <div class="card">  
+        <div class="row">
+         <div class="col col-50">
+          ID
+         </div>
+         <div class="col col-50">
+          {{getmyinboxId.quickrfq_id}} 
+         </div>
+        </div>
+         <div class="row">
+          <div class="col col-50 title-center">
+           Product Image
+          </div>
+          <div class="col col-50">
+            <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getmyinboxId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+          </div>
+         </div>
+           <div class="row">
+            <div class="col col-50">
+              Product Name
+            </div>
+            <div class="col col-50">
+              {{getmyinboxId.product_name}}
+            </div>
+           </div>
+             <div class="row">
+              <div class="col col-50">
+                Product Sku
+              </div>
+              <div class="col col-50">
+                {{getmyinboxId.product_sku}}
+              </div>
+             </div>
+              <div class="row">
+               <div class="col col-50">
+                 Contact Name
+               </div>
+               <div class="col col-50">
+                {{getmyinboxId.contact_name}}
+               </div>
+              </div>
+                <div class="row">
+                 <div class="col col-50">
+                  Phone
+                 </div>
+                 <div class="col col-50">
+                  {{getmyinboxId.phone}}
+                 </div>
+                </div>
+                 <div class="row">
+                  <div class="col col-50">
+                   Email
+                  </div>
+                  <div class="col col-50">
+                   {{getmyinboxId.email}}
+                  </div>
+                 </div>
+               <div class="row">
+                <div class="col col-50">
+                 City
+                </div>
+                <div class="col col-50">
+                 {{getmyinboxId.city}}
+                </div>
+               </div>
+              <div class="row">
+               <div class="col col-50">
+                Status
+               </div>
+               <div class="col col-50">
+                {{getmyinboxId.status}}
+               </div>
+              </div>
+             <div class="row">
+              <div class="col col-50">
+              Date
+              </div>
+              <div class="col col-50">
+              {{getmyinboxId.create_date }}
+              </div>
+             </div>
+      </div>
+  </ion-content>
+</ion-view>

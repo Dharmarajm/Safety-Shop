@@ -1,21 +1,52 @@
 {
-  "prepare_queue": {
-    "installed": [],
-    "uninstalled": []
-  },
-  "config_munge": {
-    "files": {}
-  },
-  "installed_plugins": {
-    "cordova-plugin-console": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
     },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+    "config_munge": {
+        "files": {}
     },
-    "cordova-plugin-image-picker": {
-      "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+    "installed_plugins": {
+        "cordova-plugin-android-permissions": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        }
+    },
+    "dependent_plugins": {
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        }
     }
-  },
-  "dependent_plugins": {}
 }

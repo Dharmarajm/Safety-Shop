@@ -1,0 +1,25 @@
+<ion-view title="My Product Reviews" cache-view="false">
+ <link href="css/sellerproductreviews.css" rel="stylesheet">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+ <ion-content>
+   <div class="row header">
+      <div class="col">Product</div>
+      <div class="col">Rating</div>
+      <div class="col">Review</div>
+      <div class="col">Action</div>
+    </div>
+    <div class="row" ng-repeat="data in getMyReviews">
+      <div class="col">{{data.name}}</div>
+      <div class="col">
+        <span class="stars alignright">
+          <span ng-style="{ 'width': getStars(data.review_value)}"></span>
+        </span>
+      </div>
+      <div class="col">{{data.detail}}</div>
+      <div class="col"><button class="button button-small button-positive" ng-click="myReviewdetails(data)">More</button></div>
+    </div>
+ </ion-content>
+</ion-view>

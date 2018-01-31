@@ -50,7 +50,10 @@
         <ion-item menu-close href="#/app/category">
           All Categories
         </ion-item>
-        <ion-item menu-close ng-show="customerDetails.group_id==4 || customerDetails.group_id==1">
+        <ion-item menu-close ng-show="customerDetails.group_id==4">
+          Dashboard
+        </ion-item>
+        <ion-item menu-close ng-show="customerDetails.group_id==1" href="#/app/address">
           Dashboard
         </ion-item>
         <!-- <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null" menu-close href="#/app/sellerproduct">
@@ -70,18 +73,21 @@
         <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1" menu-close href="#/app/enquirydetails">
          Enquiry Emails 
         </ion-item>
-        <ion-item menu-close href="#/app/sellerreviews" ng-show="customerDetails.group_id==4 || customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null">
+        <ion-item menu-close href="#/app/sellerreviews" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1">
           Product Reviews
-         </ion-item>
-        <ion-item menu-close ng-show="customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4">
+        </ion-item>
+        <ion-item menu-close href="#/app/myproductreviews" ng-show="customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4">
+          My Product Reviews
+        </ion-item>
+        <ion-item menu-close href="#/app/myenquiries" ng-show="customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4">
           My Enquiries
          </ion-item>
         
          <ion-item menu-close href="#/app/selleradvertisement" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1">
           Advertisements
          </ion-item>
-         <ion-item ng-show="customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4" menu-close>
-          Inbox
+         <ion-item href="#/app/myinbox" ng-show="customerDetails.group_id==1" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4" menu-close>
+          My Inbox
         </ion-item>
         <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1">
           About Us

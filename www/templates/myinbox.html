@@ -1,0 +1,36 @@
+<ion-view view-title="My Inbox" cache-view="false">
+    <ion-nav-buttons side="left">
+        <button ng-hide="selectionActive" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+        <button class="button button-icon icon ion-checkmark-circled" 
+                ng-show="selectionActive" 
+                ng-click="finish()">
+        </button>
+    </ion-nav-buttons>  
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-trash-b" 
+                ng-show="selectionActive" 
+                ng-click="delete(list)">
+        </button>
+    </ion-nav-buttons>  
+  <ion-content>
+          <ion-list>
+            <ion-item class="item-remove-animate"
+                      letters-of="{{list.contact_name}}"
+                      background="random"
+                      border="none"
+                      color="white"
+                      letters="1"
+                      item="{{list}}"
+                      ng-repeat="list in getMyinbox[0].inbox" >
+                <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
+                <p>{{list.overview}}</p></span>
+            </ion-item>
+          </ion-list>
+          <ion-list ng-show="getMyinbox.length==0">
+            <ion-item>
+              You have no messages from seller.
+            </ion-item>
+          </ion-list> 
+  </ion-content>
+</ion-view>

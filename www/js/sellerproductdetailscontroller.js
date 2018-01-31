@@ -8,7 +8,6 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
  $scope.sellproductname=$stateParams.selldetailid.name;
  
  $scope.stockState=function(id,state){
-  console.log(id,state)
   var data={"product_id":id,"status":state};
   
   $http.post(baseUrl+'seller/product/stockstatus',data,{
@@ -39,14 +38,12 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 
   $scope.isChecked = function(id, matches) {
      var isChecked = id; 
-     console.log(id,matches)
      if(matches == true || matches == 1) {
         isChecked = true;
      }
       if(matches == false || matches == 2) {
        isChecked= false;
      }
-     console.log(isChecked)
     return isChecked;
   }
 
