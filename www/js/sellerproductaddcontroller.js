@@ -280,7 +280,7 @@ angular.module('sellerproductadd', [])
            } 
     console.log(data)
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).success(function(res){
+     }).then(function onSuccess(response) {
         
         if(res){
          $ionicPopup.alert({
@@ -301,7 +301,7 @@ angular.module('sellerproductadd', [])
                                 }]
                                })
                              }
-       }).error(function(error){
+       }, function onError(response) {
               $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Your Product Added Failed',
@@ -357,7 +357,7 @@ angular.module('sellerproductadd', [])
            } 
     console.log(data)
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).success(function(res){
+     }).then(function onSuccess(response) {
        if(res){
          $ionicPopup.alert({
                                title: 'Customer Details',
@@ -375,9 +375,9 @@ angular.module('sellerproductadd', [])
                                     return;
                                   }
                                 }]
-                               })
-                             }
-       }).error(function(error){
+                          })
+               }
+       }, function onError(response) {
        
          $ionicPopup.alert({
                                title: 'Customer Details',

@@ -208,56 +208,52 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   $scope.reply={ subject:"",message:"",secondarymail:"",attachment:""}
 
   $scope.replySubmit=function(reply,id){
-
-    /*console.log(reply)
-    
-    $cordovaFile.copyFile(cordova.file.dataDirectory, "file.txt", cordova.file.tempDirectory, "new_file.txt")
-      .then(function (success) {
-        // success
-      }, function (error) {
-        // error
-      });
-
-    var targetPath = cordova.file.documentsDirectory + $scope.reply.attachment
-    console.log(targetPath)
-    alert(targetPath)
-  // File name only
-  var filename = targetPath.split("/").pop();
-   
-  var options = {
-       fileKey: "file",
-       fileName: filename,
-       chunkedMode: false,
-       mimeType: "multipart/form-data",
-   };
-
-   $cordovaFileTransfer.upload(baseUrl+'seller/sendreply', targetPath, options).then(function (result) {
-       console.log("SUCCESS: " + JSON.stringify(result.response));
-          alert("sucess");
-         alert(result.response);
-   }, function (err) {
-          alert("error");
-       console.log("ERROR: " + JSON.stringify(err));
-       alert(err);
-   }, function (progress) {
-       // PROGRESS HANDLING GOES HERE
-   })*/
-  	console.log(reply,id)
+    console.log($scope.getfile)
+     if($scope.getfile==undefined || $scope.getfile.length==0 || $scope.getfile==null){
+        $scope.getfile=[{file:"",format:""}]
+        console.log($scope.getfile)
+     } 
+    console.log($scope.getfile)
     var data={
-               "enquiry_id": id,
+             "enquiry_id": id,
 	           "reply_subject": reply.subject,
 	           "reply_message": reply.message,
 	           "secondary_email": reply.secondarymail,
-	           "attachment_file": $scope.getfile[0].format,
-	           "attachment_name": $scope.getfile[0].file
+	           "attachment_name": $scope.getfile[0].file,
+             "attachment_file": $scope.getfile[0].format
              }
-
+    console.log(data)
     $http.post(baseUrl+'seller/sendreply',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function(response){                     
-        $scope.replyget=response.data;
-        console.log($scope.replyget)
+     }).then(function onSuccess(response) {                     
+        if(response.data){
+          $ionicPopup.alert({
+                               title: 'Customer Reply',
+                               template: "You're "+response.data[0].msg,
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                  
+                                  return;
+                                  }
+                                }]
+                               })
+        }
+       }, function onError(response) {
+          $ionicPopup.alert({
+                               title: 'Customer Reply',
+                               template: 'Your Reply is failed',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                  
+                                  return;
+                                  }
+                                }]
+                           })
        })
-  }
+   }
 
   $scope.messagedel=function(li){
    /*if($rootScope.listid!=null){
@@ -275,35 +271,47 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
    }*/
   }
 
-  /*$scope.pickfile=function(){
-    fileChooser.open(function(uri) {
-     alert(uri);
-     console.log(uri)
-    });
-  }*/
+  $scope.getfile=[];
+  $scope.getattachfilename="";
 
   $scope.upload = function(){
+    $scope.getattachfilename="";
     document.getElementById('fileu').click();
    $scope.fileNameChanged = function(filoename) {
-    alert(filoename.files)
+    
     console.log(filoename.files);
     $scope.getfile=[];
     var preview ="";
-    var reader  = new FileReader(); 
-    /*if(reader.length) {*/
-      reader.onloadend = function (evt) {
-      preview = evt.target.result;
-      console.log(preview)
-      $rootScope.getfileData=preview;
-      console.log($rootScope.getfileData)
-      $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
-      console.log($scope.getfile)
-      };
-    /*}*/
-    
-    if (filoename.files[0]) {
-      reader.readAsDataURL(filoename.files[0]);
-    }
+    if(filoename.files.length!=0){
+      if(filoename.files[0].size <= 2000000){
+        var reader  = new FileReader(); 
+        /*if(reader.length) {*/
+        reader.onloadend = function (evt) {
+        console.log(evt)
+        $scope.getfile=[];  
+        preview = evt.target.result;
+        console.log(preview)
+        $rootScope.getfileData=preview;
+        console.log($rootScope.getfileData)
+        $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
+        $scope.getattachfilename=filoename.files[0].name;
+        console.log($scope.getfile)
+        console.log($scope.getfile[0].file) 
+        console.log($scope.getfile[0].format) 
+        $scope.$apply();
+        };
+       
+        if (filoename.files[0]) {
+         reader.readAsDataURL(filoename.files[0]);
+        }
+      }else{
+        alert("Selected file is too big")
+      }
+    }else{
+      $scope.getattachfilename="";
+    }
+     
+    
     /*var uripath = 'content://com.google.android.apps.photos.contentprovider/0/1/content......';
 
     window.FilePath.resolveNativePath(uripath, successNative, failNative);
@@ -347,6 +355,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
       console.log('Error resolving fs url', e);
     });*/
    }
+
   } 
 
 })
