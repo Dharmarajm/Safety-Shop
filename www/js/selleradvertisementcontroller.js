@@ -1,5 +1,5 @@
 angular.module('advertisement', [])
-.controller('SelleradvertiseCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading) {
+.controller('SelleradvertiseCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaSocialSharing) {
 
   $scope.imgurl=imageUrl;
 
@@ -29,5 +29,62 @@ angular.module('advertisement', [])
         $scope.advertiselist.display_status=="Disabled";
       }  
     }
+
+    $scope.shareImg1=function(){
+      var message="";
+      var image="";
+      var link="safetyshop.in/home";
+      $cordovaSocialSharing
+            .shareViaFacebook(message, image, link)
+            .then(function(result) {
+            alert('success')
+            }, function(err) {
+             alert('err')
+              // An error occurred. Show a message to the user
+            });
+    }
+    
+    $scope.shareImg2=function(){
+       var message="";
+      var image="";
+      var link="safetyshop.in/home";
+      $cordovaSocialSharing
+      .shareViaTwitter(message, image, link)
+      .then(function(result) {
+        alert('success')
+        // Success!
+      }, function(err) {
+              alert('err')
+
+        // An error occurred. Show a message to the user
+      });
+    }
+
+    $scope.shareImg3=function(){
+      var message="";
+      var image="";
+      var link="safetyshop.in/home";
+
+      $cordovaSocialSharing
+      .shareViaWhatsApp(message, image, link)
+      .then(function(result) {
+        alert('success')
+        // Success!
+      }, function(err) {
+              alert('err')
+        
+        // An error occurred. Show a message to the user
+      });
+    }
+
+  $scope.whatsappShare=function(){
+    window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, "https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+  }
+   $scope.twitterShare=function(){
+    window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker', null, function(errormsg){alert("Error: Cannot Share")});
+  }
+   $scope.facebookShare=function(){
+     window.plugins.socialsharing.shareViaFacebook('Digital Signature Maker', null, null, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker');
+  }
     
 })
