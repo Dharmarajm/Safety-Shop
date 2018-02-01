@@ -290,16 +290,16 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     $scope.getfile=[];
     var preview ="";
     var reader  = new FileReader(); 
-    if(reader.length) {
-      reader[0].addEventListener("load", function () {
-      preview = reader.result;
+    /*if(reader.length) {*/
+      reader.onloadend = function (evt) {
+      preview = evt.target.result;
       console.log(preview)
       $rootScope.getfileData=preview;
       console.log($rootScope.getfileData)
       $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
       console.log($scope.getfile)
-      }, false);
-    }
+      };
+    /*}*/
     
     if (filoename.files[0]) {
       reader.readAsDataURL(filoename.files[0]);
