@@ -146,15 +146,23 @@
             <span class="input-label col col-50">Additional image 1</span>:<span class="col col-50">
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
-          <center ng-show="uploadmainfile.length!=0 || uploadmainfile.length!=''" style="font-size: 15px;">Main Image</center>
-          <div ng-repeat="test in uploadmainfile" ng-if="uploadmainfile.length!=0 || uploadmainfile.length!=''">
-            <center><img ng-src="{{test.file}}" style="width: 200px;height: 170px;"></center>
+          <center ng-show="uploadmainfile.length!=0 || showmainimg.length!=0" style="font-size: 15px;">Main Image</center><br>
+          <div ng-show="selldata='Edit' && showmainimg.length!=0" ng-hide="uploadmainfile.length!=0">
+          <center><img ng-src="{{img}}{{showmainimg[0]}}" style="width: 200px;height: 170px;"></center> 
+          </div>
+          <div ng-repeat="testmain in uploadmainfile" ng-show="uploadmainfile.length!=0 || uploadmainfile.length!=''">
+            <center><img ng-src="{{testmain.file}}" style="width: 200px;height: 170px;"></center><!-- <input type="checkbox" ng-model="test.status" ng-checked="test.status" ng-change="selllistCheck(sellpro.id,sellpro.status)"> -->
           </div>
           <br>
-          <center ng-show="uploadaddfile.length!=0 || uploadaddfile.length!=''" style="font-size: 15px;">Additional Images</center>
-          <div ng-repeat="test in uploadaddfile" ng-if="uploadaddfile.length!=0 || uploadaddfile.length!=''">
-            <center><img ng-src="{{test.file}}" style="width: 200px;height: 170px;"></center><br>
-          </div> 
+          <center ng-show="uploadaddfile.length!=0 || showaddimage.length!=0" style="font-size: 15px;">Additional Images</center><br>
+          <div ng-repeat="getall in showaddimage track by $index" ng-show="selldata='Edit' && showaddimage.length!=0">
+             <center><img ng-src="{{img}}{{getall.file}}" style="width: 200px;height: 170px;"></center><br>
+          </div>
+          <div ng-repeat="testadd in uploadaddfile" ng-if="uploadaddfile.length!=0 || uploadaddfile.length!=''">
+            <center><img ng-src="{{testadd.file}}" style="width: 200px;height: 170px;"></center><br>
+          </div>
+
+          
 
           <!-- <img ng-src="{{img}}{{proEdit.product.image}}" style="width: 200px;height: 170px;"> -->
 

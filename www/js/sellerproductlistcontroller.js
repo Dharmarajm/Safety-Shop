@@ -1,4 +1,4 @@
-angular.module('sellerproduct', [])
+angular.module('sellerprod', [])
 .controller('sellerproductCtrl', function($scope,$rootScope,$window,$stateParams, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading) {
 $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 $rootScope.authCode=localStorage.getItem("ssauthcode");
@@ -39,6 +39,7 @@ $scope.imgurl=imageUrl;
  /*$scope.sellproductname=$stateParams.selldetailid.name; */
 
  $scope.productdelval=function(id){
+      console.log(id)
        if(id==undefined || id==""){
          alert("Please select the Product")
         return 
@@ -64,12 +65,38 @@ $scope.imgurl=imageUrl;
      }             
 
  $scope.productdel=function(id){
+   
     $http.post(baseUrl+'seller/product/delete',{product_id:id},{
                 headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-                }).then(function(response){
-                   $scope.sellerproduct=response.data; 
-                   $rootScope.product_id='';
-                   $scope.sellProductInit()
+                }).then(function onSuccess(response){
+                   $scope.sellerproductdel=response.data; 
+                   if(response.data){
+                     $ionicPopup.alert({
+                               title: 'Seller Products',
+                               template: response.data[0].msg,
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                    $rootScope.product_id=null;
+                                    $state.reload();
+                                  }
+                                }]
+                    }) 
+                   }
+                },function onError(error){
+                   $ionicPopup.alert({
+                               title: 'Seller Products',
+                               template: "Failed to connect the Server",
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                    $rootScope.product_id=null;
+                                    $state.reload();
+                                  }
+                                }]
+                    }) 
                 })
  }
  

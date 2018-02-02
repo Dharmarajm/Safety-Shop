@@ -67,9 +67,9 @@
           Share
          </div>
          <div class="col col-50">
-           <button class="button button-light" ng-click="shareImg1()"><i class="icon ion-social-facebook"></i></button>
-          <button class="button button-light" ng-click="shareImg2()"><i class="icon ion-social-whatsapp"></i></button>
-          <button class="button button-light" ng-click="shareImg3()"><i class="icon ion-social-twitter"></i></button>
+           <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="sharefb('','',advertiselist.url)"><i class="icon ion-social-facebook"></i></button>
+          <!-- <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="shareImg2('','',advertiselist.url)"><i class="icon ion-social-whatsapp"></i></button>
+          <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="shareImg3('','',advertiselist.url)"><i class="icon ion-social-twitter"></i></button> -->
          </div>
         </div>
         <div class="row">
@@ -82,8 +82,8 @@
         </div>
   </div>
 
-          <button class="button button-light" ng-click="facebookShare()"><i class="icon ion-social-facebook"></i></button>
-          <button class="button button-light" ng-click="whatsappShare()"><i class="icon ion-social-whatsapp"></i></button>
-          <button class="button button-light" ng-click="twitterShare()"><i class="icon ion-social-twitter"></i></button>    
+          <!-- <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="facebookShare('','',advertiselist.url)"><i class="icon ion-social-facebook"></i></button>
+          <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="whatsappShare()"><i class="icon ion-social-whatsapp"></i></button>
+          <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="twitterShare()"><i class="icon ion-social-twitter"></i></button>     -->
    </ion-content>
 </ion-view>

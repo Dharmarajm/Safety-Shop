@@ -11,7 +11,7 @@ angular.module('sellerproductadd', [])
                     }] 
 
  $scope.img=imageUrl;                   
-
+ 
  if(localStorage.getItem('editId')){
   $rootScope.selldata="Edit"; 
   $scope.template="Update";
@@ -20,6 +20,7 @@ angular.module('sellerproductadd', [])
    }).then(function(res){
       $scope.proEdit=res.data[0];
                console.log($scope.proEdit)
+
                $scope.proadd ={ 
                                 "prodCategory1": $scope.proEdit.product.category_ids[0],
                                 "prodCategory2": $scope.proEdit.product.category_ids[1],
@@ -43,7 +44,30 @@ angular.module('sellerproductadd', [])
                                               }           
                                 $rootScope.inputs.push($scope.item)
                               }
+                              
+                              /*$scope.images=$scope.proEdit.product.media_gallery.images;*/
+                              
+                              if($scope.proEdit.product.media_gallery.images!=0){
+                                $scope.showaddimage=[];
+                                $scope.checkimg=$scope.proEdit.product.image;
+                                for(var i in $scope.proEdit.product.media_gallery.images){
+                                   $scope.checkimg2=$scope.proEdit.product.media_gallery.images[i].file;
+                                     if($scope.checkimg!=$scope.checkimg2){
+                                      $scope.showaddimage.push({"file":$scope.proEdit.product.media_gallery.images[i].file,"id":$scope.proEdit.product.media_gallery.images[i].value_id})
+                                      console.log($scope.showaddimage)
+                                     }
+                                }
+                              }else{
+                                $scope.showaddimage=[];
+                              }
 
+                              if($scope.proEdit.product.image!=undefined){
+                                  $scope.showmainimg=[$scope.proEdit.product.image];
+                                  console.log($scope.showmainimg)
+                              }else{
+                                $scope.showmainimg=[];
+                              }
+                              
                               if($scope.proEdit.custom_spec==null){
                                 $rootScope.inputs=[];
                               }
@@ -247,7 +271,7 @@ angular.module('sellerproductadd', [])
         for(var i=0;i<$scope.uploadimageAddition.length;i++){
           $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
                                       "name": $scope.uploadimageAddition[i].file,
-                                      "delete": 0
+                                      "delete": $scope.uploadimageAddition[i].delete
                                      })      
        }
      }
@@ -326,7 +350,7 @@ angular.module('sellerproductadd', [])
         for(var i=0;i<$scope.uploadimageAddition.length;i++){
           $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
                                        "name": $scope.uploadimageAddition[i].file,
-                                       "delete": 0
+                                       "delete": $scope.uploadimageAddition[i].delete
                                      } )      
        }
       }
@@ -377,11 +401,11 @@ angular.module('sellerproductadd', [])
                                 }]
                           })
                }
-       }, function onError(response) {
+       }, function onError(error) {
        
          $ionicPopup.alert({
                                title: 'Customer Details',
-                               template: 'Your Product updated Failed',
+                               template: 'Failed to Connect the Server',
                                buttons: [
                                {
                                   text: '<b>OK</b>',
@@ -430,9 +454,10 @@ angular.module('sellerproductadd', [])
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
         $scope.uploadmainfile=[];
-        console.log('Image URI: ' + results[0]);
-        
-        $scope.uploadmainfile.push({"file":results[0]})
+        /*console.log('Image URI: ' + results[0]);*/
+        if(results[0]!=undefined){
+         $scope.uploadmainfile.push({"file":results[0]})  
+        }
         window.resolveLocalFileSystemURL(results[0],
             function (fileEntry) {
                 // convert to Base64 string
@@ -522,7 +547,7 @@ angular.module('sellerproductadd', [])
                         };
                         reader.readAsDataURL(file);
 
-                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
+                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData,"delete":0})
                     }, 
                 function (evt) { 
                     //failed to get file

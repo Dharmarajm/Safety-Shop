@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerproduct','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox'])
+angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerprod','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox'])
 
 .run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory) {
   $ionicPlatform.ready(function() {
