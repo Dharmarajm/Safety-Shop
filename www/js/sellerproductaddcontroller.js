@@ -247,7 +247,7 @@ angular.module('sellerproductadd', [])
   if($scope.proadd.prodCategory3==undefined || $scope.proadd.prodCategory3==null || $scope.proadd.prodCategory3==""){
     $scope.datas.length=2;
   }
-
+  console.log($scope.uploadimageMain.format)
   if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
     $scope.uploadimageMain[0].format=""
   }
@@ -345,6 +345,10 @@ angular.module('sellerproductadd', [])
   if($rootScope.selldata=="Edit"){
      
      $scope.getalladdition=[];
+     
+     if($scope.showaddimage.length!=0){
+         console.log()
+     }
 
      if($scope.uploadimageAddition.length!=0){
         for(var i=0;i<$scope.uploadimageAddition.length;i++){
@@ -380,42 +384,42 @@ angular.module('sellerproductadd', [])
             "seller_id": 2
            } 
     console.log(data)
-    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function onSuccess(response) {
-       if(res){
-         $ionicPopup.alert({
-                               title: 'Customer Details',
-                               template: 'Your Product updated Successfully',
-                               buttons: [
-                               {
-                                  text: '<b>OK</b>',
-                                  onTap: function() {
+    // $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+    //  }).then(function onSuccess(response) {
+    //    if(res){
+    //      $ionicPopup.alert({
+    //                            title: 'Customer Details',
+    //                            template: 'Your Product updated Successfully',
+    //                            buttons: [
+    //                            {
+    //                               text: '<b>OK</b>',
+    //                               onTap: function() {
                                    
-                                    /*$rootScope.getCategory="";
-                                    $rootScope.addspec="";
-                                    $rootScope.rootCat1=""
-                                    $rootScope.rootCat2=""
-                                    $rootScope.rootCat3="";*/
-                                    return;
-                                  }
-                                }]
-                          })
-               }
-       }, function onError(error) {
+    //                                 // $rootScope.getCategory="";
+    //                                 // $rootScope.addspec="";
+    //                                 // $rootScope.rootCat1=""
+    //                                 // $rootScope.rootCat2=""
+    //                                 // $rootScope.rootCat3="";
+    //                                 return;
+    //                               }
+    //                             }]
+    //                       })
+    //            }
+    //    }, function onError(error) {
        
-         $ionicPopup.alert({
-                               title: 'Customer Details',
-                               template: 'Failed to Connect the Server',
-                               buttons: [
-                               {
-                                  text: '<b>OK</b>',
-                                  onTap: function() {
-                                   return;
-                                  }
-                                }]
-                               })
+    //      $ionicPopup.alert({
+    //                            title: 'Customer Details',
+    //                            template: 'Failed to Connect the Server',
+    //                            buttons: [
+    //                            {
+    //                               text: '<b>OK</b>',
+    //                               onTap: function() {
+    //                                return;
+    //                               }
+    //                             }]
+    //                            })
                       
-       })
+    //    })
   }
   
  }
