@@ -2,6 +2,8 @@ angular.module('review', ['ionic-ratings'])
 .controller('sellerreviewsCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading) {
  
  $scope.imgurl=imageUrl;
+ $rootScope.authCode=localStorage.getItem("ssauthcode");
+ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 
  $scope.getStars = function(rating) {
 			    // Get the value
@@ -11,7 +13,7 @@ angular.module('review', ['ionic-ratings'])
 			    return size + '%';
  }
 			       
- $http.get(baseUrl+'seller/review/2',+$rootScope.customerDetails.id,{
+ $http.get(baseUrl+'seller/review/'+$rootScope.customerDetails.id,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){
       	$scope.productsReview=response.data[0].products;
@@ -29,7 +31,7 @@ angular.module('review', ['ionic-ratings'])
    $state.go('app.sellerproductreviews');
  }
  
- $scope.productreviewStatus=function(){
+ /*$scope.productreviewStatus=function(){
     var data={
 	           "seller_id": 2,
 	           "product_id": 2,
@@ -41,6 +43,6 @@ angular.module('review', ['ionic-ratings'])
      }).then(function(res){
         $scope.reviewStatussuccess=res.data;
      })          
- }
+ }*/
 
 })

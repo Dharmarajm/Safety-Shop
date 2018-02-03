@@ -31,14 +31,14 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    function success( status ) {
      if( !status.hasPermission ) error();
    }
-  permissions.hasPermission(permissions.CAMERA, function( status ){
-   if ( status.hasPermission ) {
-    console.log("Yes :D ");
-   }
-   else {
-    console.warn("No :( ");
-   }
-  });
+   permissions.hasPermission(permissions.CAMERA, function( status ){
+    if ( status.hasPermission ) {
+     console.log("Yes :D ");
+    }
+    else {
+     console.warn("No :( ");
+    }
+   });
   });
   
 
@@ -99,12 +99,12 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
                          }]
     });
    };
-   if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
-          showConfirm();
-          console.log($state.current.name)
-   }else {
-          console.log($state.current.name);
-    $ionicHistory.goBack();
+   if($state.current.name=='app.sellerproductadd' && $rootScope.selldata=='Edit'){
+      $ionicHistory.goBack();
+   }else if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
+      showConfirm();
+   }else{
+     $ionicHistory.goBack();
    } 
    return false;
   }, 101);

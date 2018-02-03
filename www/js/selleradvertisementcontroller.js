@@ -37,12 +37,13 @@ angular.module('advertisement', [])
       $cordovaSocialSharing
             .shareViaFacebook(message, image, link)
             .then(function(result) {
-             alert('success')
              return $scope.shareDate(); 
             }, function(err) {
-             alert('err')
-              // An error occurred. Show a message to the user
-             
+             if(err==false){
+              alert(err) 
+              /*alert("https://m.facebook.com")*/
+               // An error occurred. Show a message to the user 
+             }
             });
     }
     

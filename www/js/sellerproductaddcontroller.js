@@ -132,7 +132,7 @@ angular.module('sellerproductadd', [])
   } 
 
  $scope.rootcat=function(id){
-  if(id!=null || id!=undefined){
+  if(id!=null || id!=undefined || id!=''){
     $rootScope.getCategory=[];
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode } 
      }).then(function(res){
@@ -153,7 +153,7 @@ angular.module('sellerproductadd', [])
          console.log($scope.proadd.prodCategory2==null)  */
        })
   }
-  if(id==null || id==''){
+  if(id==null || id=='' || id==undefined){
     $rootScope.getCategory=[];
     $rootScope.rootCat2=""
     $rootScope.rootCat3="";
@@ -162,7 +162,7 @@ angular.module('sellerproductadd', [])
  }
 
  $scope.subcat1=function(id){
-  if(id!=null || id!=undefined){
+  if(id!=null || id!=undefined || id!=''){
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
  	       $rootScope.rootCat2=res.data[0].sub_categories;
@@ -180,14 +180,14 @@ angular.module('sellerproductadd', [])
          console.log($scope.proadd.prodCategory2=='')*/
        })
   }
-  if(id==null || id==''){
+  if(id==null || id=='' || id==undefined){
     $rootScope.getCategory.length=1;
     console.log($rootScope.getCategory)
   }
  }
 
  $scope.subcat2=function(id){
-  if(id!=null || id!=undefined){
+  if(id!=null || id!=undefined || id!=''){
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
         $rootScope.rootCat3=res.data[0].sub_categories;
@@ -196,7 +196,7 @@ angular.module('sellerproductadd', [])
         console.log($rootScope.getCategory)  
        })
   }
-  if(id==null || id==''){
+  if(id==null || id=='' || id==undefined){
     $rootScope.getCategory.length=2;
     /*$rootScope.getCategory.splice(1,3);*/
     console.log($rootScope.getCategory)
@@ -229,7 +229,8 @@ angular.module('sellerproductadd', [])
  }
  
  $scope.datas=[];
- $scope.productdetailsadd=function(detail,spec){
+
+$scope.productdetailsadd=function(detail,spec){
   
   if($scope.proadd.prodCategory1!=null || $scope.proadd.prodCategory1!=undefined || $scope.proadd.prodCategory1!=""){
     $scope.datas.length=0;
@@ -247,24 +248,24 @@ angular.module('sellerproductadd', [])
   if($scope.proadd.prodCategory3==undefined || $scope.proadd.prodCategory3==null || $scope.proadd.prodCategory3==""){
     $scope.datas.length=2;
   }
-  console.log($scope.uploadimageMain.format)
-  if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
-    $scope.uploadimageMain[0].format=""
-  }
-  if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
-    $scope.uploadimageMain[0].file=""
-  }
-  /*if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
-    $scope.uploadimageAddition[0].format==""
-  }
-  if($scope.uploadimageAddition=="" || $scope.uploadimageAddition==undefined || $scope.uploadimageAddition==null){
-    $scope.uploadimageAddition[0].file==""
-  }*/
-
+ 
   console.log($scope.uploadimageAddition)
   console.log($scope.uploadimageMain)
   if($rootScope.selldata=="Add"){
      
+      if($scope.uploadimageMain.length==0){
+         $scope.uploadimageMain.push({file:"",format:""})
+       }else if($scope.uploadimageMain.length!=0){
+         if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
+            $scope.uploadimageMain[0].format=""
+          }
+          if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
+            $scope.uploadimageMain[0].file=""
+          }     
+       }else{
+
+       }
+
      $scope.getalladdition=[];
 
      if($scope.uploadimageAddition.length!=0){
@@ -344,10 +345,36 @@ angular.module('sellerproductadd', [])
   
   if($rootScope.selldata=="Edit"){
      
+    if($scope.showmainimg.length!=0){
+      $scope.uploadimageMain.push({file:"",format:""})      
+    }else{
+      if($scope.uploadimageMain.length==0){
+       
+       $scope.uploadimageMain.push({file:"",format:""})
+      }else if($scope.uploadimageMain.length!=0){
+       if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
+          $scope.uploadimageMain[0].format=""
+        }
+        if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
+          $scope.uploadimageMain[0].file=""
+        }     
+      }else{
+       } 
+      }
+
      $scope.getalladdition=[];
      
      if($scope.showaddimage.length!=0){
-         console.log()
+         $scope.arraylength=[];
+         for(var i=0;i<$scope.showaddimage.length;i++){
+           $scope.arraylength.push(i);
+           console.log($scope.arraylength)
+         }
+         var arraylength=$scope.arraylength;
+         angular.forEach(arraylength, function(value) {
+           $scope.uploadimageAddition.push({"file":'',"name":'',"delete":0})              
+         });
+         console.log($scope.uploadimageAddition)
      }
 
      if($scope.uploadimageAddition.length!=0){
@@ -355,7 +382,7 @@ angular.module('sellerproductadd', [])
           $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
                                        "name": $scope.uploadimageAddition[i].file,
                                        "delete": $scope.uploadimageAddition[i].delete
-                                     } )      
+                                     })      
        }
       }
       console.log($scope.getalladdition)

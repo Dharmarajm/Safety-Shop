@@ -195,6 +195,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }).then(function(modalproductdetails) {
   	
   $scope.modalproductdetail = modalproductdetails;
+  $scope.getfile=[];
   });
 
   $scope.closemsgdetails = function() {
@@ -202,10 +203,10 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
    $scope.reply.subject="";
    $scope.reply.message="";
    $scope.reply.secondarymail="";
-   $scope.reply.attachment="";
+   $scope.getattachfilename="No file chosen";
   }
   
-  $scope.reply={ subject:"",message:"",secondarymail:"",attachment:""}
+  $scope.reply={ subject:"",message:"",secondarymail:""}
 
   $scope.replySubmit=function(reply,id){
     console.log($scope.getfile)
@@ -272,10 +273,10 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }
 
   $scope.getfile=[];
-  $scope.getattachfilename="";
+  $scope.getattachfilename="No file chosen";
 
   $scope.upload = function(){
-    $scope.getattachfilename="";
+    $scope.getattachfilename="No file chosen";
     document.getElementById('fileu').click();
    $scope.fileNameChanged = function(filoename) {
     
@@ -308,7 +309,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
         alert("Selected file is too big")
       }
     }else{
-      $scope.getattachfilename="";
+      $scope.getattachfilename="No file chosen";
     }
      
     
