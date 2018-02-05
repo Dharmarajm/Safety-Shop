@@ -89,8 +89,8 @@
                       item="{{list.reply_id}}"
                      
                       ng-repeat="list in sentlist[0].reply" >
-                <h2>{{list.contact_name}}</h2>
-                <p>{{list.reply_subject}}</p>
+                <span ng-click="sentdetail(list)"><h2>{{list.contact_name}}</h2>
+                <p>{{list.reply_subject}}</p></span>
             </ion-item>
           </ion-list>
           <ion-list ng-show="sentlist.length==0">
@@ -122,7 +122,7 @@
                       letters="1"
                       item="{{list}}"
                       ng-repeat="list in importantlist[0].important" >
-                <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
+                <span ng-click="importantdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.overview}}</p></span>
                 <div class="icon item-icon-right" ng-click="moveimportant(list)">
                   <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>

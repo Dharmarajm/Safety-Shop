@@ -11,7 +11,6 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
  $http.post(baseUrl+'seller/enquiry/inbox',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.enquirylist=response.data;
-     console.log($rootScope.enquirylist)
     })
  
  
@@ -20,7 +19,6 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }).then(function(response){ 
      if(response.data[0]!=undefined){
       $rootScope.importantlist=response.data;
-      console.log($rootScope.importantlist)
       }else{
       $rootScope.importantlist=[];
      }         
@@ -37,9 +35,16 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
  } 
 
  
- if($state.current.name=='app.emaildetails'){
+ if($state.current.name=='app.emaildetails' && $rootScope.getinboxId!=null || $state.current.name=='app.emaildetails' && $rootScope.getimportantId!=null){
+
+   if($rootScope.getinboxId!=null){
+     $scope.getCurrentID=$rootScope.getinboxId.quickrfq_id;
+     console.log($scope.getCurrentID)
+   }else if($rootScope.getimportantId!=null){
+     $scope.getCurrentID=$rootScope.getimportantId.quickrfq_id
+   }
    var data={
-             "enquiry_id": $rootScope.getinboxId.quickrfq_id,
+             "enquiry_id": $scope.getCurrentID,
              "status": "Read"
             }
 
@@ -135,8 +140,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
       
      var data={
              "seller_id": $rootScope.customerDetails.id,
-	         "enquiry_ids": [Id.quickrfq_id],
-	         "move_to": "important"
+	           "enquiry_ids": [Id.quickrfq_id],
+	           "move_to": "important"
             }
 
    $http.post(baseUrl+'seller/enquiry/move',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
@@ -196,6 +201,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   	
   $scope.modalproductdetail = modalproductdetails;
   $scope.getfile=[];
+  $scope.getattachfilename="No file chosen";
   });
 
   $scope.closemsgdetails = function() {
@@ -203,6 +209,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
    $scope.reply.subject="";
    $scope.reply.message="";
    $scope.reply.secondarymail="";
+   $scope.getfile=[];
    $scope.getattachfilename="No file chosen";
   }
   
@@ -277,84 +284,55 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 
   $scope.upload = function(){
     $scope.getattachfilename="No file chosen";
-    document.getElementById('fileu').click();
-   $scope.fileNameChanged = function(filoename) {
-    
-    console.log(filoename.files);
     $scope.getfile=[];
-    var preview ="";
+    alert($scope.getattachfilename)
+    document.getElementById('fileu').click();
+    $scope.fileNameChanged = function(filoename) {
+    $scope.getfile=[];
+    alert(filoename.files);
+    
+    var preview;
     if(filoename.files.length!=0){
+      
       if(filoename.files[0].size <= 2000000){
+      
         var reader  = new FileReader(); 
         /*if(reader.length) {*/
         reader.onloadend = function (evt) {
-        console.log(evt)
-        $scope.getfile=[];  
+        /*console.log(evt)*/
+          
         preview = evt.target.result;
-        console.log(preview)
+        /*console.log(preview)*/
         $rootScope.getfileData=preview;
-        console.log($rootScope.getfileData)
+        /*console.log($rootScope.getfileData)*/
         $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
         $scope.getattachfilename=filoename.files[0].name;
-        console.log($scope.getfile)
+        // alert($scope.getattachfilename)
+      
+        /*console.log($scope.getfile)
         console.log($scope.getfile[0].file) 
-        console.log($scope.getfile[0].format) 
-        $scope.$apply();
+        console.log($scope.getfile[0].format) */
+        $scope.$apply(function (){
+            $scope.getattachfilename=filoename.files[0].name;
+            /*console.log($scope.getfile)
+            console.log($scope.getattachfilename)*/
+        });
         };
-       
+        /*$scope.getattachfilename=filoename.files[0].name;*/
         if (filoename.files[0]) {
          reader.readAsDataURL(filoename.files[0]);
         }
       }else{
+        $scope.getattachfilename="No file chosen";
+        $scope.getfile=[];
         alert("Selected file is too big")
+        $scope.$apply();
       }
     }else{
       $scope.getattachfilename="No file chosen";
+      $scope.$apply();
+      // alert(filoename.files.length)
     }
-     
-    
-    /*var uripath = 'content://com.google.android.apps.photos.contentprovider/0/1/content......';
-
-    window.FilePath.resolveNativePath(uripath, successNative, failNative);
-            
-    function failNative(e) {
-        console.error('Houston, we have a big problem :(');
-    }
-
-    function successNative(finalPath) {
-        console.log(finalPath)
-        var path = 'file://'+ finalPath;
-        
-        window.resolveLocalFileSystemURL(path, success, fail);
-            
-        function fail(e) {
-              console.error(e);
-        }
-
-        function success(fileEntry) {
-           fileEntry.file(function(file) {
-                   var reader = new FileReader();
-                   reader.onloadend = function (evt) {
-                     var imgData = evt.target.result; // this is your Base64 string
-                     console.log(imgData);                      
-                     $rootScope.getimgData=imgData
-                   };
-               reader.readAsText(file); // Finally !
-               $scope.getfile.push({"file":file.name,"format":$rootScope.getimgData})
-               console.log($scope.getfile)
-           });
-        }
-    }*/
-
-    /*window.resolveLocalFileSystemURL( filePath, function (fileEntry){
-    console.log('got a file entry');
-      fileEntry.file(function (file) {
-        console.log('created file');
-        console.log(file.localURL);
-      })
-    }, function (e) {
-      console.log('Error resolving fs url', e);
-    });*/
    }
 
   } 

@@ -57,25 +57,32 @@ angular.module('SellerProductreviews', [])
     console.log(id,state,productId)
     if(state=="Approved"){
      $scope.displayStateC="3";
+     console.log($scope.displayStateC)
      $scope.datalistreview.status="Approved"
     }
     
     if(state=="Pending"){
      $scope.displayStateC="1";
+     console.log($scope.displayStateC)
      $scope.datalistreview.status="Pending"
     }
 
     if(state=="Not Approved"){
       $scope.displayStateC="1"
+      console.log($scope.displayStateC)
       $scope.datalistreview.status="Not Approved"
     }
 
     if(state==true){
       $scope.displayStateC="3";
+      console.log($scope.displayStateC)
+      $scope.datalistreview.status="Approved"
     }
 
     if(state==false){
+      console.log($scope.datalistreview.status)
       $scope.displayStateC="1";
+      console.log($scope.displayStateC)
     }
 
     console.log($scope.displayStateC)
@@ -87,14 +94,14 @@ angular.module('SellerProductreviews', [])
              };
     console.log(data)         
 
-    // $http.post(baseUrl+'seller/review/status',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-    //   }).then(function(response){                     
-    //      $scope.Statesuccess=response.data[0].status;
-    //      if($scope.Statesuccess=="SUCCESS"){
-    //         $scope.getreview();
-    //         /*return $scope.isChecked(id,state); */
-    //      }
-    //     })
+    $http.post(baseUrl+'seller/review/status',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+      }).then(function(response){                     
+         $scope.Statesuccess=response.data[0].status;
+         if($scope.Statesuccess=="SUCCESS"){
+            $scope.getreview();
+            /*return $scope.isChecked(id,state); */
+         }
+        })
    }
 
    $ionicModal.fromTemplateUrl('reviewfulldatail.html', {
