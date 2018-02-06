@@ -281,7 +281,7 @@
                   </ion-header-bar>  
                   <ion-content style="background-color: #e0e0e0">               
 
-                  <form name="message" novalidate>
+                  <form name="message" novalidate ng-submit="replySubmit(message,reply,getId)">
                       <!-- <div class="list">
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
@@ -306,7 +306,7 @@
                            <button class="msgattach" ng-click="upload()">Choose File</button>
                            <span>{{getattachfilename}}</span>
 
-                           <button style="background-color: #F69222" ng-disabled="message.$invalid" ng-click="replySubmit(reply,getId)" class="addtocart" >Send</button>
+                           <button style="background-color: #F69222" type="submit" class="addtocart" >Send</button>
                       <!-- </div> -->
                   </form>               
 

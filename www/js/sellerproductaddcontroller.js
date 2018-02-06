@@ -3,6 +3,8 @@ angular.module('sellerproductadd', [])
  
  $scope.category1=1;
  $scope.categoryidentify=[];
+ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
+ $rootScope.authCode=localStorage.getItem("ssauthcode");
  
  $rootScope.inputs=[{
                        "spec_name": "",
@@ -46,27 +48,35 @@ angular.module('sellerproductadd', [])
                               }
                               
                               /*$scope.images=$scope.proEdit.product.media_gallery.images;*/
-                              
+                              $scope.showaddimage=[];
+                              $scope.showmainimg=[];
+
                               if($scope.proEdit.product.media_gallery.images!=0){
-                                $scope.showaddimage=[];
+                                
                                 $scope.checkimg=$scope.proEdit.product.image;
                                 for(var i in $scope.proEdit.product.media_gallery.images){
                                    $scope.checkimg2=$scope.proEdit.product.media_gallery.images[i].file;
                                      if($scope.checkimg!=$scope.checkimg2){
                                       $scope.showaddimage.push({"file":$scope.proEdit.product.media_gallery.images[i].file,"id":$scope.proEdit.product.media_gallery.images[i].value_id})
                                       console.log($scope.showaddimage)
+                                     }else if($scope.checkimg==$scope.checkimg2){
+                                       $scope.showmainimg.push({"file":$scope.proEdit.product.media_gallery.images[i].file,"id":$scope.proEdit.product.media_gallery.images[i].value_id})
+                                     }else{
+                                      $scope.showaddimage=[];
+                                      $scope.showmainimg=[];
                                      }
                                 }
                               }else{
                                 $scope.showaddimage=[];
+                                $scope.showmainimg=[];
                               }
 
-                              if($scope.proEdit.product.image!=undefined){
+                              /*if($scope.proEdit.product.image!=undefined){
                                   $scope.showmainimg=[$scope.proEdit.product.image];
                                   console.log($scope.showmainimg)
                               }else{
                                 $scope.showmainimg=[];
-                              }
+                              }*/
                               
                               if($scope.proEdit.custom_spec==null){
                                 $rootScope.inputs=[];
@@ -301,7 +311,7 @@ $scope.productdetailsadd=function(detail,spec){
              },
             "type": "new",
             "id": 0,
-            "seller_id": 2
+            "seller_id": $rootScope.customerDetails.id
            } 
     console.log(data)
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
@@ -408,45 +418,45 @@ $scope.productdetailsadd=function(detail,spec){
              },
             "type": "edit",
             "id": $scope.proEdit.product.entity_id,
-            "seller_id": 2
+            "seller_id": $rootScope.customerDetails.id
            } 
     console.log(data)
-    // $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-    //  }).then(function onSuccess(response) {
-    //    if(res){
-    //      $ionicPopup.alert({
-    //                            title: 'Customer Details',
-    //                            template: 'Your Product updated Successfully',
-    //                            buttons: [
-    //                            {
-    //                               text: '<b>OK</b>',
-    //                               onTap: function() {
+    $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+     }).then(function onSuccess(response) {
+       if(res){
+         $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Your Product updated Successfully',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
                                    
-    //                                 // $rootScope.getCategory="";
-    //                                 // $rootScope.addspec="";
-    //                                 // $rootScope.rootCat1=""
-    //                                 // $rootScope.rootCat2=""
-    //                                 // $rootScope.rootCat3="";
-    //                                 return;
-    //                               }
-    //                             }]
-    //                       })
-    //            }
-    //    }, function onError(error) {
+                                    // $rootScope.getCategory="";
+                                    // $rootScope.addspec="";
+                                    // $rootScope.rootCat1=""
+                                    // $rootScope.rootCat2=""
+                                    // $rootScope.rootCat3="";
+                                    return;
+                                  }
+                                }]
+                          })
+               }
+       }, function onError(error) {
        
-    //      $ionicPopup.alert({
-    //                            title: 'Customer Details',
-    //                            template: 'Failed to Connect the Server',
-    //                            buttons: [
-    //                            {
-    //                               text: '<b>OK</b>',
-    //                               onTap: function() {
-    //                                return;
-    //                               }
-    //                             }]
-    //                            })
+         $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Failed to Connect the Server',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                   return;
+                                  }
+                                }]
+                               })
                       
-    //    })
+       })
   }
   
  }
@@ -455,24 +465,11 @@ $scope.productdetailsadd=function(detail,spec){
  $scope.uploadimageMain=[];
  $scope.uploadmainfile=[]; 
 
- $scope.upload = function(){
-
-  /*var options = {
-      maximumImagesCount: 1,
-      quality: 50,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 100,
-      targetHeight: 100,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false,
-    correctOrientation:true
-    };*/
-
-    $scope.uploadimageMain=[];
-    $scope.uploadmainfile=[];
+ $scope.upload = function(img){
+  console.log($scope.showmainimg)
+  
+  $scope.uploadimageMain=[];
+  $scope.uploadmainfile=[];
     
 
     var options = {
@@ -482,44 +479,44 @@ $scope.productdetailsadd=function(detail,spec){
      quality: 80
     };
  
-  $cordovaImagePicker.getPictures(options)
-    .then(function (results) {
-        $scope.uploadmainfile=[];
-        /*console.log('Image URI: ' + results[0]);*/
-        if(results[0]!=undefined){
-         $scope.uploadmainfile.push({"file":results[0]})  
-        }
-        window.resolveLocalFileSystemURL(results[0],
-            function (fileEntry) {
-                // convert to Base64 string
-                 $scope.uploadimageMain.length=0;
-                fileEntry.file(
-                    function(file) {
-                        //got file
+  // $cordovaImagePicker.getPictures(options)
+  //   .then(function (results) {
+  //       $scope.uploadmainfile=[];
+  //       /*console.log('Image URI: ' + results[0]);*/
+  //       if(results[0]!=undefined){
+  //        $scope.uploadmainfile.push({"file":results[0]})  
+  //       }
+  //       window.resolveLocalFileSystemURL(results[0],
+  //           function (fileEntry) {
+  //               // convert to Base64 string
+  //                $scope.uploadimageMain.length=0;
+  //               fileEntry.file(
+  //                   function(file) {
+  //                       //got file
                         
-                        var reader = new FileReader();
-                        reader.onloadend = function (evt) {
-                            var imgData = evt.target.result; // this is your Base64 string
-                            /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
-                            $rootScope.getimgData=imgData
-                        };
-                        reader.readAsDataURL(file);
+  //                       var reader = new FileReader();
+  //                       reader.onloadend = function (evt) {
+  //                           var imgData = evt.target.result; // this is your Base64 string
+  //                           /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
+  //                           $rootScope.getimgData=imgData
+  //                       };
+  //                       reader.readAsDataURL(file);
 
-                        $scope.uploadimageMain.push({"file":file.name,"format":$rootScope.getimgData})
-                    }, 
-                function (evt) { 
-                    //failed to get file
-                });
+  //                       $scope.uploadimageMain.push({"file":file.name,"format":$rootScope.getimgData})
+  //                   }, 
+  //               function (evt) { 
+  //                   //failed to get file
+  //               });
 
-            },
-            // error callback
-            function () { }
-        )
-      console.log($scope.uploadimageMain)    
-    }, function(error) {
-      // error getting photos
-      alert(error);
-    })
+  //           },
+  //           // error callback
+  //           function () { }
+  //       )
+  //     console.log($scope.uploadimageMain)    
+  //   }, function(error) {
+  //     // error getting photos
+  //     alert(error);
+  //   })
  }
 
  
@@ -595,6 +592,22 @@ $scope.productdetailsadd=function(detail,spec){
       // error getting photos
       alert(error);
     })
+ }
+
+ $scope.imgDelete=function(id){
+    var data={
+               "image_id": id,
+               "product_id": $scope.proEdit.product.entity_id,
+               "seller_id": $rootScope.customerDetails.id
+             }
+     $http.post(baseUrl+'seller/product/imagedelete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+     }).then(function(response){                     
+        if(response){
+
+        }
+       },function(error){
+
+       })                
  }
 
 })

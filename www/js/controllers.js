@@ -99,36 +99,55 @@ angular.module('starter.controllers', [])
                         }
 }
 
-$scope.signupData={firstname:"",lastname:"",emailid:"",password:"",confirmpassword:""};
+$scope.signupData={firstname:"",lastname:"",email:"",dob:"",gender:"",company:"",street:"",city:"",postcode:"",state:"",country:"",telephone:"",password:"",confirmpassword:""};
+$scope.signupData=[{id:1,name:"Male"},{id:2,name:"Female"}]
 
-$scope.dosignup=function(){
-
-  if($scope.signupData.password != $scope.signupData.confirmpassword){
-    alert("Mismatch password");
-    return;
-  }
-  // return;
-    var signupData={
-      "customer": {
-    "id": 0,
-    "group_id": 0,
-    "confirmation": "true",
-    "dob": "",
-    "email": $scope.signupData.emailid,
-    "firstname": $scope.signupData.firstname,
-    "lastname": $scope.signupData.lastname,
-    "middlename": "",
-    "prefix": "",
-    "suffix": "",
-    "website_id": 0,
-    "disable_auto_group_change": 0,
-    "extension_attributes": {
-      "is_subscribed": true
-    }
-  },
-  "password": $scope.signupData.password
-}
-
+$scope.dosignup=function(form){
+  console.log(form.firstname.$valid , form.lastname.$valid , form.email.$valid , form.dob.$valid , form.gender.$valid , form.company.$valid , form.street.$valid , form.city.$valid , form.postcode.$valid , form.state.$valid , form.country.$valid , form.telephone.$valid , form.password.$valid , form.confirmpassword.$valid)
+  if(form.firstname.$valid && form.lastname.$valid && form.email.$valid && form.dob.$valid && form.gender.$valid && form.company.$valid && form.street.$valid && form.city.$valid && form.postcode.$valid && form.state.$valid && form.country.$valid && form.telephone.$valid && form.password.$valid && form.confirmpassword.$valid){
+     if(form.password.$valid == form.confirmpassword.$valid){
+        var signupData={
+                        "customer": {
+                        "id": 0,
+                        "group_id": 1,
+                        "confirmation": "true",
+                        "dob": $scope.signupData.dob,
+                        "email": $scope.signupData.email,
+                        "firstname": $scope.signupData.firstname,
+                        "lastname": $scope.signupData.lastname,
+                        "middlename": "",
+                        "prefix": "",
+                        "suffix": "",
+                        "gender": $scope.signupData.gender,
+                        "website_id": 0,
+                         "addresses": [ {"id": 0,
+                                        "customer_id": 0,
+                                         "region": {
+                                                    "region_code": "TAMIL",
+                                                    "region": $scope.signupData.state,
+                                                    "region_id": 541,
+                                                    "extension_attributes": {}
+                                          },
+                                        "region_id": 541,
+                                        "country_id": "IN",
+                                        "street": [$scope.signupData.street],
+                                        "company":$scope.signupData.company,
+                                        "telephone": $scope.signupData.telephone,
+                                        "fax": "",
+                                        "postcode": $scope.signupData.postcode,
+                                        "city": $scope.signupData.city,
+                                        "firstname": $scope.signupData.firstname,
+                                        "lastname": $scope.signupData.lastname,
+                                        "middlename": ""
+                                      }],
+                        "disable_auto_group_change": 0,
+                        "extension_attributes": {
+                          "is_subscribed": true
+                           }
+                        },
+                       "password": $scope.signupData.password
+                       }
+               console.log(signupData)
                           $http
                           ({
                             method: 'post',
@@ -136,8 +155,19 @@ $scope.dosignup=function(){
                             data: signupData  
                           })
                           .success(function(data) {
-                            //console.log(data);
-                           //  $state.go('app.home');
+                             if(data){
+                              $ionicPopup.alert({
+                               title: 'Customer SignUp',
+                               template: 'Customer account has been created',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                    return;
+                                  }
+                                }]
+                              })
+                             }
                            
                           }).error(function(data, status, headers, config){
                           // console.log(data.message);
@@ -145,8 +175,13 @@ $scope.dosignup=function(){
                             alert(data.message)
                            }
                            });
-
-
+     }else{
+      alert("Password is mismatch")
+     }
+  }else{
+    alert("Please enter all the values as valid")
+  }
+  
 }
 
 

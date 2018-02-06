@@ -7,7 +7,7 @@
 
 angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerprod','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox'])
 
-.run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory) {
+.run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory,$ionicSlideBoxDelegate,$timeout) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -41,7 +41,16 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    });
   });
   
-
+  /*$rootScope.interval = 2000;
+       
+       $rootScope.slideHasChanged = function(index) {
+           $rootScope.slideIndex = index;
+           if ( ($ionicSlideBoxDelegate.count() -1 ) == index ) {
+               $timeout(function(){
+                   $ionicSlideBoxDelegate.slide(0);
+               },$rootScope.interval);
+           }
+       };*/
    
 
    /*$ionicPlatform.registerBackButtonAction(function (event) {

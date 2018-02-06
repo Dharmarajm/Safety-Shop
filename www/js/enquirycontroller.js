@@ -215,8 +215,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   
   $scope.reply={ subject:"",message:"",secondarymail:""}
 
-  $scope.replySubmit=function(reply,id){
-    console.log($scope.getfile)
+  $scope.replySubmit=function(msg,reply,id){
+   if(msg.subject.$valid && msg.message.$valid && msg.secondarymail.$valid){
      if($scope.getfile==undefined || $scope.getfile.length==0 || $scope.getfile==null){
         $scope.getfile=[{file:"",format:""}]
         console.log($scope.getfile)
@@ -261,10 +261,13 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                 }]
                            })
        })
-   }
+   }else{
+    alert("Please enter all the values as valid")
+   }  
+  }
 
-  $scope.messagedel=function(li){
-   /*if($rootScope.listid!=null){
+  /*$scope.messagedel=function(li){
+   if($rootScope.listid!=null){
     var data={
                 "enquiry_id": $rootScope.listid.quickrfq_id,
 	            "seller_id": $rootScope.listid.seller_id
@@ -276,8 +279,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
        $rootScope.listid=null;
        console.log($scope.moveToimport)
       })
-   }*/
-  }
+   }
+  }*/
 
   $scope.getfile=[];
   $scope.getattachfilename="No file chosen";

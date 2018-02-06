@@ -64,62 +64,109 @@ angular.module('address', [])
               }
 
 
-     $scope.addressput=function(){
+     $scope.addressput=function(account){
+      if(account.firstname.$valid && account.lastname.$valid && account.email.$valid){
+         
+         $scope.dataput=[];
+         for(var i in $scope.addresscus.addresses){
+            if($scope.addresscus.addresses[i].fax==undefined || $scope.addresscus.addresses[i].fax==null || $scope.addresscus.addresses[i].fax==""){
+              $scope.addresscus.addresses[i].fax="";
+            }
+            if($scope.addresscus.addresses[i].middlename==undefined || $scope.addresscus.addresses[i].middlename==null || $scope.addresscus.addresses[i].middlename==""){
+              $scope.addresscus.addresses[i].middlename="";
+            }
+            $scope.dataput.push({
+                                 "id": $scope.addresscus.addresses[i].id,
+                                 "customer_id": $scope.addresscus.addresses[i].customer_id,
+                                 // "region": {
+                                 //   "region_code": "",
+                                 //   "region": "",
+                                 //   "region_id": 0,
+                                 //   "extension_attributes": {}
+                                 // },
+                                 "region": $scope.addresscus.addresses[i].region,
+                                 "region_id": $scope.addresscus.addresses[i].region.region_id,
+                                 "country_id": $scope.addresscus.addresses[i].country_id,
+                                 "street": $scope.addresscus.addresses[i].street,
+                                 "company":$scope.addresscus.addresses[i].company,
+                                 "telephone": $scope.addresscus.addresses[i].telephone,
+                                 "fax": $scope.addresscus.addresses[i].fax,
+                                 "postcode": $scope.addresscus.addresses[i].postcode,
+                                 "city": $scope.addresscus.addresses[i].city,
+                                 "firstname": $scope.addresscus.addresses[i].firstname,
+                                 "lastname": $scope.addresscus.addresses[i].lastname,
+                                 "middlename": $scope.addresscus.addresses[i].middlename
+                               })
+
+         }
+
+         if($scope.addresscus.middlename==undefined || $scope.addresscus.middlename==null || $scope.addresscus.middlename==""){
+           $scope.addresscus.middlename="";    
+         }
+         if($scope.addresscus.prefix==undefined || $scope.addresscus.prefix==null || $scope.addresscus.prefix==""){
+            $scope.addresscus.prefix=""
+         }
+         if($scope.addresscus.suffix==undefined || $scope.addresscus.suffix==null || $scope.addresscus.suffix==""){
+           $scope.addresscus.suffix="";
+         }
+         if($scope.addresscus.gender==undefined || $scope.addresscus.gender==null || $scope.addresscus.gender==""){
+            $scope.addresscus.gender=3;
+         }
+         if($scope.addresscus.dob==undefined || $scope.addresscus.dob==null || $scope.addresscus.dob==""){
+            $scope.addresscus.dob="";
+         }
+
          var putdata={
                 "customer": {
-                             "dob": "",
-                             "email": "",
-                             "firstname": "",
-                             "lastname": "",
-                             "middlename": "",
-                             "prefix": "",
-                             "suffix": "",
-                             "gender": 0,
-                             "addresses": [
-                               {
-                                 "id": 0,
-                                 "customer_id": 0,
-                                 "region": {
-                                   "region_code": "",
-                                   "region": "",
-                                   "region_id": 0,
-                                   "extension_attributes": {}
-                                 },
-                                 "region_id": 0,
-                                 "country_id": "",
-                                 "street": [
-                                   ""
-                                 ],
-                                 "company": "",
-                                 "telephone": "",
-                                 "fax": "",
-                                 "postcode": "",
-                                 "city": "",
-                                 "firstname": "",
-                                 "lastname": "",
-                                 "middlename": "",
-                               }
-                             ]
+                             "dob": $scope.addresscus.dob,
+                             "email": $scope.addresscus.email,
+                             "firstname": $scope.addresscus.firstname,
+                             "lastname": $scope.addresscus.lastname,
+                             "middlename": $scope.addresscus.middlename,
+                             "prefix": $scope.addresscus.prefix,
+                             "suffix": $scope.addresscus.suffix,
+                             "gender": $scope.addresscus.gender,
+                             "addresses":$scope.dataput,
+                             "website_id":$scope.addresscus.website_id 
                             }
                      }
-
+      console.log(putdata) 
 
 		  $http
           ({
             method: 'put',
             url: baseUrl+'customers/me',
             headers: { "Authorization": 'Bearer '+$rootScope.authCode },
-            data:{}
+            data:putdata
           })
-          .success(function(data) {
-            console.log(data,"success");
-            
+          .success(function(response) {
+              if(response){
+                $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Account Information has been updated',
+                               buttons: [{
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                    return;
+                                  }
+                               }]
+                })  
+              }
              }).error(function(data, status, headers, config){
-           console.log(data,status);
-          
-           
-          
+               $ionicPopup.alert({
+                               title: 'Customer Details',
+                               template: 'Failed to connect the server',
+                               buttons: [{
+                                  text: '<b>OK</b>',
+                                  onTap: function() {
+                                    return;
+                                  }
+                               }]
+                })  
            });
+      }else{
+         alert("Please enter all the values as valid")  
+      }     
      }
 
               

@@ -204,7 +204,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 	                          .success(function(data) {
 	                           $ionicPopup.alert({
 	                             title: 'Customer Details',
-	                             template: 'Your details has been updated',
+	                             template: 'Your AFP details has been updated',
 	                             buttons: [
 	                             {
 	                                text: '<b>OK</b>',
@@ -221,7 +221,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 	                           }*/
 	                              $ionicPopup.alert({
 	                             title: 'Customer Details',
-	                             template: 'Your details has been updated',
+	                             template: 'Failed to connect the server',
 	                             buttons: [
 	                             {
 	                                text: '<b>OK</b>',

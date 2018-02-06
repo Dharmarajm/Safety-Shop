@@ -147,8 +147,8 @@
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
           <center ng-show="uploadmainfile.length!=0 || showmainimg.length!=0" style="font-size: 15px;">Main Image</center><br>
-          <div ng-show="selldata='Edit' && showmainimg.length!=0" ng-hide="uploadmainfile.length!=0">
-          <center><img ng-src="{{img}}{{showmainimg[0]}}" style="width: 200px;height: 170px;"></center> 
+          <div ng-show="selldata='Edit' && showmainimg.length!=0" ng-repeat="editmain in showmainimg" ng-hide="uploadmainfile.length!=0">
+          <center><img ng-src="{{img}}{{editmain.file}}" style="width: 200px;height: 170px;"></center> 
           </div>
           <div ng-repeat="testmain in uploadmainfile" ng-show="uploadmainfile.length!=0">
             <center><img ng-src="{{testmain.file}}" style="width: 200px;height: 170px;"></center><!-- <input type="checkbox" ng-model="test.status" ng-checked="test.status" ng-change="selllistCheck(sellpro.id,sellpro.status)"> -->

@@ -25,33 +25,7 @@ angular.module('SellerProductreviews', [])
              return size + '%';
    }
 
-   $scope.isChecked = function(id, matches) {
-     var isChecked = id;
-     /*console.log(id,matches)*/ 
-     if(matches == "Approved") {
-        isChecked= true;
-        console.log(isChecked) 
-     }
-
-     if(matches == "Pending"){
-       isChecked=false;
-       console.log(isChecked)
-     }
-
-     if(matches == "Not Approved") {
-        isChecked = false;
-        console.log(isChecked)
-     }
-     if(matches == true){
-       isChecked = true;
-       console.log(isChecked) 
-     }
-     if(matches == false){
-       isChecked = false; 
-       console.log(isChecked)
-     }
-    return isChecked;
-   }
+   
 
    $scope.statusState=function(id,state,productId){
     console.log(id,state,productId)
@@ -61,11 +35,11 @@ angular.module('SellerProductreviews', [])
      $scope.datalistreview.status="Approved"
     }
     
-    if(state=="Pending"){
-     $scope.displayStateC="1";
+    /*if(state=="Pending"){
+     $scope.displayStateC="2";
      console.log($scope.displayStateC)
      $scope.datalistreview.status="Pending"
-    }
+    }*/
 
     if(state=="Not Approved"){
       $scope.displayStateC="1"
@@ -99,11 +73,39 @@ angular.module('SellerProductreviews', [])
          $scope.Statesuccess=response.data[0].status;
          if($scope.Statesuccess=="SUCCESS"){
             $scope.getreview();
-            /*return $scope.isChecked(id,state); */
+           /*return $scope.isChecked(id,state); */
          }
         })
    }
+   
+   
+   $scope.isChecked = function(id, matches) {
+     var isChecked = id;
+     
+     if(matches == "Approved") {
+        isChecked= true;
+        console.log(isChecked) 
+     }
 
+     if(matches == "Pending"){
+       isChecked=false;
+       console.log(isChecked)
+     }
+
+     if(matches == "Not Approved") {
+        isChecked = false;
+        console.log(isChecked)
+     }
+     if(matches == true){
+       isChecked = true;
+       console.log(isChecked) 
+     }
+     if(matches == false){
+       isChecked = false; 
+       console.log(isChecked)
+     }
+    return isChecked;
+   }
    $ionicModal.fromTemplateUrl('reviewfulldatail.html', {
 	scope: $scope,
 	animation: 'slide-in-left'

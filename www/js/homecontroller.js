@@ -41,6 +41,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 
                       $scope.newarrivemore=function(){
                       $scope.interval = 2000;
+                      $scope.slideHasChanged();
                       $scope.newarrive=[];
                       $scope.newarrstatus=1;
                       for(var i in $scope.homevalue[0].new_arrivals)
@@ -88,6 +89,7 @@ $rootScope.ProductList= response.data.items;
                       $scope.productdetails = function (id,name) {
 
                       var prodetail={ 'id':id,'name':name}
+                      console.log(prodetail)
                       $state.go('app.productdetails',{prodetail}  )
 
 
@@ -122,6 +124,7 @@ $rootScope.ProductList= response.data.items;
                         $rootScope.totalcount=response.data.total_count;
 
                         $rootScope.ProductList.push(response.data.items);  
+                        console.log($rootScope.ProductList)
                         })
                         }
 
@@ -136,7 +139,15 @@ $rootScope.ProductList= response.data.items;
                },$scope.interval);
            }
        };
-             
+          
+       // $scope.$on('$ionicView.enter', function(){
+       //   $scope.slideHasChanged();
+       // });
+      
+       // $scope.$on('$ionicView.leave', function(){
+       //  $scope.slideBox.stop();
+       // });
+      
 
 })
 

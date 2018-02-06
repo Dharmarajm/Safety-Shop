@@ -50,13 +50,7 @@ angular.module('advertisement', [])
               
               $cordovaInAppBrowser.open('https://play.google.com/store/apps/details?id=com.facebook.katana', '_blank', options)
               .then(function(event) {
-                $cordovaSocialSharing
-                 .shareViaFacebook(message, image, link)
-                 .then(function(result) {
-                  return $scope.shareDate(); 
-                  }, function(err) {
-
-                 })
+                
               })
               .catch(function(event) {
 
