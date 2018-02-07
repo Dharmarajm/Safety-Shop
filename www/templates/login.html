@@ -27,7 +27,7 @@
       <button ng-click="show = 2" class="button button-block button-positive" type="submit">Create an account</button>
     </form>
     
-    <form name="sigupform" ng-show="show==2" style="background-color: #e0e0e0" ng-submit="dosignup(sigupform)" novalidate>
+    <form name="sigupform" ng-show="show==2" style="background-color: #e0e0e0" novalidate>
       <div class="list">      
         <button ng-click="show =1">Back</button>
         <div class="row">
@@ -55,7 +55,7 @@
             <div class="row p">Gender</div>
             <div class="row">
               <select name="gender" ng-model="signupData.gender" ng-options="test.id as test.name for test in signupData" style="border: #dbdbdb solid;width:97%;height:35px;" ng-required="true">
-                 <option value="">Select Charges</option> 
+                 <option value="">Select Gender</option> 
               </select>
             </div>
           </div>
@@ -89,7 +89,11 @@
           </div>
           <div class="col col-50">
             <div class="row p">Country</div>
-            <div class="row"><input type="text" name="country" ng-model="signupData.country" ng-required="true"></div>
+            <div class="row"><!-- <input type="text" name="country" ng-model="signupData.country" ng-required="true"> -->
+              <select name="country" ng-model="signupData.country" ng-options="ctry.value as ctry.label for ctry in getCountry" style="border: #dbdbdb solid;width:97%;height:35px;" ng-required="true">
+                 <option value="">Select Country</option> 
+              </select>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -109,7 +113,7 @@
           </div>
         </div>
 
-        <button class="button button-positive" type="submit">Register</button>
+        <button class="button button-positive" ng-click="dosignup(sigupform)" type="submit">Register</button>
 
        </div>
     </form>

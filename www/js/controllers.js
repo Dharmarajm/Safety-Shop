@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
 
                              $http.get(baseUrl+'customers/me',{
                                     headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-                                     }).then(function(response)
+                                     }).then(function onSuccess(response)
                                   { 
                                    // console.log(response);
                                     localStorage.setItem("sscustomer",JSON.stringify(response.data))
@@ -102,6 +102,15 @@ angular.module('starter.controllers', [])
 $scope.signupData={firstname:"",lastname:"",email:"",dob:"",gender:"",company:"",street:"",city:"",postcode:"",state:"",country:"",telephone:"",password:"",confirmpassword:""};
 $scope.signupData=[{id:1,name:"Male"},{id:2,name:"Female"}]
 
+ $http.get(baseUrl+'country/list',{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+  }).then(function onSuccess(response){
+    $scope.getCountry=response.data[0].countries;
+    $scope.getregion=response.data[0].regions;
+    console.log($scope.getregion)
+    console.log($scope.getCountry)
+  })
+
+
 $scope.dosignup=function(form){
   console.log(form.firstname.$valid , form.lastname.$valid , form.email.$valid , form.dob.$valid , form.gender.$valid , form.company.$valid , form.street.$valid , form.city.$valid , form.postcode.$valid , form.state.$valid , form.country.$valid , form.telephone.$valid , form.password.$valid , form.confirmpassword.$valid)
   if(form.firstname.$valid && form.lastname.$valid && form.email.$valid && form.dob.$valid && form.gender.$valid && form.company.$valid && form.street.$valid && form.city.$valid && form.postcode.$valid && form.state.$valid && form.country.$valid && form.telephone.$valid && form.password.$valid && form.confirmpassword.$valid){
@@ -129,7 +138,7 @@ $scope.dosignup=function(form){
                                                     "extension_attributes": {}
                                           },
                                         "region_id": 541,
-                                        "country_id": "IN",
+                                        "country_id": $scope.signupData.country,
                                         "street": [$scope.signupData.street],
                                         "company":$scope.signupData.company,
                                         "telephone": $scope.signupData.telephone,
@@ -155,6 +164,7 @@ $scope.dosignup=function(form){
                             data: signupData  
                           })
                           .success(function(data) {
+                            console.log(data)
                              if(data){
                               $ionicPopup.alert({
                                title: 'Customer SignUp',

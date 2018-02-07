@@ -312,8 +312,8 @@ $scope.productdetailsadd=function(detail,spec){
     console.log(data)
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function onSuccess(response) {
-        
-        if(res){
+        if(response.data[0].status.msg){
+
          $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Your Product Added Successfully',
@@ -420,7 +420,8 @@ $scope.productdetailsadd=function(detail,spec){
     console.log(data)
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function onSuccess(response) {
-       if(res){
+       if(response.data[0].status.msg){
+        
          $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Your Product updated Successfully',
@@ -567,6 +568,7 @@ $scope.productdetailsadd=function(detail,spec){
                         reader.readAsDataURL(file);
 
                         $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
+                      
                     }, 
                 function (evt) { 
                     //failed to get file
@@ -597,7 +599,7 @@ $scope.productdetailsadd=function(detail,spec){
         console.log(data)     
      $http.post(baseUrl+'seller/product/imagedelete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(response){
-     console.log(response.data[0].msg)                     
+     console.log(response)                     
        if(response.data[0].msg){
         $ionicPopup.alert({
                                title: 'Product Image Delete',

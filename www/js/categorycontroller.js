@@ -15,7 +15,7 @@ $scope.imgurl=imageUrl;
 
                 $http.get(baseUrl+'categories/?root_category_id=2&depth=1',{
                 headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-                }).then(function(response)
+                }).then(function onSuccess(response)
                 {                   
                 $timeout(function () {
                 $ionicLoading.hide();
@@ -55,7 +55,7 @@ $scope.statusColapse= 1;
               //$scope.IsVisible = false;
               $http.get(baseUrl+'categories/?root_category_id='+id+'&depth=2',{
               headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-              }).then(function(response)
+              }).then(function onSuccess(response)
               {               
               $timeout(function () {
               $ionicLoading.hide();
@@ -97,7 +97,7 @@ $scope.statusColapse= 1;
 
               $http.get(baseUrl+'products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]='+subcat.id+'&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[page_size]=10&searchCriteria[current_page]=1',{
               headers: { "Authorization": 'Bearer '+$rootScope.authCode}
-              }).then(function(response)
+              }).then(function onSuccess(response)
               {                   
               $rootScope.subid1=subcat.id;
              // console.log(response);
@@ -144,7 +144,7 @@ $rootScope.loadshow=false;
 
               $http.get(baseUrl+'products/?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]='+$rootScope.subid1+'&searchCriteria[filter_groups][0][filters][0][condition_type]=eq&searchCriteria[page_size]=10&searchCriteria[current_page]='+ $rootScope.size,{
               headers: { "Authorization": 'Bearer '+$rootScope.authCode}
-              }).then(function(response)
+              }).then(function onSuccess(response)
               {                   
 
 

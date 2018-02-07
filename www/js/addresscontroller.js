@@ -13,7 +13,7 @@ angular.module('address', [])
 
     $http.get(baseUrl+'customers/me',{
            headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-            }).then(function(response)
+            }).then(function onSuccess(response)
          { 
            
           $scope.addresscus=response.data;
@@ -139,7 +139,7 @@ angular.module('address', [])
             headers: { "Authorization": 'Bearer '+$rootScope.authCode },
             data:putdata
           })
-          .success(function(response) {
+          .then(function onSuccess(response) {
               if(response){
                 $ionicPopup.alert({
                                title: 'Customer Details',
@@ -153,7 +153,7 @@ angular.module('address', [])
                                }]
                 })  
               }
-             }).error(function(data, status, headers, config){
+             }).catch(function onError(response){
                $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Failed to connect the server',

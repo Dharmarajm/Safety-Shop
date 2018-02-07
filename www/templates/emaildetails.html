@@ -281,7 +281,7 @@
                   </ion-header-bar>  
                   <ion-content style="background-color: #e0e0e0">               
 
-                  <form name="message" novalidate ng-submit="replySubmit(message,reply,getId)">
+                  <form name="message" novalidate>
                       <!-- <div class="list">
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
@@ -302,11 +302,13 @@
                           <span class="input-label">Reply Subject</span>    -->
                            <p class="qusproduct">Attachment</p>
                             <!-- <input type="file" ng-model="reply.attachment" class="msgattach" ng-click="pickfile()"> -->
-                           <input type="file" id="fileu" style="display:none" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().fileNameChanged(this)" />
+                           <!-- <input type="file" id="fileu" style="display:none" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().fileNameChanged(this)" />
                            <button class="msgattach" ng-click="upload()">Choose File</button>
-                           <span>{{getattachfilename}}</span>
-
-                           <button style="background-color: #F69222" type="submit" class="addtocart" >Send</button>
+                           <span>{{getattachfilename}}</span> -->
+                         <!--  <form name="file" novalidate> -->
+                            <input type="file" ng-model="image" class="msgattach" name="image" id="uploadFile" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().uploadImage(this)" />
+                          <!-- </form>   -->
+                           <button style="background-color: #F69222" ng-click="replySubmit(message,reply,getId)" type="submit" class="addtocart" >Send</button>
                       <!-- </div> -->
                   </form>               
 

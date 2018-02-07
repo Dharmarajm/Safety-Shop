@@ -6,6 +6,7 @@ angular.module('Myreview', ['ionic-ratings'])
     /*console.log($rootScope.customerDetails)*/
   	$http.get(baseUrl+'review/customer/reviews/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){ 
+        console.log(response)
          $rootScope.getMyReviews=response.data[0].reviews;
          console.log($rootScope.getMyReviews)
         })

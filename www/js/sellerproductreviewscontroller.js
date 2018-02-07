@@ -32,31 +32,32 @@ angular.module('SellerProductreviews', [])
     if(state=="Approved"){
      $scope.displayStateC="3";
      console.log($scope.displayStateC)
-     $scope.datalistreview.status="Approved"
+     $scope.datalistreview.status="Not Approved"
     }
     
-    /*if(state=="Pending"){
-     $scope.displayStateC="2";
+    if(state=="Pending"){
+     $scope.displayStateC="1";
      console.log($scope.displayStateC)
-     $scope.datalistreview.status="Pending"
-    }*/
+     $scope.datalistreview.status="Approved"
+    }
 
     if(state=="Not Approved"){
       $scope.displayStateC="1"
       console.log($scope.displayStateC)
-      $scope.datalistreview.status="Not Approved"
+      $scope.datalistreview.status="Approved"
     }
 
     if(state==true){
       $scope.displayStateC="3";
       console.log($scope.displayStateC)
-      $scope.datalistreview.status="Approved"
+      $scope.datalistreview.status="Not Approved"
     }
 
     if(state==false){
       console.log($scope.datalistreview.status)
       $scope.displayStateC="1";
       console.log($scope.displayStateC)
+      $scope.datalistreview.status="Approved"
     }
 
     console.log($scope.displayStateC)

@@ -4,6 +4,7 @@ angular.module('productdetail', ['ionic-ratings'])
 
 
 $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
+$rootScope.authCode=localStorage.getItem("ssauthcode");
 
    $scope.ratingsObject = {
         iconOn: 'ion-ios-star',    //Optional 
@@ -48,9 +49,14 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
                      	$rootScope.reviewsign=1;
                      	/*$rootScope.product=$scope.productname;*/
                      	$state.go('app.login')
-                     }else{ 
-                     	$scope.review={"name":$rootScope.customerDetails.firstname,"summay":'',"detail":''}
-                       $scope.reviewdetails.show();
+                     }
+                     else if($rootScope.authCode!=null){
+                         if($rootScope.customerDetails.group_id==4){
+                           alert("Only Customer can give the reviews for the products")
+                         }else{
+                         	$scope.review={"name":$rootScope.customerDetails.firstname,"summay":'',"detail":''}
+                            $scope.reviewdetails.show();
+                         }                       
                      }   
 					 
 				}
@@ -170,8 +176,9 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 
 			              $scope.customerSubmit=function(customer){
 			              	//console.log($scope.productRes,data)
+			              	console.log(customer)
                             if(customer.Name.$valid && customer.emailid.$valid){
-	                           if($rootScope.customerDetails.id!=null){
+	                           if($rootScope.customerDetails!=null){
 	                             $scope.customerID=$rootScope.customerDetails.id;
 				              	 }else{
 	                              $scope.customerID=0;
@@ -201,7 +208,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 	                            url: baseUrl+'quickrfq/',
 	                            data: customerdata  
 	                          })
-	                          .success(function(data) {
+	                          .then(function onSuccess(response) {
 	                           $ionicPopup.alert({
 	                             title: 'Customer Details',
 	                             template: 'Your AFP details has been updated',
@@ -214,11 +221,8 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 	                              }]
 	                           })
 	                           
-	                          }).error(function(data, status, headers, config){
-	                           //console.log(data.message);
-	                           /*if(data.message != null){
-	                            alert(data.message)
-	                           }*/
+	                          }).catch(function onError(response){
+	                           
 	                              $ionicPopup.alert({
 	                             title: 'Customer Details',
 	                             template: 'Failed to connect the server',
@@ -243,7 +247,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
                                 console.log(value)
                      if($rootScope.authCode != null){
 
-                                $scope.ratingstatus
+                                
 
                                 var reviewdata={
 								"productId": $scope.productRes.id,
@@ -264,13 +268,15 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
                              headers: { "Authorization": 'Bearer '+$rootScope.authCode },
                             data: reviewdata  
                           })
-                          .success(function(data) {
+                          .success(function(response) {
+                          	console.log(response)
                            $ionicPopup.alert({
                              title: 'Review Details',
-                             template: 'Review Updated Sucessfully',
+                             template: response[0].message,
                              buttons: [
                              {
                                 text: '<b>OK</b>',
+                                type: 'button-positive',
                                 onTap: function() {
                                   return;
                                 }
@@ -288,6 +294,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
                              buttons: [
                              {
                                 text: '<b>OK</b>',
+                                type: 'button-positive',
                                 onTap: function() {
                                   return;
                                 }

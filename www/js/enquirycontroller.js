@@ -248,7 +248,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                 }]
                                })
         }
-       }, function onError(response) {
+       }).catch(function onError(response) {
           $ionicPopup.alert({
                                title: 'Customer Reply',
                                template: 'Failed to connect the server',
@@ -285,61 +285,90 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }*/
 
   $scope.getfile=[];
-  $scope.getattachfilename="No file chosen";
 
-  $scope.upload = function(){
-    $scope.getattachfilename="No file chosen";
-    $scope.getfile=[];
-    alert($scope.getattachfilename)
-    document.getElementById('fileu').click();
-    $scope.fileNameChanged = function(filoename) {
-    $scope.getfile=[];
-    alert(filoename.files);
+//   $scope.upload = function(){
+//     $scope.getattachfilename="No file chosen";
+//     $scope.getfile=[];
+//     document.getElementById('fileu').click();
+//     $scope.fileNameChanged = function(filoename) {
+//     $scope.getfile=[];
     
+//     var preview;
+//     if(filoename.files.length!=0){
+      
+//       if(filoename.files[0].size <= 2000000){
+      
+//         var reader  = new FileReader(); 
+//         reader.onloadend = function (evt) {
+          
+//         preview = evt.target.result;
+//         $rootScope.getfileData=preview;
+//         $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
+//         $scope.getattachfilename=filoename.files[0].name;
+//         $scope.$apply(function (){
+//             $scope.getattachfilename=filoename.files[0].name;
+//         });
+//         };
+//         if (filoename.files[0]) {
+//          reader.readAsDataURL(filoename.files[0]);
+//         }
+//       }else{
+//         $scope.getattachfilename="No file chosen";
+//         $scope.getfile=[];
+//         alert("Selected file is too big")
+//         $scope.$apply();
+//       }
+//     }else{
+//       $scope.getattachfilename="No file chosen";
+//       $scope.$apply();
+//     }
+//    }
+
+//   }
+
+  $scope.uploadImage = function (filoename) {
+    $scope.getfile=[];
     var preview;
     if(filoename.files.length!=0){
       
       if(filoename.files[0].size <= 2000000){
       
         var reader  = new FileReader(); 
-        /*if(reader.length) {*/
         reader.onloadend = function (evt) {
-        /*console.log(evt)*/
           
         preview = evt.target.result;
-        /*console.log(preview)*/
+        console.log(preview)
         $rootScope.getfileData=preview;
-        /*console.log($rootScope.getfileData)*/
+        
         $scope.getfile.push({"file":filoename.files[0].name,"format":$rootScope.getfileData})
-        $scope.getattachfilename=filoename.files[0].name;
-        // alert($scope.getattachfilename)
-      
-        /*console.log($scope.getfile)
-        console.log($scope.getfile[0].file) 
-        console.log($scope.getfile[0].format) */
-        $scope.$apply(function (){
-            $scope.getattachfilename=filoename.files[0].name;
-            /*console.log($scope.getfile)
-            console.log($scope.getattachfilename)*/
-        });
+        
         };
-        /*$scope.getattachfilename=filoename.files[0].name;*/
         if (filoename.files[0]) {
          reader.readAsDataURL(filoename.files[0]);
         }
       }else{
-        $scope.getattachfilename="No file chosen";
         $scope.getfile=[];
+        $scope.image=""
+        /*function clearFileInput(id) 
+        { 
+            var oldInput = document.getElementById(id); 
+        
+            var newInput = document.createElement("input"); 
+        
+            newInput.type = "file"; 
+            newInput.id = oldInput.id; 
+            newInput.name = oldInput.name; 
+            newInput.className = oldInput.className; 
+            newInput.style.cssText = oldInput.style.cssText; 
+            // TODO: copy any other relevant attributes 
+            newInput.onchange=oldInput.onchange;
+            newInput.accept=oldInput.accept;
+            oldInput.parentNode.replaceChild(newInput, oldInput); 
+        }
+        clearFileInput("uploadFile");*/
         alert("Selected file is too big")
-        $scope.$apply();
       }
-    }else{
-      $scope.getattachfilename="No file chosen";
-      $scope.$apply();
-      // alert(filoename.files.length)
     }
-   }
-
   } 
 
 })

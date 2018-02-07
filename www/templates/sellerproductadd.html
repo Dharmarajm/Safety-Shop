@@ -148,7 +148,7 @@
           </label>
           <center ng-show="uploadmainfile.length!=0 || showmainimg.length!=0" style="font-size: 15px;">Main Image</center><br>
           <div ng-show="selldata='Edit' && showmainimg.length!=0" ng-repeat="editmain in showmainimg" ng-hide="uploadmainfile.length!=0">
-          <center><img ng-src="{{img}}{{editmain.file}}" style="width: 200px;height: 170px;" ><i class="icon ion-close-circled" ng-click="imgDelete(editmain.id)"></i></center> 
+          <center class="set"><img ng-src="{{img}}{{editmain.file}}" style="width: 200px;height: 170px;" ><i class="icon ion-close-circled" ng-click="imgDelete(editmain.id)"></i></center> 
           </div>
           <div ng-repeat="testmain in uploadmainfile" ng-show="uploadmainfile.length!=0">
             <center><img ng-src="{{testmain.file}}" style="width: 200px;height: 170px;"></center><!-- <input type="checkbox" ng-model="test.status" ng-checked="test.status" ng-change="selllistCheck(sellpro.id,sellpro.status)"> -->
@@ -156,7 +156,7 @@
           <br>
           <center ng-show="uploadaddfile.length!=0 || showaddimage.length!=0" style="font-size: 15px;">Additional Images</center><br>
           <div ng-repeat="getall in showaddimage track by $index" ng-show="selldata='Edit' && showaddimage.length!=0">
-             <center><img ng-src="{{img}}{{getall.file}}" style="width: 200px;height: 170px;"><i class="icon ion-close-circled" ng-click="imgDelete(getall.id)"></i></center><br>
+             <center class="set"><img ng-src="{{img}}{{getall.file}}" style="width: 200px;height: 170px;"><i class="icon ion-close-circled" ng-click="imgDelete(getall.id)"></i></center><br>
           </div>
           <div ng-repeat="testadd in uploadaddfile" ng-show="uploadaddfile.length!=0">
             <center><img ng-src="{{testadd.file}}" style="width: 200px;height: 170px;"></center><br>

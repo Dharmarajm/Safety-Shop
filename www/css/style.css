@@ -255,3 +255,6 @@ a.testc{
  display: inline-block;
  vertical-align: middle;
 }
+.set{
+  text-align:center;
+}
