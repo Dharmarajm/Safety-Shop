@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope,$rootScope,$window, $ionicModal,$ionicHistory,$ionicSideMenuDelegate,$timeout,$ionicPopup,$http,$state,$ionicLoading) {
+.controller('AppCtrl', function($scope,$rootScope,$window, $ionicModal,$ionicHistory,$ionicSideMenuDelegate,$timeout,$ionicPopup,$http,$state,$ionicLoading,$filter) {
 
  
    $scope.loginData = {username :"", password :""};
@@ -112,15 +112,19 @@ $scope.signupData=[{id:1,name:"Male"},{id:2,name:"Female"}]
 
 
 $scope.dosignup=function(form){
+  
   console.log(form.firstname.$valid , form.lastname.$valid , form.email.$valid , form.dob.$valid , form.gender.$valid , form.company.$valid , form.street.$valid , form.city.$valid , form.postcode.$valid , form.state.$valid , form.country.$valid , form.telephone.$valid , form.password.$valid , form.confirmpassword.$valid)
   if(form.firstname.$valid && form.lastname.$valid && form.email.$valid && form.dob.$valid && form.gender.$valid && form.company.$valid && form.street.$valid && form.city.$valid && form.postcode.$valid && form.state.$valid && form.country.$valid && form.telephone.$valid && form.password.$valid && form.confirmpassword.$valid){
      if(form.password.$valid == form.confirmpassword.$valid){
+        
+        $scope.dateformat= $filter('date')($scope.signupData.dob, 'dd-MM-yyyy');
+        console.log($scope.dateformat)
         var signupData={
                         "customer": {
                         "id": 0,
                         "group_id": 1,
                         "confirmation": "true",
-                        "dob": $scope.signupData.dob,
+                        "dob": $scope.dateformat,
                         "email": $scope.signupData.email,
                         "firstname": $scope.signupData.firstname,
                         "lastname": $scope.signupData.lastname,
@@ -157,7 +161,7 @@ $scope.dosignup=function(form){
                        "password": $scope.signupData.password
                        }
                console.log(signupData)
-                          $http
+                         /* $http
                           ({
                             method: 'post',
                             url: baseUrl+'customers/',
@@ -185,7 +189,7 @@ $scope.dosignup=function(form){
                            if(data.message != null){
                             alert(data.message)
                            }
-                           });
+                           });*/
      }else{
       alert("Password is mismatch")
      }
