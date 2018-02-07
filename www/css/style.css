@@ -250,3 +250,8 @@ a.testc{
      padding-left: 0;
      top: 48px;
   }*/
+.ion-close-circled:before {
+ float: right;
+ display: inline-block;
+ vertical-align: middle;
+}

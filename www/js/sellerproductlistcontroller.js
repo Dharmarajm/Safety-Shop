@@ -77,6 +77,7 @@ $scope.imgurl=imageUrl;
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                     $rootScope.product_id=null;
                                     $state.reload();
@@ -91,6 +92,7 @@ $scope.imgurl=imageUrl;
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                     $rootScope.product_id=null;
                                     $state.reload();

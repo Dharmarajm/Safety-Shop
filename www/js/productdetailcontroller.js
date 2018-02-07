@@ -284,7 +284,7 @@ $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
                            }*/
                            $ionicPopup.alert({
                              title: 'Review Details',
-                             template: 'Review Updated failed',
+                             template: 'Failed to connect the server',
                              buttons: [
                              {
                                 text: '<b>OK</b>',

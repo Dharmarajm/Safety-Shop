@@ -162,6 +162,7 @@ $scope.dosignup=function(form){
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                     return;
                                   }

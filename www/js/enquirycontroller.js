@@ -240,6 +240,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                   
                                   return;
@@ -250,10 +251,11 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
        }, function onError(response) {
           $ionicPopup.alert({
                                title: 'Customer Reply',
-                               template: 'Your Reply is failed',
+                               template: 'Failed to connect the server',
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                   
                                   return;

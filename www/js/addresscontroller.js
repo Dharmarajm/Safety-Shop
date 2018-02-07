@@ -146,6 +146,7 @@ angular.module('address', [])
                                template: 'Account Information has been updated',
                                buttons: [{
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                     return;
                                   }
@@ -158,6 +159,7 @@ angular.module('address', [])
                                template: 'Failed to connect the server',
                                buttons: [{
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                     return;
                                   }

@@ -61,9 +61,6 @@ angular.module('sellerproductadd', [])
                                       console.log($scope.showaddimage)
                                      }else if($scope.checkimg==$scope.checkimg2){
                                        $scope.showmainimg.push({"file":$scope.proEdit.product.media_gallery.images[i].file,"id":$scope.proEdit.product.media_gallery.images[i].value_id})
-                                     }else{
-                                      $scope.showaddimage=[];
-                                      $scope.showmainimg=[];
                                      }
                                 }
                               }else{
@@ -106,7 +103,7 @@ angular.module('sellerproductadd', [])
 
   $http.get(baseUrl+'seller/subcategory/2',{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
    }).then(function(res){
-  	$rootScope.rootCat=res.data[0].sub_categories;
+    $rootScope.rootCat=res.data[0].sub_categories;
   })
  
  $scope.category=function(id){
@@ -175,11 +172,11 @@ angular.module('sellerproductadd', [])
   if(id!=null || id!=undefined || id!=''){
     $http.get(baseUrl+'seller/subcategory/'+id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function(res){
- 	       $rootScope.rootCat2=res.data[0].sub_categories;
+         $rootScope.rootCat2=res.data[0].sub_categories;
          $rootScope.getCategory.length=1;
          $rootScope.getCategory.push(id);
          $scope.proadd.prodCategory3='';
- 	       console.log($rootScope.getCategory) 
+         console.log($rootScope.getCategory) 
          /*console.log($rootScope.rootCat2)
          console.log($rootScope.rootCat2=='')
          console.log($rootScope.rootCat2.length==0)
@@ -281,8 +278,7 @@ $scope.productdetailsadd=function(detail,spec){
      if($scope.uploadimageAddition.length!=0){
         for(var i=0;i<$scope.uploadimageAddition.length;i++){
           $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
-                                      "name": $scope.uploadimageAddition[i].file,
-                                      "delete": $scope.uploadimageAddition[i].delete
+                                      "name": $scope.uploadimageAddition[i].file
                                      })      
        }
      }
@@ -324,6 +320,7 @@ $scope.productdetailsadd=function(detail,spec){
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                    
                                     /*$rootScope.getCategory="";
@@ -339,10 +336,11 @@ $scope.productdetailsadd=function(detail,spec){
        }, function onError(response) {
               $ionicPopup.alert({
                                title: 'Customer Details',
-                               template: 'Your Product Added Failed',
+                               template: 'Failed to connect the server',
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                    return;
                                   }
@@ -355,9 +353,9 @@ $scope.productdetailsadd=function(detail,spec){
   
   if($rootScope.selldata=="Edit"){
      
-    if($scope.showmainimg.length!=0){
+    /*if($scope.showmainimg.length!=0){
       $scope.uploadimageMain.push({file:"",format:""})      
-    }else{
+    }else{*/
       if($scope.uploadimageMain.length==0){
        
        $scope.uploadimageMain.push({file:"",format:""})
@@ -370,11 +368,11 @@ $scope.productdetailsadd=function(detail,spec){
         }     
       }else{
        } 
-      }
+      /*}*/
 
      $scope.getalladdition=[];
      
-     if($scope.showaddimage.length!=0){
+     /*if($scope.showaddimage.length!=0){
          $scope.arraylength=[];
          for(var i=0;i<$scope.showaddimage.length;i++){
            $scope.arraylength.push(i);
@@ -382,16 +380,15 @@ $scope.productdetailsadd=function(detail,spec){
          }
          var arraylength=$scope.arraylength;
          angular.forEach(arraylength, function(value) {
-           $scope.uploadimageAddition.push({"file":'',"name":'',"delete":0})              
+           $scope.uploadimageAddition.push({"file":'',"name":''})              
          });
          console.log($scope.uploadimageAddition)
-     }
+     }*/
 
      if($scope.uploadimageAddition.length!=0){
         for(var i=0;i<$scope.uploadimageAddition.length;i++){
           $scope.getalladdition.push({"file": $scope.uploadimageAddition[i].format,
-                                       "name": $scope.uploadimageAddition[i].file,
-                                       "delete": $scope.uploadimageAddition[i].delete
+                                       "name": $scope.uploadimageAddition[i].file
                                      })      
        }
       }
@@ -430,6 +427,7 @@ $scope.productdetailsadd=function(detail,spec){
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                    
                                     // $rootScope.getCategory="";
@@ -450,6 +448,7 @@ $scope.productdetailsadd=function(detail,spec){
                                buttons: [
                                {
                                   text: '<b>OK</b>',
+                                  type: 'button-positive',
                                   onTap: function() {
                                    return;
                                   }
@@ -465,11 +464,11 @@ $scope.productdetailsadd=function(detail,spec){
  $scope.uploadimageMain=[];
  $scope.uploadmainfile=[]; 
 
- $scope.upload = function(img){
-  console.log($scope.showmainimg)
-  
-  $scope.uploadimageMain=[];
-  $scope.uploadmainfile=[];
+ $scope.upload = function(){
+  if($scope.selldata=='Add' || $scope.showmainimg.length==0){
+     
+     $scope.uploadimageMain=[];
+     $scope.uploadmainfile=[];
     
 
     var options = {
@@ -479,44 +478,47 @@ $scope.productdetailsadd=function(detail,spec){
      quality: 80
     };
  
-  // $cordovaImagePicker.getPictures(options)
-  //   .then(function (results) {
-  //       $scope.uploadmainfile=[];
-  //       /*console.log('Image URI: ' + results[0]);*/
-  //       if(results[0]!=undefined){
-  //        $scope.uploadmainfile.push({"file":results[0]})  
-  //       }
-  //       window.resolveLocalFileSystemURL(results[0],
-  //           function (fileEntry) {
-  //               // convert to Base64 string
-  //                $scope.uploadimageMain.length=0;
-  //               fileEntry.file(
-  //                   function(file) {
-  //                       //got file
+  $cordovaImagePicker.getPictures(options)
+    .then(function (results) {
+        $scope.uploadmainfile=[];
+        /*console.log('Image URI: ' + results[0]);*/
+        if(results[0]!=undefined){
+         $scope.uploadmainfile.push({"file":results[0]})  
+        }
+        window.resolveLocalFileSystemURL(results[0],
+            function (fileEntry) {
+                // convert to Base64 string
+                 $scope.uploadimageMain.length=0;
+                fileEntry.file(
+                    function(file) {
+                        //got file
                         
-  //                       var reader = new FileReader();
-  //                       reader.onloadend = function (evt) {
-  //                           var imgData = evt.target.result; // this is your Base64 string
-  //                           /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
-  //                           $rootScope.getimgData=imgData
-  //                       };
-  //                       reader.readAsDataURL(file);
+                        var reader = new FileReader();
+                        reader.onloadend = function (evt) {
+                            var imgData = evt.target.result; // this is your Base64 string
+                            /*$scope.uploadimageMain.push({"file":results[0].file,"format":imgData});*/
+                            $rootScope.getimgData=imgData
+                        };
+                        reader.readAsDataURL(file);
 
-  //                       $scope.uploadimageMain.push({"file":file.name,"format":$rootScope.getimgData})
-  //                   }, 
-  //               function (evt) { 
-  //                   //failed to get file
-  //               });
+                        $scope.uploadimageMain.push({"file":file.name,"format":$rootScope.getimgData})
+                    }, 
+                function (evt) { 
+                    //failed to get file
+                });
 
-  //           },
-  //           // error callback
-  //           function () { }
-  //       )
-  //     console.log($scope.uploadimageMain)    
-  //   }, function(error) {
-  //     // error getting photos
-  //     alert(error);
-  //   })
+            },
+            // error callback
+            function () { }
+        )
+      console.log($scope.uploadimageMain)    
+    }, function(error) {
+      // error getting photos
+      alert(error);
+    }) 
+  }else{
+    alert("Please Delete the Main Image Before add");
+  }
  }
 
  
@@ -525,34 +527,23 @@ $scope.productdetailsadd=function(detail,spec){
  $scope.uploadaddfile=[];
 
  $scope.upload1 = function(){
+  if($scope.selldata=='Add' || $scope.showaddimage.length<=4){
+    $scope.countImg=5;
+    if($scope.showaddimage!=undefined || $scope.showaddimage!=null){
+      $scope.countImg=5-$scope.showaddimage.length
+    }
 
- /* var options = {
-      maximumImagesCount: 4,
-      quality: 50,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
-      allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 100,
-      targetHeight: 100,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false,
-    correctOrientation:true
-    };*/
-    
     $scope.uploadimageAddition=[];
     $scope.uploadaddfile=[];
 
-    /*$scope.dataUImg=[];
-    $scope.dataFile=[]; */
     var options = {
-     maximumImagesCount: 4,
+     maximumImagesCount: $scope.countImg,
      width: 800,
      height: 800,
      quality: 80
     };
     
-
+   console.log(options)
 
   $cordovaImagePicker.getPictures(options)
     .then(function (results) {
@@ -575,7 +566,7 @@ $scope.productdetailsadd=function(detail,spec){
                         };
                         reader.readAsDataURL(file);
 
-                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData,"delete":0})
+                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
                     }, 
                 function (evt) { 
                     //failed to get file
@@ -592,6 +583,9 @@ $scope.productdetailsadd=function(detail,spec){
       // error getting photos
       alert(error);
     })
+  }else{
+    alert("Please delete some images before add");
+  }  
  }
 
  $scope.imgDelete=function(id){
@@ -600,14 +594,50 @@ $scope.productdetailsadd=function(detail,spec){
                "product_id": $scope.proEdit.product.entity_id,
                "seller_id": $rootScope.customerDetails.id
              }
+        console.log(data)     
      $http.post(baseUrl+'seller/product/imagedelete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function(response){                     
-        if(response){
-
-        }
+     }).then(function(response){
+     console.log(response.data[0].msg)                     
+       if(response.data[0].msg){
+        $ionicPopup.alert({
+                               title: 'Product Image Delete',
+                               template: 'Your Product Image deleted Successfully',
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  type: 'button-positive',
+                                  onTap: function() {
+                                    if($scope.showmainimg!=null){
+                                     if($scope.showmainimg[0].id==id){
+                                      $scope.showmainimg.splice($scope.showmainimg.indexOf(id),1)   
+                                     } 
+                                    } 
+                                    if($scope.showaddimage!=null){
+                                      for(var i in $scope.showaddimage){
+                                        if($scope.showaddimage[i].id==id){
+                                          $scope.showaddimage.splice($scope.showaddimage.indexOf(id),1)
+                                        }
+                                      }  
+                                    }
+                                    return true;
+                                  }
+                                }]
+        })
+       
+       } 
        },function(error){
-
-       })                
+         $ionicPopup.alert({
+                               title: 'Product Image Delete',
+                               template: 'Failed to connect the server',
+                               buttons: [{
+                                  text: '<b>OK</b>',
+                                  type: 'button-positive',
+                                  onTap: function() {
+                                   return;      
+                                  }
+                               }]
+        })
+      })                
  }
 
 })
