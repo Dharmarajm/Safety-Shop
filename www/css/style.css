@@ -258,3 +258,7 @@ a.testc{
 .set{
   text-align:center;
 }
+
+div.row.p.has-error {
+  color:red !important;
+}

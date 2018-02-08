@@ -1,15 +1,25 @@
 angular.module('login', [])
-.controller('LoginCtrl', function($scope,$rootScope,$window, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading) {
+.controller('LoginCtrl', function($scope,$rootScope,$window, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading,$filter) {
 	$scope.sell={firstName:"",lastName:"",dob:"",gender:"",emailId:"",mobileNo:"",password:"",confirmPassword:"",shopName:"",website:"",shopAddress:"",city:"",state:"",country:"",pinCode:""}
 
 $scope.names=[{id:1,name:"Male"},{id:2,name:"Female"}];
-
-$scope.sellerSign=function(){
-  var data={
+$scope.submitted=false;
+$scope.sellerSign=function(form){
+ if(form.firstname.$valid && form.lastname.$valid && form.emailId.$valid && form.dob.$valid && form.gender.$valid && form.shopName.$valid && form.website.$valid && form.shopAddress.$valid && form.city.$valid && form.pinCode.$valid && form.state.$valid && form.country.$valid && form.mobileNo.$valid && form.password.$valid && form.confirmPassword.$valid){  
+  if($scope.sell.password==$scope.sell.confirmPassword){
+    $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                }); 
+    $scope.dateformat= $filter('date')($scope.sell.dob, 'yyyy-MM-dd');
+    var data={
              "customer":{
                          "id": 0,
                           "group_id": 4,
-                          "dob": $scope.sell.dob,
+                          "dob": $scope.dateformat,
                           "email": $scope.sell.emailId,
                           "firstname": $scope.sell.firstName,
                           "lastname": $scope.sell.lastName,
@@ -20,7 +30,7 @@ $scope.sellerSign=function(){
                           "store_id": 1,
                           "website_id": 1,
                           "shop_name": $scope.sell.shopName,
-                          "telephone": $scope.sell.shopName,
+                          "telephone": $scope.sell.mobileNo,
                           "website": $scope.sell.website,
                           "shop_address": $scope.sell.shopAddress,
                           "city": $scope.sell.city,
@@ -34,10 +44,41 @@ $scope.sellerSign=function(){
                         },
               "password": $scope.sell.password        
           }
-
-  $http.post(baseUrl+'seller/signup',data).then(function(response){
+ console.log(data)
+  $http.post(baseUrl+'seller/signup',data).success(function(response){
+    console.log(response)
     $scope.data=response.data;
-  })        
+    console.log($scope.data)
+     $timeout(function () {
+                $ionicLoading.hide();
+                });
+     $ionicPopup.alert({
+                               title: 'Seller SignUp',
+                               template: "Seller has been created Successfully",
+                               buttons: [
+                               {
+                                  text: '<b>OK</b>',
+                                  type: 'button-positive',
+                                  onTap: function() {
+                                    return;
+                                  }
+                                }]
+                              })
+     
+     
+  }).error(function(response){
+    $timeout(function () {
+                $ionicLoading.hide();
+                });
+    alert(response.message)
+  })
+  }else{
+    /*$scope.submitted=true;*/
+    alert("Password is mismatch")
+  }
+ }else{
+  $scope.submitted=true;
+ }        
 }
 
 

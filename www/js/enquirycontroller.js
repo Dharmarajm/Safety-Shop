@@ -87,7 +87,13 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                 text: '<b>OK</b>',
                                 type: 'button-positive',
                                 onTap: function(e) {
-                                  
+                                 $ionicLoading.show({
+                                    content: 'Loading',
+                                    animation: 'fade-in',
+                                    showBackdrop: true,
+                                    maxWidth: 200,
+                                    showDelay: 0
+                                    }); 
                                    
                                   console.log($scope.selectedID)
                                    
@@ -104,6 +110,9 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                     $scope.enquiryinit();
                                     $scope.getStyle(Id)
                                     console.log($scope.moveToimport)
+                                    $timeout(function () {
+                                      $ionicLoading.hide();
+                                      });  
                                    })
                                 }
                               }]
@@ -217,6 +226,13 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 
   $scope.replySubmit=function(msg,reply,id){
    if(msg.subject.$valid && msg.message.$valid && msg.secondarymail.$valid){
+      $ionicLoading.show({
+                          content: 'Loading',
+                          animation: 'fade-in',
+                          showBackdrop: true,
+                          maxWidth: 200,
+                          showDelay: 0
+                          });                               
      if($scope.getfile==undefined || $scope.getfile.length==0 || $scope.getfile==null){
         $scope.getfile=[{file:"",format:""}]
         console.log($scope.getfile)
@@ -234,6 +250,9 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     $http.post(baseUrl+'seller/sendreply',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function onSuccess(response) {                     
         if(response.data){
+          $timeout(function () {
+                $ionicLoading.hide();
+                });  
           $ionicPopup.alert({
                                title: 'Customer Reply',
                                template: "You're "+response.data[0].msg,
@@ -249,6 +268,9 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                })
         }
        }).catch(function onError(response) {
+        $timeout(function () {
+                $ionicLoading.hide();
+                });  
           $ionicPopup.alert({
                                title: 'Customer Reply',
                                template: 'Failed to connect the server',

@@ -238,7 +238,13 @@ angular.module('sellerproductadd', [])
  $scope.datas=[];
 
 $scope.productdetailsadd=function(detail,spec){
-  
+  $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
   if($scope.proadd.prodCategory1!=null || $scope.proadd.prodCategory1!=undefined || $scope.proadd.prodCategory1!=""){
     $scope.datas.length=0;
     $scope.datas.push($scope.proadd.prodCategory1)
@@ -313,7 +319,9 @@ $scope.productdetailsadd=function(detail,spec){
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function onSuccess(response) {
         if(response.data[0].status.msg){
-
+             $timeout(function () {
+                $ionicLoading.hide();
+                });     
          $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Your Product Added Successfully',
@@ -334,6 +342,9 @@ $scope.productdetailsadd=function(detail,spec){
                                })
                              }
        }, function onError(response) {
+              $timeout(function () {
+                $ionicLoading.hide();
+                });  
               $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Failed to connect the server',
@@ -421,7 +432,9 @@ $scope.productdetailsadd=function(detail,spec){
     $http.put(baseUrl+'seller/product/save',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
      }).then(function onSuccess(response) {
        if(response.data[0].status.msg){
-        
+        $timeout(function () {
+                $ionicLoading.hide();
+                });  
          $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Your Product updated Successfully',
@@ -442,7 +455,9 @@ $scope.productdetailsadd=function(detail,spec){
                           })
                }
        }, function onError(error) {
-       
+        $timeout(function () {
+                $ionicLoading.hide();
+                });  
          $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Failed to Connect the Server',
@@ -591,6 +606,13 @@ $scope.productdetailsadd=function(detail,spec){
  }
 
  $scope.imgDelete=function(id){
+    $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
     var data={
                "image_id": id,
                "product_id": $scope.proEdit.product.entity_id,
@@ -598,9 +620,11 @@ $scope.productdetailsadd=function(detail,spec){
              }
         console.log(data)     
      $http.post(baseUrl+'seller/product/imagedelete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-     }).then(function(response){
-     console.log(response)                     
+     }).then(function(response){                     
        if(response.data[0].msg){
+        $timeout(function () {
+                $ionicLoading.hide();
+                });  
         $ionicPopup.alert({
                                title: 'Product Image Delete',
                                template: 'Your Product Image deleted Successfully',
@@ -628,6 +652,9 @@ $scope.productdetailsadd=function(detail,spec){
        
        } 
        },function(error){
+         $timeout(function () {
+                $ionicLoading.hide();
+                });  
          $ionicPopup.alert({
                                title: 'Product Image Delete',
                                template: 'Failed to connect the server',

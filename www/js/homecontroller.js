@@ -3,7 +3,7 @@ angular.module('home', [])
 
 
 
-
+$scope.submitted=false;
 $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 $rootScope.authCode=localStorage.getItem("ssauthcode");
                       $scope.dashboardinit=function(){ 

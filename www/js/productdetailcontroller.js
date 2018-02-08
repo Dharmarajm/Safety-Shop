@@ -178,6 +178,13 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 			              	//console.log($scope.productRes,data)
 			              	console.log(customer)
                             if(customer.Name.$valid && customer.emailid.$valid){
+                            	$ionicLoading.show({
+                                 content: 'Loading',
+                                 animation: 'fade-in',
+                                 showBackdrop: true,
+                                 maxWidth: 200,
+                                 showDelay: 0
+                                 });
 	                           if($rootScope.customerDetails!=null){
 	                             $scope.customerID=$rootScope.customerDetails.id;
 				              	 }else{
@@ -209,6 +216,9 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                            data: customerdata  
 	                          })
 	                          .then(function onSuccess(response) {
+	                          	$timeout(function () {
+                                   $ionicLoading.hide();
+                                   });
 	                           $ionicPopup.alert({
 	                             title: 'Customer Details',
 	                             template: 'Your AFP details has been updated',
@@ -222,7 +232,9 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                           })
 	                           
 	                          }).catch(function onError(response){
-	                           
+	                              $timeout(function () {
+                                   $ionicLoading.hide();
+                                   });
 	                              $ionicPopup.alert({
 	                             title: 'Customer Details',
 	                             template: 'Failed to connect the server',
@@ -246,7 +258,13 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 			              $scope.reviewSubmit=function(value){
                                 console.log(value)
                      if($rootScope.authCode != null){
-
+                            $ionicLoading.show({
+                              content: 'Loading',
+                              animation: 'fade-in',
+                              showBackdrop: true,
+                              maxWidth: 200,
+                              showDelay: 0
+                              });
                                 
 
                                 var reviewdata={
@@ -270,6 +288,9 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                           })
                           .success(function(response) {
                           	console.log(response)
+                          	$timeout(function () {
+                             $ionicLoading.hide();
+                             }); 
                            $ionicPopup.alert({
                              title: 'Review Details',
                              template: response[0].message,
@@ -288,6 +309,9 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                            /*if(data.message != null){
                             alert(data.message)
                            }*/
+                           $timeout(function () {
+                             $ionicLoading.hide();
+                             });
                            $ionicPopup.alert({
                              title: 'Review Details',
                              template: 'Failed to connect the server',

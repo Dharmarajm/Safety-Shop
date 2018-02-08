@@ -66,7 +66,13 @@ angular.module('address', [])
 
      $scope.addressput=function(account){
       if(account.firstname.$valid && account.lastname.$valid && account.email.$valid){
-         
+         $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
          $scope.dataput=[];
          for(var i in $scope.addresscus.addresses){
             if($scope.addresscus.addresses[i].fax==undefined || $scope.addresscus.addresses[i].fax==null || $scope.addresscus.addresses[i].fax==""){
@@ -140,6 +146,9 @@ angular.module('address', [])
             data:putdata
           })
           .then(function onSuccess(response) {
+              $timeout(function () {
+                $ionicLoading.hide();
+                });
               if(response){
                 $ionicPopup.alert({
                                title: 'Customer Details',
@@ -154,6 +163,9 @@ angular.module('address', [])
                 })  
               }
              }).catch(function onError(response){
+               $timeout(function () {
+                $ionicLoading.hide();
+                });
                $ionicPopup.alert({
                                title: 'Customer Details',
                                template: 'Failed to connect the server',

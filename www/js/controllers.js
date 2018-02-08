@@ -6,6 +6,8 @@ angular.module('starter.controllers', [])
    $scope.loginData = {username :"", password :""};
    console.log($scope.loginData.username)
 
+   $scope.submitted=false;
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     //console.log('Doing login', $scope.loginData.username);
@@ -116,9 +118,21 @@ $scope.dosignup=function(form){
   console.log(form.firstname.$valid , form.lastname.$valid , form.email.$valid , form.dob.$valid , form.gender.$valid , form.company.$valid , form.street.$valid , form.city.$valid , form.postcode.$valid , form.state.$valid , form.country.$valid , form.telephone.$valid , form.password.$valid , form.confirmpassword.$valid)
   if(form.firstname.$valid && form.lastname.$valid && form.email.$valid && form.dob.$valid && form.gender.$valid && form.company.$valid && form.street.$valid && form.city.$valid && form.postcode.$valid && form.state.$valid && form.country.$valid && form.telephone.$valid && form.password.$valid && form.confirmpassword.$valid){
      if(form.password.$valid == form.confirmpassword.$valid){
-        
-        $scope.dateformat= $filter('date')($scope.signupData.dob, 'dd-MM-yyyy');
+        $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                }); 
+        $scope.dateformat= $filter('date')($scope.signupData.dob, 'yyyy-MM-dd');
         console.log($scope.dateformat)
+        for(var i in $scope.getregion){
+         if($scope.getregion[i].region_id==$scope.signupData.state){
+           $scope.regiondetails=$scope.getregion[i];
+         }
+        }
+
         var signupData={
                         "customer": {
                         "id": 0,
@@ -136,12 +150,12 @@ $scope.dosignup=function(form){
                          "addresses": [ {"id": 0,
                                         "customer_id": 0,
                                          "region": {
-                                                    "region_code": "TAMIL",
-                                                    "region": $scope.signupData.state,
-                                                    "region_id": 541,
+                                                    "region_code": $scope.regiondetails.region_code,
+                                                    "region": $scope.regiondetails.region,
+                                                    "region_id": $scope.signupData.state,
                                                     "extension_attributes": {}
                                           },
-                                        "region_id": 541,
+                                        "region_id": $scope.signupData.state,
                                         "country_id": $scope.signupData.country,
                                         "street": [$scope.signupData.street],
                                         "company":$scope.signupData.company,
@@ -161,7 +175,7 @@ $scope.dosignup=function(form){
                        "password": $scope.signupData.password
                        }
                console.log(signupData)
-                         /* $http
+                          $http
                           ({
                             method: 'post',
                             url: baseUrl+'customers/',
@@ -170,6 +184,9 @@ $scope.dosignup=function(form){
                           .success(function(data) {
                             console.log(data)
                              if(data){
+                               $timeout(function () {
+                                 $ionicLoading.hide();
+                                 });
                               $ionicPopup.alert({
                                title: 'Customer SignUp',
                                template: 'Customer account has been created',
@@ -187,14 +204,18 @@ $scope.dosignup=function(form){
                           }).error(function(data, status, headers, config){
                           // console.log(data.message);
                            if(data.message != null){
+                             $timeout(function () {
+                               $ionicLoading.hide();
+                               });
                             alert(data.message)
                            }
-                           });*/
+                           });
      }else{
       alert("Password is mismatch")
      }
   }else{
-    alert("Please enter all the values as valid")
+    $scope.submitted=true;
+    /*alert("Please enter all the values as valid")*/
   }
   
 }
@@ -270,6 +291,7 @@ $scope.forgotPasword=function(){
     });
 
 $scope.signOut=function(){
+  $scope.submitted=false;
    var confirmPopup = $ionicPopup.confirm({
            title: 'Sign out',
            template: 'Are you sure want to Sign out?',
@@ -280,17 +302,32 @@ $scope.signOut=function(){
             text : 'Ok',
             type : 'button-positive',
             onTap : function() {
-             
+              $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
               if($rootScope.customerDetails!=null){
+
                 console.log('test')
                 $rootScope.customerDetails=null;
                 $rootScope.authCode=null;
-                $scope.loginData.username = "";
-                $scope.loginData.password = "";
+                if($scope.loginData!=null){
+                  $scope.loginData.username = "";
+                  $scope.loginData.password = "";  
+                }
+                if($scope.sellerloginData!=null){
+                  $scope.sellerloginData.username = "";
+                  $scope.sellerloginData.password = "";
+                }
                 localStorage.clear();
                 $state.go('app.home');
                }
-               
+             $timeout(function () {
+                $ionicLoading.hide();
+                });  
             }
           }]
         })

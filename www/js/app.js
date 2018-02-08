@@ -41,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    });
   });
   
+  
   /*$rootScope.interval = 2000;
        
        $rootScope.slideHasChanged = function(index) {

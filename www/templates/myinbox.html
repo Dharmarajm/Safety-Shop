@@ -16,15 +16,15 @@
   <ion-content>
           <ion-list>
             <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name}}"
+                      letters-of="{{list.reply_subject[0]}}"
                       background="random"
                       border="none"
                       color="white"
                       letters="1"
                       item="{{list}}"
                       ng-repeat="list in getMyinbox[0].inbox" >
-                <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
-                <p>{{list.overview}}</p></span>
+                <span ng-click="inboxdetail(list)"><h2>{{list.reply_subject}}</h2>
+                <p>{{list.reply_message}}</p></span>
             </ion-item>
           </ion-list>
           <ion-list ng-show="getMyinbox.length==0">

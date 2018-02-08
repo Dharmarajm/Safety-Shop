@@ -19,14 +19,15 @@ $scope.imgurl=imageUrl;
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response)
       {                   
-      $timeout(function () {
-      $ionicLoading.hide();
-      });
+      
       
        for(var i in response.data[0].products){
          $scope.sellerproduct.push({"id":response.data[0].products[i].id ,"name":response.data[0].products[i].name,"image":response.data[0].products[i].image,"sku":response.data[0].products[i].sku,"stock_status":response.data[0].products[i].stock_status,"display_status":response.data[0].products[i].display_status,"status":false,"category":response.data[0].products[i].category,"price":response.data[0].products[i].price,"created_at":response.data[0].products[i].created_at});
         console.log($scope.sellerproduct)
-       }          
+       }
+       $timeout(function () {
+        $ionicLoading.hide();
+       });          
       })      
   }
                 
@@ -66,12 +67,21 @@ $scope.imgurl=imageUrl;
      }             
 
  $scope.productdel=function(id){
-   
+    $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
     $http.post(baseUrl+'seller/product/delete',{product_id:id},{
                 headers: { "Authorization": 'Bearer '+$rootScope.authCode }
                 }).then(function onSuccess(response){
                    $scope.sellerproductdel=response.data; 
                    if(response.data){
+                    $timeout(function () {
+                    $ionicLoading.hide();
+                    });  
                      $ionicPopup.alert({
                                title: 'Seller Products',
                                template: response.data[0].msg,
@@ -87,6 +97,9 @@ $scope.imgurl=imageUrl;
                     }) 
                    }
                 },function onError(error){
+                   $timeout(function () {
+                    $ionicLoading.hide();
+                    });  
                    $ionicPopup.alert({
                                title: 'Seller Products',
                                template: "Failed to connect the Server",
