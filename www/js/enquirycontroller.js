@@ -165,6 +165,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 
   $scope.msgreply=function(id){
   	$scope.getId=id;
+    $scope.submitted=false;
   	$scope.modalproductdetail.show();
   }
 
@@ -219,13 +220,13 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
    $scope.reply.message="";
    $scope.reply.secondarymail="";
    $scope.getfile=[];
-   $scope.getattachfilename="No file chosen";
+   $scope.submitted=false;
   }
   
   $scope.reply={ subject:"",message:"",secondarymail:""}
 
   $scope.replySubmit=function(msg,reply,id){
-   if(msg.subject.$valid && msg.message.$valid && msg.secondarymail.$valid){
+   if(msg.subject.$valid && msg.message.$valid){
       $ionicLoading.show({
                           content: 'Loading',
                           animation: 'fade-in',
@@ -286,7 +287,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                            })
        })
    }else{
-    alert("Please enter all the values as valid")
+    $scope.submitted=true;
    }  
   }
 

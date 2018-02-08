@@ -26,88 +26,156 @@
 
 
  <form name="sellersigupform" ng-show="show==3" style="background-color: #e0e0e0" novalidate>
-      <div class="list">      
+            
         <button ng-click="show=1">Back</button>
         <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.firstname.$invalid && submitted }">First Name *</div>
-            <div class="row"><input type="text" name="firstname" ng-model="sell.firstName" ng-required="true"></div>
+         <div class="col col-50">
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.firstname.$invalid && submitted }">First Name *</p>
           </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.lastname.$invalid && submitted }">Last Name *</div>
-            <div class="row" ><input type="text" name="lastname" ng-model="sell.lastName" ng-required="true"></div>
+          <div class="row">
+            <input type="text" name="firstname" ng-model="sell.firstName" ng-required="true" style="width:100%">
           </div>
-        </div>
-        <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.dob.$invalid && submitted }">Date of Birth *</div>
-            <div class="row"><input type="date" name="dob" ng-model="sell.dob" ng-required="true"></div>
-          </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.gender.$invalid && submitted }">Gender *</div>
-            <div class="row" ><select ng-model="sell.gender" name="gender" ng-required="true" ng-options="item.id as item.name for item in names" style="width:100%">
-              <option value="">Select Gender</option> 
-            </select></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.emailId.$invalid && submitted }">Email ID *</div>
-            <div class="row"><input type="email" name="emailId" ng-model="sell.emailId" ng-required="true"></div>
-          </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.mobileNo.$invalid && submitted }">Mobile Number *</div>
-            <div class="row" ><input type="number" name="mobileNo" ng-model="sell.mobileNo" ng-minlength="10" ng-required="true"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.password.$invalid && submitted }">Password *</div>
-            <div class="row"><input type="password" name="password" ng-model="sell.password" ng-minlength="6" ng-required="true"></div>
-          </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.confirmPassword.$invalid && submitted }">Confirm Password *</div>
-            <div class="row" ><input type="password" name="confirmPassword" ng-model="sell.confirmPassword" ng-minlength="6" ng-required="true"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.shopName.$invalid && submitted }">Shop Name *</div>
-            <div class="row"><input type="text" name="shopName" ng-model="sell.shopName" ng-required="true"></div>
-          </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.website.$invalid && submitted }">Website *</div>
-            <div class="row" ><input type="text" name="website" ng-model="sell.website" ng-required="true"></div>
-          </div>
-        </div>
-        <div class="row">
-         <div class="col col-100">
-           <div class="row p" ng-class="{ 'has-error' : sellersigupform.shopAddress.$invalid && submitted }">Shop Address *</div>
-           <div class="row"><textarea  row="4" name="shopAddress" ng-model="sell.shopAddress" ng-required="true" style="width:96%;height:55px;"></textarea></div>
+         </div>
+
+         <div class="col col-50">
+           <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.lastname.$invalid && submitted }">Last Name *</p>
+           </div> 
+           <div class="row">
+             <input type="text" name="lastname" ng-model="sell.lastName" ng-required="true" style="width:100%">
+           </div>
          </div>
         </div>
+
+
         <div class="row">
           <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.city.$invalid && submitted }">City *</div>
-            <div class="row"><input  type="text" name="city" ng-model="sell.city" ng-required="true"></div>
+           <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.dob.$invalid && submitted }">Date of Birth *</p>
+           </div> 
+           <div class="row">
+             <input type="date" name="dob" ng-model="sell.dob" ng-required="true" style="width:100%">
+           </div>
+          </div>
+
+          <div class="col col-50">
+           <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.gender.$invalid && submitted }">Gender *</p>
+           </div> 
+           <div class="row"> 
+            <select ng-model="sell.gender" name="gender" ng-options="item.id as item.name for item in names" ng-required="true" style="width:100%">
+              <option value="">Select Gender</option> 
+            </select>
+           </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50">
+           <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.emailId.$invalid && submitted }">Email ID *</p>
+           </div>
+           <div class="row">
+            <input type="email" name="emailId" ng-model="sell.emailId" ng-required="true" style="width:100%">
+           </div>
+          </div>
+
+          <div class="col col-50">
+           <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.mobileNo.$invalid && submitted }">Mobile Number *</p>
+           </div> 
+            <div class="row"> 
+             <input type="number" name="mobileNo" ng-model="sell.mobileNo" ng-minlength="10" ng-required="true" style="width:100%">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50">
+            <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.password.$invalid && submitted }">Password *</p>
+            </div>
+            <div class="row"> 
+            <input type="password" name="password" ng-model="sell.password" ng-minlength="6" ng-required="true" style="width:100%">
+            </div>
           </div>
           <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.state.$invalid && submitted }">State *</div>
-            <div class="row" ><input  type="text" name="state" ng-model="sell.state" ng-required="true"></div>
+          <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.confirmPassword.$invalid && submitted }">Confirm Password *</p>
+          </div>
+          <div class="row">   
+            <input type="password" name="confirmPassword" ng-model="sell.confirmPassword" ng-minlength="6" ng-required="true" style="width:100%">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50">
+          <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.shopName.$invalid && submitted }">Shop Name *</p>
+            </div>
+            <div class="row"> <input type="text" name="shopName" ng-model="sell.shopName" ng-required="true" style="width:100%">
+            </div>
+          </div>
+          <div class="col col-50">
+          <div class="row"> 
+            <p class="p">Website *</p>
+           </div> 
+            <div class="row"> <input type="text" name="website" ng-model="sell.website" style="width:100%"></div>
+          </div>
+        </div>
+
+        <div class="row">
+         <div class="col col-100">
+          <div class="row"> 
+             <p class="p" ng-class="{ 'has-error' : sellersigupform.shopAddress.$invalid && submitted }">Shop Address *</p>
+          </div>
+          <div class="row"> 
+             <textarea  row="4" name="shopAddress" ng-model="sell.shopAddress" ng-required="true" style="width:100%"></textarea>
+          </div>
+         </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50">
+           <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.city.$invalid && submitted }">City *</p>
+           </div> 
+            <div class="row"> <input  type="text" name="city" ng-model="sell.city" ng-required="true" style="width:100%">
+            </div>
+          </div>
+          <div class="col col-50">
+          <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.state.$invalid && submitted }">State *</p>
+            </div>
+            <div class="row"> <input  type="text" name="state" ng-model="sell.state" ng-required="true" style="width:100%"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50">
+          <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.country.$invalid && submitted }">Country *</p>
+            </div>
+            <div class="row"> 
+            <input  type="text" name="country" ng-model="sell.country" ng-required="true" style="width:100%">
+            </div>
+          </div>
+          <div class="col col-50">
+          <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.pinCode.$invalid && submitted }">Pin Code *</p>
+            </div>
+            <div class="row"> 
+            <input  type="number" name="pinCode" ng-model="sell.pinCode" ng-minlength="6" ng-required="true" style="width:100%">
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.country.$invalid && submitted }">Country *</div>
-            <div class="row"><input  type="text" name="country" ng-model="sell.country" ng-required="true"></div>
-          </div>
-          <div class="col col-50">
-            <div class="row p" ng-class="{ 'has-error' : sellersigupform.pinCode.$invalid && submitted }">Pin Code *</div>
-            <div class="row" ><input  type="number" name="pinCode" ng-model="sell.pinCode" ng-minlength="6" ng-required="true"></div>
-          </div>
-        </div>
-          <button ng-click="sellerSign(sellersigupform)" class="button button-block button-positive" type="submit">Register</button>
-       </div>
+         <div class="col col-offset-33 col-33">
+          <button ng-click="sellerSign(sellersigupform)" class="button button-positive button-block button-small" type="submit">Register</button>
+         </div>
+        </div>  
     </form>
 
   </ion-content>

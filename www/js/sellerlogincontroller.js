@@ -5,7 +5,7 @@ angular.module('login', [])
 $scope.names=[{id:1,name:"Male"},{id:2,name:"Female"}];
 $scope.submitted=false;
 $scope.sellerSign=function(form){
- if(form.firstname.$valid && form.lastname.$valid && form.emailId.$valid && form.dob.$valid && form.gender.$valid && form.shopName.$valid && form.website.$valid && form.shopAddress.$valid && form.city.$valid && form.pinCode.$valid && form.state.$valid && form.country.$valid && form.mobileNo.$valid && form.password.$valid && form.confirmPassword.$valid){  
+ if(form.firstname.$valid && form.lastname.$valid && form.emailId.$valid && form.dob.$valid && form.gender.$valid && form.shopName.$valid && form.shopAddress.$valid && form.city.$valid && form.pinCode.$valid && form.state.$valid && form.country.$valid && form.mobileNo.$valid && form.password.$valid && form.confirmPassword.$valid){  
   if($scope.sell.password==$scope.sell.confirmPassword){
     $ionicLoading.show({
                 content: 'Loading',
@@ -46,7 +46,6 @@ $scope.sellerSign=function(form){
           }
  console.log(data)
   $http.post(baseUrl+'seller/signup',data).success(function(response){
-    console.log(response)
     $scope.data=response.data;
     console.log($scope.data)
      $timeout(function () {

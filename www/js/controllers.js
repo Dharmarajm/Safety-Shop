@@ -8,6 +8,10 @@ angular.module('starter.controllers', [])
 
    $scope.submitted=false;
 
+   $scope.validateForm=function(){
+    $scope.submitted=false;
+   }
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     //console.log('Doing login', $scope.loginData.username);
@@ -107,6 +111,7 @@ $scope.signupData=[{id:1,name:"Male"},{id:2,name:"Female"}]
  $http.get(baseUrl+'country/list',{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function onSuccess(response){
     $scope.getCountry=response.data[0].countries;
+   // $scope.signupData.country=response.data[0].countries[100].label
     $scope.getregion=response.data[0].regions;
     console.log($scope.getregion)
     console.log($scope.getCountry)
@@ -114,7 +119,6 @@ $scope.signupData=[{id:1,name:"Male"},{id:2,name:"Female"}]
 
 
 $scope.dosignup=function(form){
-  
   console.log(form.firstname.$valid , form.lastname.$valid , form.email.$valid , form.dob.$valid , form.gender.$valid , form.company.$valid , form.street.$valid , form.city.$valid , form.postcode.$valid , form.state.$valid , form.country.$valid , form.telephone.$valid , form.password.$valid , form.confirmpassword.$valid)
   if(form.firstname.$valid && form.lastname.$valid && form.email.$valid && form.dob.$valid && form.gender.$valid && form.company.$valid && form.street.$valid && form.city.$valid && form.postcode.$valid && form.state.$valid && form.country.$valid && form.telephone.$valid && form.password.$valid && form.confirmpassword.$valid){
      if(form.password.$valid == form.confirmpassword.$valid){

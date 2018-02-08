@@ -259,6 +259,9 @@ a.testc{
   text-align:center;
 }
 
-div.row.p.has-error {
+div.row p.p.has-error {
   color:red !important;
 }
+/*p.qusproduct.has-error{
+ color:red !important; 
+}*/

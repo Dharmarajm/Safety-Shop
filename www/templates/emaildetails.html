@@ -285,18 +285,20 @@
                       <!-- <div class="list">
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
-                      <p class="qusproduct">Reply Subject</p>
+                      <p class="qusproduct">Reply Subject *</p>
                            <input type="text" name="subject" ng-model="reply.subject" ng-required="true" class="customerinput">
+                           <span style="color:red;margin-left: 19px;" ng-show="message.subject.$error.required && submitted">Subject is required</span>
                         <!-- </label>   
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
-                           <p class="qusproduct">Reply Message</p>
+                           <p class="qusproduct">Reply Message *</p>
                            <input type="text" name="message" ng-model="reply.message" ng-required="true" class="customerinput">
+                           <span style="color:red;margin-left: 19px;" ng-show="message.message.$error.required && submitted">Message is required</span>
                         <!-- </label>   
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
                            <p class="qusproduct">Secondary Email</p>
-                           <input type="email" name="secondarymail" ng-model="reply.secondarymail" ng-required="true" class="customerinput">
+                           <input type="email" name="secondarymail" ng-model="reply.secondarymail" class="customerinput">
                         <!-- </label>
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span>    -->

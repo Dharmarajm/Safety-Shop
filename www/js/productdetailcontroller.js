@@ -171,13 +171,17 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                            $scope.review.detail="";
 			              }
 
-
-			        $scope.data={Name:"",PhoneNumber:"",emailid:"",city:"",BriefOverview:""};      
-
+			           $scope.data={PhoneNumber:"",emailid:"",city:"",BriefOverview:""};      
+                       
+                       if($rootScope.customerDetails!=null){
+                       	$scope.data.Name=$rootScope.customerDetails.firstname;
+                       }else{
+                        $scope.data.Name="";
+                       }
 			              $scope.customerSubmit=function(customer){
 			              	//console.log($scope.productRes,data)
 			              	console.log(customer)
-                            if(customer.Name.$valid && customer.emailid.$valid){
+                            if(customer.Name.$valid && customer.EmailID.$valid){
                             	$ionicLoading.show({
                                  content: 'Loading',
                                  animation: 'fade-in',
@@ -225,6 +229,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                             buttons: [
 	                             {
 	                                text: '<b>OK</b>',
+                                    type: 'button-positive', 
 	                                onTap: function() {
 	                                  return;
 	                                }
@@ -241,6 +246,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                             buttons: [
 	                             {
 	                                text: '<b>OK</b>',
+	                                type: 'button-positive',
 	                                onTap: function() {
 	                                  return;
 	                                }

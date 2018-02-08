@@ -575,10 +575,13 @@ $scope.productdetailsadd=function(detail,spec){
                 fileEntry.file(
                     function(file) {
                         //got file
+                         alert('man')
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
                             var imgData = evt.target.result; // this is your Base64 string
                             $rootScope.imgpickData=imgData;
+                            console.log('test')
+                            alert('test')
                         };
                         reader.readAsDataURL(file);
 

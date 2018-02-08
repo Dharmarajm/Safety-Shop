@@ -42,7 +42,7 @@
          </ion-list>
         </ion-item> -->
         <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-          <div class="row"><div class="col col-40"><a  href="#/app/login">Customer Login</a></div><div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;</div><div class="col col-40"><a href="#/app/sellerlogin">Seller Login</a></div></div>
+          <div class="row"><div class="col col-40"><a  href="#/app/login" ng-click="validateForm()">Customer Login</a></div><div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;</div><div class="col col-40"><a href="#/app/sellerlogin" ng-click="validateForm()">Seller Login</a></div></div>
         </ion-item>
         <ion-item menu-close href="#/app/home">
           Home

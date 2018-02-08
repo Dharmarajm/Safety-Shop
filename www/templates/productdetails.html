@@ -80,7 +80,7 @@
             </ion-header-bar>  
             <ion-content style="background-color: #e0e0e0">               
 
-            <form name=customer ng-submit="customerSubmit(customer)" novalidate>
+            <form name="customer" ng-submit="customerSubmit(customer)" novalidate>
             <p class="qusproduct">Name *</p>
             <input type="text" name="Name" ng-model="data.Name" ng-required="true" class="customerinput">
             <span style="color:red;margin-left: 19px;" ng-show="customer.Name.$error.required && submitted">Name is required</span>
@@ -89,8 +89,8 @@
             <input type="number" name="test" ng-model="data.PhoneNumber" class="customerinput">
 
             <p class="qusproduct">Email-ID *</p>
-            <input type="email" name="emailid" ng-model="data.EmailID" ng-required="true" class="customerinput">
-            <span style="color:red;margin-left: 19px;" ng-show="customer.emailid.$error.required && submitted">Email is required</span>
+            <input type="email" name="EmailID" ng-model="data.EmailID" ng-required="true" class="customerinput">
+            <span style="color:red;margin-left: 19px;" ng-show="customer.EmailID.$error.required && submitted">Email is required</span>
 
             <p class="qusproduct">City</p>
             <input type="text" ng-model="data.city" class="customerinput">

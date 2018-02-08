@@ -38,7 +38,7 @@
         </label>
      
         <button ng-hide="selldata=='Edit'" class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0" ng-click="categoryCheck(2)">Next</button> <!-- ng-disabled="proadd.prodCategory1=='' || proadd.prodCategory2=='' || proadd.prodCategory3=='' && rootCat2!=null || proadd.prodCategory3=='' && rootCat2.length!=0" -->
-        <button ng-show="selldata=='Edit'" class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
+        <button ng-show="selldata=='Edit'" class="button button-small button-positive"  ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save Product</button>
        </div> 
   
 
@@ -82,7 +82,7 @@
           <input name="weight" type="text" ng-model="proadd.weight" ng-required="true"></span>
         </label> -->
         <button ng-hide="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="categoryCheck(3)">Next</button>
-        <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save</button>
+        <button ng-show="selldata=='Edit'" class="button button-small button-positive" ng-disabled="categoryform.prodCategory1.$invalid || categoryform.prodCategory2.$invalid || categoryform.prodCategory3.$invalid && rootCat2.length!=0 || categoryform.productcategory.$invalid || categoryform.ProName.$invalid || categoryform.sku.$invalid || categoryform.price.$invalid || categoryform.quantity.$invalid || categoryform.stockState.$invalid" ng-click="productdetailsadd(proadd,inputs)">Save Product</button>
        </div> 
     
 
@@ -147,7 +147,7 @@
             <button class="button button-full button-energized" ng-click="upload1()">Add Image</button></span>
           </label>
           <center ng-show="uploadmainfile.length!=0 || showmainimg.length!=0" style="font-size: 15px;">Main Image</center><br>
-          <div ng-show="selldata='Edit' && showmainimg.length!=0" ng-repeat="editmain in showmainimg" ng-hide="uploadmainfile.length!=0">
+          <div ng-show="selldata=='Edit' && showmainimg.length!=0" ng-repeat="editmain in showmainimg" ng-hide="uploadmainfile.length!=0">
           <center class="set"><img ng-src="{{img}}{{editmain.file}}" style="width: 200px;height: 170px;" ><i class="icon ion-close-circled" ng-click="imgDelete(editmain.id)"></i></center> 
           </div>
           <div ng-repeat="testmain in uploadmainfile" ng-show="uploadmainfile.length!=0">
@@ -155,7 +155,7 @@
           </div>
           <br>
           <center ng-show="uploadaddfile.length!=0 || showaddimage.length!=0" style="font-size: 15px;">Additional Images</center><br>
-          <div ng-repeat="getall in showaddimage track by $index" ng-show="selldata='Edit' && showaddimage.length!=0">
+          <div ng-repeat="getall in showaddimage track by $index" ng-show="selldata=='Edit' && showaddimage.length!=0">
              <center class="set"><img ng-src="{{img}}{{getall.file}}" style="width: 200px;height: 170px;"><i class="icon ion-close-circled" ng-click="imgDelete(getall.id)"></i></center><br>
           </div>
           <div ng-repeat="testadd in uploadaddfile" ng-show="uploadaddfile.length!=0">
