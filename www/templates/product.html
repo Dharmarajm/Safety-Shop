@@ -19,7 +19,7 @@
 
             <ion-content style="background-color: #e0e0e0" class="padding has-subheader"> 
               <div ng-repeat="pro in ProductList">
-                   <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in pro  | filter:filterUser" ng-click="productdetails(z.sku,z.name)"
+                   <div class="cardproductgrid" ng-repeat="z in pro  | filter:filterUser" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)"
                     ng-hide="showme">
 
                       <img ng-src="{{imgurl}}{{z.custom_attributes[3].value}}" class="gridimg">
@@ -33,7 +33,7 @@
                
              
          
-                 <div class="row cardproductlist" ng-if="z.visibility == 4" ng-repeat="z in ProductList[0]" ng-click="productdetails(z.sku,z.name)"
+                 <div class="row cardproductlist" ng-repeat="z in ProductList[0]" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)"
                   ng-show="showme">      
                      <div class="col col-30">  
                         <img ng-src="{{imgurl}}{{z.custom_attributes[3].value}}" class="listimg">

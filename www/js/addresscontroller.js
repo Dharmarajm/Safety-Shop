@@ -63,7 +63,9 @@ angular.module('address', [])
               	$scope.modaladdres.show();
               }
 
-
+     var deregisterBackButton;
+     var alertPopup;
+     
      $scope.addressput=function(account){
       if(account.firstname.$valid && account.lastname.$valid && account.email.$valid){
          $ionicLoading.show({
@@ -157,7 +159,7 @@ angular.module('address', [])
                                   text: '<b>OK</b>',
                                   type: 'button-positive',
                                   onTap: function() {
-                                    return;
+                                    $scope.closeaddressmodel();
                                   }
                                }]
                 })  

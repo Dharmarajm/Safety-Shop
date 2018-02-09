@@ -12,7 +12,14 @@ angular.module('SellerProductreviews', [])
 
    $scope.reviewListPopup=function(list,getId){
    	$scope.datalistreview=list;
-      $scope.datalistproductId=getId.product.id
+     if($scope.datalistreview.status=="Approved"){
+        $scope.datalistreview.test=true;     
+     }else if($scope.datalistreview.status=="Not Approved"){
+        $scope.datalistreview.test=false;
+     }else if($scope.datalistreview.status=="Pending"){
+        $scope.datalistreview.test=false; 
+     }
+      $scope.datalistproductId=getId.product.id;
       console.log($scope.datalistreview)
    	$scope.modalproductdetail.show();		              
    }
@@ -80,7 +87,7 @@ angular.module('SellerProductreviews', [])
    }
    
    
-   $scope.isChecked = function(id, matches) {
+   /*$scope.isChecked = function(id, matches) {
      var isChecked = id;
      
      if(matches == "Approved") {
@@ -106,7 +113,7 @@ angular.module('SellerProductreviews', [])
        console.log(isChecked)
      }
     return isChecked;
-   }
+   }*/
    $ionicModal.fromTemplateUrl('reviewfulldatail.html', {
 	scope: $scope,
 	animation: 'slide-in-left'

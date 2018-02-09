@@ -13,8 +13,14 @@ $scope.imgurl=imageUrl;
   $scope.sellerproduct=[];
   $rootScope.product_id=null;
   $rootScope.Checktic = false;
+  
+  /*$scope.doRefresh=function(){
+   $scope.sellProductInit(); 
+   $scope.$broadcast('scroll.refreshComplete'); 
+  }*/
    
   $scope.sellProductInit=function(){
+    /*$scope.sellerproduct=[];*/
     $http.get(baseUrl+'seller/product/'+$rootScope.customerDetails.id,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response)

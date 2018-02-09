@@ -13,6 +13,9 @@
       <a class="testc" ng-show="Checktic" ng-hide="Checktic!=true" style="background-color: grey;width:100%;" ng-click="productdelval(product_id)">
          <i class="icon ion-trash-a item-center"></i>
       </a>
+      <!-- <ion-refresher on-refresh="doRefresh()">
+                 
+      </ion-refresher> -->
       <div class="card" ng-repeat="sellpro in sellerproduct | filter : filterlist track by $index"> 
       
          <div class="row">

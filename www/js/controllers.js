@@ -199,7 +199,7 @@ $scope.dosignup=function(form){
                                   text: '<b>OK</b>',
                                   type: 'button-positive',
                                   onTap: function() {
-                                    return;
+                                    $state.go('app.login');
                                   }
                                 }]
                               })
@@ -327,11 +327,12 @@ $scope.signOut=function(){
                   $scope.sellerloginData.password = "";
                 }
                 localStorage.clear();
+                $timeout(function () {
+                  $ionicLoading.hide();
+                }); 
                 $state.go('app.home');
                }
-             $timeout(function () {
-                $ionicLoading.hide();
-                });  
+              
             }
           }]
         })

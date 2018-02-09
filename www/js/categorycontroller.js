@@ -108,7 +108,8 @@ $scope.statusColapse= 1;
               $rootScope.size=1;
               $rootScope.totalcount=response.data.total_count;
               $rootScope.ProductList=[];
-              $rootScope.ProductList.push(response.data.items);  
+              $rootScope.ProductList.push(response.data.items); 
+              console.log($rootScope.ProductList) 
               })  
               }
 

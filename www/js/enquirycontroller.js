@@ -262,8 +262,10 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                   text: '<b>OK</b>',
                                   type: 'button-positive',
                                   onTap: function() {
-                                  
-                                  return;
+                                   if(response.data[0].msg=="Uploaded file format is not accepted. (plain)"){
+                                    return;
+                                   }
+                                   $scope.closemsgdetails();
                                   }
                                 }]
                                })

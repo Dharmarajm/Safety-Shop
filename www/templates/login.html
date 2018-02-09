@@ -5,19 +5,19 @@
     </button>
   </ion-nav-buttons>
   <ion-content>
-    <form name="signinform" ng-hide="show == 2 || show==3" novalidate>
+    <form name="cussigninform" ng-hide="show == 2 || show==3" novalidate>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="text" name="username" ng-model="loginData.username" required>
+          <input type="text" name="username" ng-model="loginData.username" ng-required="true">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" name="password" ng-model="loginData.password" required>
+          <input type="password" name="password" ng-model="loginData.password" ng-required="true">
         </label>
 
         <label class="item">
-          <button ng-disabled="signinform.$pristine || signinform.$invalid" ng-click="doLogin()" class="button button-block button-positive" type="submit">Log in</button>
+          <button ng-disabled="cussigninform.$invalid" ng-click="doLogin()" class="button button-block button-positive" type="submit">Log in</button>
         </label>
       </div>
       <a ng-click="forgotPasword()">Forgot Password?</a>

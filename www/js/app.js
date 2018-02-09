@@ -39,6 +39,20 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
      console.warn("No :( ");
     }
    });
+
+   document.addEventListener("offline", onOffline, false);
+
+     function onOffline() {
+       $rootScope.netStatus=0;
+        // Handle the offline event
+        alert('you are offline');
+     }
+     document.addEventListener("online", isOnline, false);
+      function isOnline() {
+       $rootScope.netStatus=1;
+        // Handle the offline event
+        alert('you are online');
+     }
   });
   
   
@@ -84,9 +98,7 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
               }
             }, 100);
 */
-
-
-
+     
   $ionicPlatform.registerBackButtonAction(function(e) {
    e.preventDefault();
    function showConfirm() {

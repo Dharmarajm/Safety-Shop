@@ -13,7 +13,9 @@ angular.module('sellerproductadd', [])
                     }] 
 
  $scope.img=imageUrl;                   
- 
+ $rootScope.getimgData=null;
+ $rootScope.imgpickData=null;
+
  if(localStorage.getItem('editId')){
   $rootScope.selldata="Edit"; 
   $scope.template="Update";
@@ -22,7 +24,8 @@ angular.module('sellerproductadd', [])
    }).then(function(res){
       $scope.proEdit=res.data[0];
                console.log($scope.proEdit)
-
+               $rootScope.getimgData=null;
+               $rootScope.imgpickData=null; 
                $scope.proadd ={ 
                                 "prodCategory1": $scope.proEdit.product.category_ids[0],
                                 "prodCategory2": $scope.proEdit.product.category_ids[1],
@@ -336,7 +339,8 @@ $scope.productdetailsadd=function(detail,spec){
                                     $rootScope.rootCat1=""
                                     $rootScope.rootCat2=""
                                     $rootScope.rootCat3="";*/
-                                    return;
+                                    
+                                    $state.go('app.sellerproduct');
                                   }
                                 }]
                                })
@@ -372,10 +376,10 @@ $scope.productdetailsadd=function(detail,spec){
        $scope.uploadimageMain.push({file:"",format:""})
       }else if($scope.uploadimageMain.length!=0){
        if($scope.uploadimageMain[0].format=="" || $scope.uploadimageMain[0].format==undefined || $scope.uploadimageMain[0].format==null){
-          $scope.uploadimageMain[0].format=""
+          $scope.uploadimageMain[0].format="";
         }
         if($scope.uploadimageMain[0].file=="" || $scope.uploadimageMain[0].file==undefined || $scope.uploadimageMain[0].file==null){
-          $scope.uploadimageMain[0].file=""
+          $scope.uploadimageMain[0].file="";
         }     
       }else{
        } 
@@ -449,7 +453,7 @@ $scope.productdetailsadd=function(detail,spec){
                                     // $rootScope.rootCat1=""
                                     // $rootScope.rootCat2=""
                                     // $rootScope.rootCat3="";
-                                    return;
+                                    $state.go('app.sellerproduct');
                                   }
                                 }]
                           })
@@ -575,18 +579,20 @@ $scope.productdetailsadd=function(detail,spec){
                 fileEntry.file(
                     function(file) {
                         //got file
-                         alert('man')
+                         console.log(file.name)
                         var reader = new FileReader();
                         reader.onloadend = function (evt) {
+                            console.log(file.name)
+                            $rootScope.imgpickData=null;
+                            console.log($rootScope.imgpickData)
                             var imgData = evt.target.result; // this is your Base64 string
                             $rootScope.imgpickData=imgData;
                             console.log('test')
-                            alert('test')
+                            $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
                         };
                         reader.readAsDataURL(file);
-
-                        $scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})
-                      
+                        
+                        /*$scope.uploadimageAddition.push({"file":file.name,"format":$rootScope.imgpickData})*/
                     }, 
                 function (evt) { 
                     //failed to get file

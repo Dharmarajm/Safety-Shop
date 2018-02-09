@@ -148,7 +148,6 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 
 			              $scope.closeproductdetails = function() {
 			               $scope.modalproductdetail.hide();
-                           $scope.data.Name="";
                            $scope.data.PhoneNumber="";
                            $scope.data.EmailID="";
                            $scope.data.city="";
@@ -180,8 +179,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                        }
 			              $scope.customerSubmit=function(customer){
 			              	//console.log($scope.productRes,data)
-			              	console.log(customer)
-                            if(customer.Name.$valid && customer.EmailID.$valid){
+                            if(customer.Name.$valid && customer.email.$valid){
                             	$ionicLoading.show({
                                  content: 'Loading',
                                  animation: 'fade-in',
@@ -231,7 +229,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                                text: '<b>OK</b>',
                                     type: 'button-positive', 
 	                                onTap: function() {
-	                                  return;
+	                                  $scope.closeproductdetails();
 	                                }
 	                              }]
 	                           })
@@ -305,7 +303,7 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
                                 text: '<b>OK</b>',
                                 type: 'button-positive',
                                 onTap: function() {
-                                  return;
+                                  $scope.closereviewdetails();
                                 }
                               }]
                            })
