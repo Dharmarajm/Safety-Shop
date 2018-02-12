@@ -11,6 +11,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
  $http.post(baseUrl+'seller/enquiry/inbox',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.enquirylist=response.data;
+     console.log($rootScope.enquirylist)
     })
  
  
@@ -19,6 +20,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }).then(function(response){ 
      if(response.data[0]!=undefined){
       $rootScope.importantlist=response.data;
+      console.log($rootScope.importantlist)
       }else{
       $rootScope.importantlist=[];
      }         
@@ -29,6 +31,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
  $http.get(baseUrl+'seller/enquiry/reply/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
   }).then(function(response){                     
      $rootScope.sentlist=response.data;
+     console.log($rootScope.sentlist)
     }) 
 
   
@@ -95,26 +98,39 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
                                     showDelay: 0
                                     }); 
                                    
-                                  console.log($scope.selectedID)
+                                console.log($scope.selectedID)
+                                
+                                if($scope.selectedID[0].reply_id==undefined){
                                    
                                    $scope.finish();
+                                   
                                    var data={
                                              "enquiry_id": $scope.selectedID[0].quickrfq_id,
                                              "seller_id": $scope.selectedID[0].seller_id
                                             }
 
-                                 $http.post(baseUrl+'seller/enquiry/delete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-                                 }).then(function(response){                     
-                                    $scope.mesdelete=response.data;
-                                    $rootScope.listid=null;
-                                    $scope.enquiryinit();
-                                    $scope.getStyle(Id)
-                                    console.log($scope.moveToimport)
-                                    $timeout(function () {
-                                      $ionicLoading.hide();
-                                      });  
-                                   })
+                                  $http.post(baseUrl+'seller/enquiry/delete',data,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+                                  }).then(function(response){                     
+                                     $scope.mesdelete=response.data;
+                                     $rootScope.listid=null;
+                                     $scope.enquiryinit();
+                                     $state.reload();
+                                     /*$scope.getStyle()*/
+                                     /*console.log($scope.moveToimport)*/
+                                     $timeout(function () {
+                                       $ionicLoading.hide();
+                                       });   
+                                   })  
+                                }else{
+                                  console.log('test')
+                                  $scope.finish();
+                                  $scope.enquiryinit();
+                                  $state.reload();
+                                  $timeout(function () {
+                                       $ionicLoading.hide();
+                                       });
                                 }
+                               }
                               }]
                            })  
      
@@ -373,7 +389,9 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
         }
       }else{
         $scope.getfile=[];
-        $scope.image=""
+        $scope.image="";
+        document.getElementById("uploadFile").value = "";
+        $scope.$apply();
         /*function clearFileInput(id) 
         { 
             var oldInput = document.getElementById(id); 

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerprod','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox'])
+angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerprod','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox','sellerDashboard','chart.js'])
 
 .run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory,$ionicSlideBoxDelegate,$timeout) {
   $ionicPlatform.ready(function() {
@@ -332,6 +332,16 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
       }
     }
   })
+
+  .state('app.sellerdashboard', {
+    url: '/sellerdashboard',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sellerdashboard.html',
+         controller:'sellerdashboardCtrl'
+      }
+    }
+  })  
 
   .state('app.sellerreviews', {
     url: '/sellerreviews',

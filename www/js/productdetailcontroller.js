@@ -221,9 +221,10 @@ $rootScope.authCode=localStorage.getItem("ssauthcode");
 	                          	$timeout(function () {
                                    $ionicLoading.hide();
                                    });
+	                          	console.log(response)
 	                           $ionicPopup.alert({
 	                             title: 'Customer Details',
-	                             template: 'Your AFP details has been updated',
+	                             template: response.data[0].msg,
 	                             buttons: [
 	                             {
 	                                text: '<b>OK</b>',

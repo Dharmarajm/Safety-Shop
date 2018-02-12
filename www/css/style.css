@@ -265,3 +265,14 @@ div.row p.p.has-error {
 /*p.qusproduct.has-error{
  color:red !important; 
 }*/
+
+.loader{
+  background: #ffa200 !important;
+  border-radius:100px;
+  height:20px;
+  p{
+    text-align:center;
+    color:white !important;
+    text-align:center;
+  }
+}
