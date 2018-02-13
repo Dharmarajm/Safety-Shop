@@ -1,11 +1,11 @@
 <ion-view title="{{sellertablelist.name}} Reviews" cache-view="false">
   <ion-nav-buttons side="left">
-     <button class="button button-clear" ng-click="myGoBack()" >
-     <i class="icon ion-ios-arrow-back"></i>
-     </button>
+    <button class="button button-clear" ng-click="myGoBack()">
+      <i class="icon ion-ios-arrow-back"></i>
+    </button>
   </ion-nav-buttons>
   <ion-content ng-init="getreview()">
-   <link href="css/sellerproductreviews.css" rel="stylesheet">
+    <link href="css/sellerproductreviews.css" rel="stylesheet">
     <div class="row header">
       <div class="col">Name</div>
       <div class="col">Review</div>
@@ -16,93 +16,97 @@
       <div class="col">{{data.nickname}}</div>
       <div class="col">{{data.review}}</div>
       <div class="col">{{data.date}}</div>
-      <div class="col"><button class="button button-small button-positive" ng-click="reviewListPopup(data,productsListReview)">More</button></div>
+      <div class="col">
+        <button class="button button-small button-positive" ng-click="reviewListPopup(data,productsListReview)">More</button>
+      </div>
     </div>
   </ion-content>
 
-   <script id="reviewfulldatail.html"  type="text/ng-template">
-          
-    <ion-modal-view>
-    
-            <ion-header-bar>                
-            <div class="row headercolor">      
+  <script id="reviewfulldatail.html" type="text/ng-template">
 
-            <div class="col col-90 text"> <p class="titlesub">Customer Details</p></div>
-            <div class="col col-10 text" ng-click="closeproductdetails()"> <i class="icon ion-close-round"></i></div>
+    <ion-modal-view>
+
+      <ion-header-bar>
+        <div class="row headercolor">
+
+          <div class="col col-90 text">
+            <p class="titlesub">Customer Details</p>
+          </div>
+          <div class="col col-10 text" ng-click="closeproductdetails()"> <i class="icon ion-close-round"></i></div>
+        </div>
+      </ion-header-bar>
+      <ion-content style="background-color: #e0e0e0" ng-init="getreview()">
+        <div class="card">
+          <div class="row">
+            <div class="col col-50">
+              Name
             </div>
-            </ion-header-bar>  
-            <ion-content style="background-color: #e0e0e0" ng-init="getreview()">               
-               <div class="card">  
-                <div class="row">
-                 <div class="col col-50">
-                  Name
-                 </div>
-                 <div class="col col-50">
-                  {{datalistreview.nickname}} 
-                 </div>
-                </div>
-                <div class="row">
-                 <div class="col col-50">
-                   Date
-                 </div>
-                 <div class="col col-50">
-                  {{datalistreview.date}}
-                 </div>
-                </div>
-                <div class="row">
-                 <div class="col col-50">
-                   Subject
-                 </div>
-                 <div class="col col-50">
-                   {{datalistreview.subject}}
-                 </div>
-                </div>
-                
-                <div class="row">
-                 <div class="col col-50">
-                  Review
-                 </div>
-                 <div class="col col-50">
-                  {{datalistreview.review}}
-                 </div>
-                </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Rating
-                 </div>
-                 <div class="col col-50">
-                   <span class="stars alignright">
+            <div class="col col-50">
+              {{datalistreview.nickname}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              Date
+            </div>
+            <div class="col col-50">
+              {{datalistreview.date}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              Subject
+            </div>
+            <div class="col col-50">
+              {{datalistreview.subject}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-50">
+              Review
+            </div>
+            <div class="col col-50">
+              {{datalistreview.review}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              Rating
+            </div>
+            <div class="col col-50">
+              <span class="stars alignright">
                             <span ng-style="{ 'width': getStars(datalistreview.rating.quality)}"></span>
-                     </span>
-                 </div>
-                </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Status
-                 </div>
-                 <div class="col col-50">
-                  {{datalistreview.status}}
-                 </div>
-                </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Actions
-                 </div>
-                 <div class="col col-50">
-                  <ul class="list">
-                      <li class="item item-toggle" >
-                         <label class="toggle toggle-assertive">
-                           <input type="checkbox" ng-model="datalistreview.test" ng-change="statusState(datalistreview.id,datalistreview.status,datalistproductId)">
-                           <div class="track">
-                             <div class="handle"></div>
-                           </div>
-                         </label>
-                      </li>
-                    </ul>
-                 </div>
-                </div>
-              </div>                
-          </ion-content>
-   </ion-modal-view>
-</script>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              Status
+            </div>
+            <div class="col col-50">
+              {{datalistreview.status}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-50">
+              Actions
+            </div>
+            <div class="col col-50">
+              <ul class="list">
+                <li class="item item-toggle">
+                  <label class="toggle toggle-assertive">
+                    <input type="checkbox" ng-model="datalistreview.test" ng-change="statusState(datalistreview.id,datalistreview.status,datalistproductId)">
+                    <div class="track">
+                      <div class="handle"></div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
 </ion-view>

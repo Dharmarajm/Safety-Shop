@@ -1,19 +1,19 @@
 <ion-view view-title="Search Result" cache-view="false">
- <link href="css/home.css" rel="stylesheet" cache-view="false">  
+  <link href="css/home.css" rel="stylesheet" cache-view="false">
   <ion-nav-buttons side="left">
-      <button class="button button-clear" ng-click="myGoBack()" >
+    <button class="button button-clear" ng-click="myGoBack()">
       <i class="icon ion-ios-arrow-back"></i>
-      </button>
+    </button>
   </ion-nav-buttons>
   <ion-content style="background-color: #e0e0e0">
-    
-         <div class="cardproductgrid" ng-repeat="z in resultVal.data"  ng-click="productdetails(z.sku,z.name)" >
-                          
-                      <img ng-src="{{imgurl}}{{z.base_image}}" class="gridimg">
-                      <div class="container">
-                         <p class="titleproduct overme">{{z.name}}</p>   
-                       </div>
-                   </div>
+
+    <div class="cardproductgrid" ng-repeat="z in resultVal.data" ng-click="productdetails(z.sku,z.name)">
+
+      <img ng-src="{{imgurl}}{{z.base_image}}" class="gridimg">
+      <div class="container">
+        <p class="titleproduct overme">{{z.name}}</p>
+      </div>
+    </div>
 
   </ion-content>
 </ion-view>

@@ -1,65 +1,75 @@
 angular.module('sellerproductdetail', [])
-.controller('sellerproductdetailCtrl', function($scope,$rootScope,$window,$stateParams, $ionicModal,$ionicHistory,$timeout,$ionicPopup,$http,$state,$ionicLoading) {
+  .controller('sellerproductdetailCtrl', function($scope, $rootScope, $window, $stateParams, $ionicModal, $ionicHistory, $timeout, $ionicPopup, $http, $state, $ionicLoading) {
 
 
-$rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
-$rootScope.authCode=localStorage.getItem("ssauthcode");
+    $rootScope.customerDetails = JSON.parse(localStorage.getItem("sscustomer"));
+    $rootScope.authCode = localStorage.getItem("ssauthcode");
 
- $scope.sellproductname=$stateParams.selldetailid.name;
- 
- if($scope.sellid.display_status=='1'){
-    $scope.sellid.test=true;
- }else if($scope.sellid.display_status=='2'){
-    $scope.sellid.test=false;
- }
+    $scope.sellproductname = $stateParams.selldetailid.name;
 
- $scope.stockState=function(id,state){
-  var data={"product_id":id,"status":state};
-  console.log(data)
-  $http.post(baseUrl+'seller/product/stockstatus',data,{
-      headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-      }).then(function(response){                     
-      $scope.stockStateres=response.data;
-      console.log($scope.stockStateres)
-      /*return $scope.isChecked(id,state);*/                
-  })      
- }
+    if ($scope.sellid.display_status == '1') {
+      $scope.sellid.test = true;
+    } else if ($scope.sellid.display_status == '2') {
+      $scope.sellid.test = false;
+    }
 
- $scope.displayState=function(id,state){
-  console.log($scope.sellid.test)
-  if(state==true){
-    $scope.displayStateC=1;
-  }
+    $scope.stockState = function(id, state) {
+      var data = {
+        "product_id": id,
+        "status": state
+      };
+      console.log(data)
+      $http.post(baseUrl + 'seller/product/stockstatus', data, {
+        headers: {
+          "Authorization": 'Bearer ' + $rootScope.authCode
+        }
+      }).then(function(response) {
+        $scope.stockStateres = response.data;
+        console.log($scope.stockStateres)
+          /*return $scope.isChecked(id,state);*/
+      })
+    }
 
-  if(state==false){
-    $scope.displayStateC=2;
-  }
+    $scope.displayState = function(id, state) {
+      console.log($scope.sellid.test)
+      if (state == true) {
+        $scope.displayStateC = 1;
+      }
 
-  var data={"product_id":id,"status": $scope.displayStateC.toString()}
-  console.log(data)
-  $http.post(baseUrl+'seller/product/status',data,{
-      headers: { "Authorization": 'Bearer '+$rootScope.authCode }
-      }).then(function(response){                   
-     $scope.displayStateres=response.data;
-     console.log($scope.displayStateres)
-     /*return $scope.isChecked(id,state);                */
-  })     
- }
+      if (state == false) {
+        $scope.displayStateC = 2;
+      }
 
-  /*$scope.isChecked = function(id, matches) {
-     var isChecked = id; 
-     if(matches == true || matches == 1) {
-        isChecked = true;
-     }
-      if(matches == false || matches == 2) {
-       isChecked= false;
-     }
-    return isChecked;
-  }*/
+      var data = {
+        "product_id": id,
+        "status": $scope.displayStateC.toString()
+      }
+      console.log(data)
+      $http.post(baseUrl + 'seller/product/status', data, {
+        headers: {
+          "Authorization": 'Bearer ' + $rootScope.authCode
+        }
+      }).then(function(response) {
+        $scope.displayStateres = response.data;
+        console.log($scope.displayStateres)
+          /*return $scope.isChecked(id,state);                */
+      })
+    }
 
-  $scope.prodEdit=function(id){
-    localStorage.setItem("editId",JSON.stringify(id));
-    $state.go('app.sellerproductadd');
-  }
+    /*$scope.isChecked = function(id, matches) {
+       var isChecked = id; 
+       if(matches == true || matches == 1) {
+          isChecked = true;
+       }
+        if(matches == false || matches == 2) {
+         isChecked= false;
+       }
+      return isChecked;
+    }*/
 
-})
+    $scope.prodEdit = function(id) {
+      localStorage.setItem("editId", JSON.stringify(id));
+      $state.go('app.sellerproductadd');
+    }
+
+  })

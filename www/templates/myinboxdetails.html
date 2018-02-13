@@ -1,83 +1,83 @@
 <ion-view view-title="My Message" cache-view="false">
-    <ion-nav-buttons side="left">
-      <button class="button button-clear" ng-click="myGoBack()" >
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="myGoBack()">
       <i class="icon ion-ios-arrow-back"></i>
-      </button>
-   </ion-nav-buttons>
+    </button>
+  </ion-nav-buttons>
   <ion-content>
-      <div class="card">  
-        <div class="row">
-         <div class="col col-50">
+    <div class="card">
+      <div class="row">
+        <div class="col col-50">
           ID
-         </div>
-         <div class="col col-50">
-          {{getmyinboxId.quickrfq_id}} 
-         </div>
         </div>
-         <div class="row">
-          <div class="col col-50 title-center">
-           Product Image
-          </div>
-          <div class="col col-50">
-            <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getmyinboxId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
-          </div>
-         </div>
-           <div class="row">
-            <div class="col col-50">
-              Product Name
-            </div>
-            <div class="col col-50">
-              {{getmyinboxId.product_name}}
-            </div>
-           </div>
-             <div class="row">
-              <div class="col col-50">
-                Subject
-              </div>
-              <div class="col col-50">
-                {{getmyinboxId.reply_subject}}
-              </div>
-             </div>
-              <div class="row">
-               <div class="col col-50">
-                 Message
-               </div>
-               <div class="col col-50">
-                {{getmyinboxId.reply_message}}
-               </div>
-              </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Secondary Email
-                 </div>
-                 <div class="col col-50">
-                  {{getmyinboxId.secondary_email}}
-                 </div>
-                </div>
-               <div class="row">
-                <div class="col col-50">
-                 Attachment
-                </div>
-                <div class="col col-50">
-                 {{getmyinboxId.attachment}}
-                </div>
-               </div>
-              <div class="row">
-               <div class="col col-50">
-                Status
-               </div>
-               <div class="col col-50">
-                {{getmyinboxId.status}}
-               </div>
-              </div>
-             <div class="row">
-              <div class="col col-50">
-              Date
-              </div>
-              <div class="col col-50">
-              {{getmyinboxId.create_date }}
-              </div>
-             </div>
+        <div class="col col-50">
+          {{getmyinboxId.quickrfq_id}}
+        </div>
       </div>
+      <div class="row">
+        <div class="col col-50 title-center">
+          Product Image
+        </div>
+        <div class="col col-50">
+          <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getmyinboxId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Name
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.product_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Subject
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.reply_subject}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Message
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.reply_message}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Secondary Email
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.secondary_email}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Attachment
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.attachment}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Status
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.status}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Date
+        </div>
+        <div class="col col-50">
+          {{getmyinboxId.create_date }}
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

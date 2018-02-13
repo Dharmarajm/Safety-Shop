@@ -1,18 +1,20 @@
 <ion-view view-title="Sub category" cache-view="false">
   <link href="css/category.css" rel="stylesheet" cache-view="false">
-    <ion-nav-buttons side="left">
-               <button class="button button-clear" ng-click="myGoBack()" >
-               <i class="icon ion-ios-arrow-back"></i>
-               </button>
-    </ion-nav-buttons>   
-   <ion-content>
-   <div class="subbutton" ng-repeat="subcat1 in subcatdisplay" ng-click="subCategory(subcat1)"><p class="subtab">{{subcat1.name}}</p></div> 
-<!--   <div ng-repeat="catvalue in resvalue" >
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="myGoBack()">
+      <i class="icon ion-ios-arrow-back"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="subbutton" ng-repeat="subcat1 in subcatdisplay" ng-click="subCategory(subcat1)">
+      <p class="subtab">{{subcat1.name}}</p>
+    </div>
+    <!--   <div ng-repeat="catvalue in resvalue" >
                   <button class="mainbutton" type="submit" ng-show="catvalue.is_active == true" ng-click="main1(catvalue.id)">{{catvalue.name}}</button><br>
                   
                   <div class="subbutton" ng-if="catvalue.id == subid" ng-repeat="subcat in catvalue.children_data" ng-show = "IsVisible;subcat.is_active == true" 
                    ng-click="sub1(subcat.id,subcat.name)"><p class="subtab">{{subcat.name}}</p></div> 
              </div> -->
-      
-   </ion-content>
+
+  </ion-content>
 </ion-view>

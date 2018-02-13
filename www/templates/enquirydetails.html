@@ -1,25 +1,21 @@
 <ion-view view-title="Enquiry Emails" cache-view="false">
- <link href="css/enquiry.css" rel="stylesheet" cache-view="false">  
-    <ion-nav-buttons sidse="left">
-        <button ng-hide="selectionActive" class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-        <button class="button button-icon icon ion-checkmark-circled" 
-                ng-show="selectionActive" 
-                ng-click="finish()">
-        </button>
-    </ion-nav-buttons>  
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-trash-b" 
-                ng-show="selectionActive" 
-                ng-click="delete(list)">
-        </button>
-    </ion-nav-buttons>  
+  <link href="css/enquiry.css" rel="stylesheet" cache-view="false">
+  <ion-nav-buttons sidse="left">
+    <button ng-hide="selectionActive" class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+    <button class="button button-icon icon ion-checkmark-circled" ng-show="selectionActive" ng-click="finish()">
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-trash-b" ng-show="selectionActive" ng-click="delete(list)">
+    </button>
+  </ion-nav-buttons>
   <ion-content>
 
-   <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized" ng-init="enquiryinit()" ng-click="finish()">
-    <ion-tab title="Inbox" ui-sref="inbox">
-      <ion-nav-view name="inbox">
-          
+    <ion-tabs class="tabs-striped tabs-top tabs-background-dark tabs-color-energized" ng-init="enquiryinit()" ng-click="finish()">
+      <ion-tab title="Inbox" ui-sref="inbox">
+        <ion-nav-view name="inbox">
+
           <!-- <div class="list">
             <div ng-show="longPress">
               <button ng-click="messagedel()" style="background-color: grey;width:100%;">Delete</button>
@@ -48,30 +44,23 @@
             </ion-item>
           </ion-list> -->
           <ion-list ng-hide="enquirylist.length==0">
-          <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name[0]}}"
-                      background="random"
-                      border="none"
-                      color="white"
-                      letters="1"
-                      item="{{list}}"
-                      ng-repeat="list in enquirylist[0].inbox">
-                <span ng-click="inboxdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
+            <ion-item class="item-remove-animate" letters-of="{{list.contact_name[0]}}" background="random" border="none" color="white" letters="1" item="{{list}}" ng-repeat="list in enquirylist[0].inbox">
+              <span ng-click="inboxdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
                 <h4 ng-class="{ applybold: list.status == 'New' }">{{list.overview}}</h4></span>
-                <div class="icon item-icon-right" ng-click="moveimportant(list)">
-                  <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
-                </div> 
+              <div class="icon item-icon-right" ng-click="moveimportant(list)">
+                <i class="icon ion-ios-star float-right" ng-style="getStyle(list)"></i>
+              </div>
             </ion-item>
           </ion-list>
           <ion-list ng-show="enquirylist.length==0">
-           <ion-item class="item-remove-animate">
-              You don't have any messages  
-           </ion-item>  
+            <ion-item class="item-remove-animate">
+              You don't have any messages
+            </ion-item>
           </ion-list>
-      </ion-nav-view>
-    </ion-tab>
-    <ion-tab title="Sent" ui-sref="sent">
-       <ion-nav-view name="sent">
+        </ion-nav-view>
+      </ion-tab>
+      <ion-tab title="Sent" ui-sref="sent">
+        <ion-nav-view name="sent">
           <!-- <div class="list">
             <a class="item item-avatar" ng-repeat="list in sentlist" ng-click="sentdetail(list)">
               <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}">
@@ -80,28 +69,20 @@
             </a>   
           </div> -->
           <ion-list ng-hide="sentlist.length==0">
-          <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name[0]}}"
-                      background="random"
-                      border="none"
-                      color="white"
-                      letters="1"
-                      item="{{list}}"
-                     
-                      ng-repeat="list in sentlist[0].reply" >
-                <span ng-click="sentdetail(list)"><h2>{{list.contact_name}}</h2>
+            <ion-item class="item-remove-animate" letters-of="{{list.contact_name[0]}}" background="random" border="none" color="white" letters="1" item="{{list}}" ng-repeat="list in sentlist[0].reply">
+              <span ng-click="sentdetail(list)"><h2>{{list.contact_name}}</h2>
                 <p>{{list.reply_subject}}</p></span>
             </ion-item>
           </ion-list>
           <ion-list ng-show="sentlist.length==0">
-           <ion-item class="item-remove-animate">
-              You don't have any Send messages  
-           </ion-item>  
+            <ion-item class="item-remove-animate">
+              You don't have any Send messages
+            </ion-item>
           </ion-list>
-       </ion-nav-view>
-    </ion-tab>
-    <ion-tab title="Important" ui-sref="important">
-      <ion-nav-view name="important">
+        </ion-nav-view>
+      </ion-tab>
+      <ion-tab title="Important" ui-sref="important">
+        <ion-nav-view name="important">
           <!-- <div class="list">
             <a class="item item-avatar" ng-repeat="list in importantlist" on-long-press="itemOnLongPress(list.quickrfq_id)" on-touch-end="itemOnTouchEnd(list.quickrfq_id)">
               <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{list.product_image}}">
@@ -114,28 +95,21 @@
           </div> -->
 
           <ion-list ng-hide="importantlist.length==0">
-          <ion-item class="item-remove-animate"
-                      letters-of="{{list.contact_name[0]}}"
-                      background="random"
-                      border="none"
-                      color="white"
-                      letters="1"
-                      item="{{list}}"
-                      ng-repeat="list in importantlist[0].important" >
-                <span ng-click="importantdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
+            <ion-item class="item-remove-animate" letters-of="{{list.contact_name[0]}}" background="random" border="none" color="white" letters="1" item="{{list}}" ng-repeat="list in importantlist[0].important">
+              <span ng-click="importantdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
                 <h4 ng-class="{ applybold: list.status == 'New' }">{{list.overview}}</h4></span>
-                <div class="icon item-icon-right" ng-click="moveimportant(list)">
-                  <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
-                </div> 
+              <div class="icon item-icon-right" ng-click="moveimportant(list)">
+                <i class="icon ion-ios-star float-right" ng-style="getStyle(list)"></i>
+              </div>
             </ion-item>
           </ion-list>
           <ion-list ng-show="importantlist.length==0">
-           <ion-item class="item-remove-animate">
-              You don't have any Important messages  
-           </ion-item>  
+            <ion-item class="item-remove-animate">
+              You don't have any Important messages
+            </ion-item>
           </ion-list>
-      </ion-nav-view>
-    </ion-tab>
-   </ion-tabs>
-  </ion-content>   
+        </ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+  </ion-content>
 </ion-view>

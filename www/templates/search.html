@@ -1,40 +1,52 @@
 <ion-view view-title="Search" cache-view="false">
- <link href="css/home.css" rel="stylesheet">  
+  <link href="css/home.css" rel="stylesheet">
   <ion-nav-buttons side="left" ng-show="selldata='Edit'">
-    <button class="button button-clear" ng-click="myGoBack()" >
-    <i class="icon ion-ios-arrow-back"></i>
+    <button class="button button-clear" ng-click="myGoBack()">
+      <i class="icon ion-ios-arrow-back"></i>
     </button>
   </ion-nav-buttons>
-  <ion-content >
-     <div class="search" >
-                 <label class="item item-input ">
-                    <input type="text" ng-model="filtercat" ng-change="serachauto(filtercat)" placeholder="Search" focus-me focus-me-disable={{disableFlag}}>
-                 </label>
-             </div>
-          <!-- <button ng-click="searchResBtn(filtercat)">SEARCH</button> -->
+  <ion-content>
+    <div class="search">
+      <label class="item item-input ">
+        <input type="text" ng-model="filtercat" ng-change="serachauto(filtercat)" placeholder="Search" focus-me focus-me-disable={{disableFlag}}>
+      </label>
+    </div>
+    <!-- <button ng-click="searchResBtn(filtercat)">SEARCH</button> -->
 
-          <div  ng-repeat="prokey in searchVal.product_keywords">
-          <p ng-bind-html="prokey" ng-click="searchResFun('product_keywords',prokey)"></p> 
+    <div ng-repeat="prokey in searchVal.product_keywords">
+      <p ng-bind-html="prokey" ng-click="searchResFun('product_keywords',prokey)"></p>
 
-          </div>
-          <div ng-repeat="dupkey in searchVal.duplicate_facet ">
-          <p ng-bind-html="dupkey" ng-click="searchResFun('duplicate_facet',dupkey)"></p>
-          </div>
+    </div>
+    <div ng-repeat="dupkey in searchVal.duplicate_facet ">
+      <p ng-bind-html="dupkey" ng-click="searchResFun('duplicate_facet',dupkey)"></p>
+    </div>
 
-          <div ng-repeat="catkey0 in searchVal.categories_1"><p ng-bind-html="catkey0" ng-click="searchResFun('categories_1',catkey0)"></p></div>
-          <div ng-repeat="catkey in searchVal.categories_2"><p ng-bind-html="catkey" ng-click="searchResFun('categories_2',catkey)"></p></div>
+    <div ng-repeat="catkey0 in searchVal.categories_1">
+      <p ng-bind-html="catkey0" ng-click="searchResFun('categories_1',catkey0)"></p>
+    </div>
+    <div ng-repeat="catkey in searchVal.categories_2">
+      <p ng-bind-html="catkey" ng-click="searchResFun('categories_2',catkey)"></p>
+    </div>
 
-          <div ng-repeat="catkey1 in searchVal.categories_3"> <p ng-bind-html="catkey1" ng-click="searchResFun('categories_3',catkey1)"></p></div>
-          <div ng-repeat="catkey2 in searchVal.categories_4"> <p ng-bind-html="catkey2" ng-click="searchResFun('categories_4',catkey2)"></p></div> 
+    <div ng-repeat="catkey1 in searchVal.categories_3">
+      <p ng-bind-html="catkey1" ng-click="searchResFun('categories_3',catkey1)"></p>
+    </div>
+    <div ng-repeat="catkey2 in searchVal.categories_4">
+      <p ng-bind-html="catkey2" ng-click="searchResFun('categories_4',catkey2)"></p>
+    </div>
 
-          <div ng-repeat="sku in searchVal.sku"> <p ng-bind-html="sku" ng-click="searchResFun('sku',sku)"></p></div>
-          <div ng-show="searchVal.product_keywords.length == 0" ng-repeat="name in searchVal.name"> <p ng-bind-html="name" ng-click="searchResFun('name',name)"></p></div>
-       
-         <div ng-show="(searchVal | json) === '{}'">no data</div>
+    <div ng-repeat="sku in searchVal.sku">
+      <p ng-bind-html="sku" ng-click="searchResFun('sku',sku)"></p>
+    </div>
+    <div ng-show="searchVal.product_keywords.length == 0" ng-repeat="name in searchVal.name">
+      <p ng-bind-html="name" ng-click="searchResFun('name',name)"></p>
+    </div>
+
+    <div ng-show="(searchVal | json) === '{}'">no data</div>
 
 
 
-        <!--  <div  ng-repeat="(ss ,pp) in searchVal" ng-model="vv">
+    <!--  <div  ng-repeat="(ss ,pp) in searchVal" ng-model="vv">
         
               <div ng-repeat="val in searchVal.categories_1">
 

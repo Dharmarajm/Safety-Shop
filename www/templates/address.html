@@ -1,177 +1,181 @@
 <ion-view view-title="My Dashboard" cache-view="false">
- <link href="css/address.css" rel="stylesheet" cache-view="false">  
+  <link href="css/address.css" rel="stylesheet" cache-view="false">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
   </ion-nav-buttons>
   <ion-content style="background-color: #e0e0e0" ng-init="cusdbcode()">
-     <!-- <div ng-show="netStatus=1">      -->
-      <h4>Account Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button button-positive button-small" ng-click="addressadd()">Edit</button></h4>
-      <div class="card">
-       <div class="row">
+    <!-- <div ng-show="netStatus=1">      -->
+    <h4>Account Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button button-positive button-small" ng-click="addressadd()">Edit</button></h4>
+    <div class="card">
+      <div class="row">
         <div class="col col-25">
-         First Name
+          First Name
         </div>
         <div class="col col-75">
-         : {{addresscus.firstname}}
+          : {{addresscus.firstname}}
         </div>
-       </div>
-       <div class="row">
-        <div class="col col-25">
-         Last Name 
-        </div>
-        <div class="col col-75">
-         : {{addresscus.lastname}}
-        </div>
-       </div>
-       <div class="row">
-        <div class="col col-25">
-         Email     
-        </div>
-        <div class="col col-75">
-         : {{addresscus.email}}
-        </div>
-       </div>      
       </div>
-      <h4>Default Addresses</h4>
-      <div class="test"><h5>Billing Addresses</h5></div>
-      <div class="card" ng-show="billingAddress.length==0">
-       <div class="row">
+      <div class="row">
+        <div class="col col-25">
+          Last Name
+        </div>
+        <div class="col col-75">
+          : {{addresscus.lastname}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-25">
+          Email
+        </div>
+        <div class="col col-75">
+          : {{addresscus.email}}
+        </div>
+      </div>
+    </div>
+    <h4>Default Addresses</h4>
+    <div class="test">
+      <h5>Billing Addresses</h5></div>
+    <div class="card" ng-show="billingAddress.length==0">
+      <div class="row">
         There is no Billing address for this customer.
-       </div>
       </div>
-      <div class="card" ng-show="billingAddress!=null">
-       <div class="row">
+    </div>
+    <div class="card" ng-show="billingAddress!=null">
+      <div class="row">
         <div class="col col-23">
           Name
         </div>
         <div class="col col-75">
           <span>{{billingAddress.firstname}}</span>&nbsp;&nbsp;<span>{{billingAddress.lastname}}</span>
         </div>
-       </div>
-       <div class="row"> 
+      </div>
+      <div class="row">
         <div class="col col-23">
           Company
         </div>
         <div class="col col-75">
           <p>{{billingAddress.company}}</p>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Street
         </div>
         <div class="col col-75">
           <p>{{billingAddress.street[0]}}</p>
-        </div> 
-       </div>
-       <div class="row">
+        </div>
+      </div>
+      <div class="row">
         <div class="col col-23">
           City
         </div>
         <div class="col col-75">
           <span>{{billingAddress.city}}</span>,<span>{{billingAddress.region.region}}</span>,<span>{{billingAddress.postcode}}</span>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Country
         </div>
         <div class="col col-75">
           <p>{{billingAddress.country_id}}</p>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Telephone
         </div>
         <div class="col col-75">
           <p>{{billingAddress.telephone}}</p>
         </div>
-       </div>
       </div>
-      <div class="test"><h5>Shipping Addresses</h5></div>
-      <div class="card" ng-show="shippingAddress.length==0">
-       <div class="row">
+    </div>
+    <div class="test">
+      <h5>Shipping Addresses</h5></div>
+    <div class="card" ng-show="shippingAddress.length==0">
+      <div class="row">
         There is no Shipping address for this customer.
-        </div>
       </div>
-      <div class="card" ng-show="shippingAddress!=null">
-       <div class="row">
+    </div>
+    <div class="card" ng-show="shippingAddress!=null">
+      <div class="row">
         <div class="col col-23">
           Name
         </div>
         <div class="col col-75">
           <span>{{shippingAddress.firstname}}</span>&nbsp;&nbsp;<span>{{shippingAddress.lastname}}</span>
         </div>
-       </div>
-       <div class="row"> 
+      </div>
+      <div class="row">
         <div class="col col-23">
           Company
         </div>
         <div class="col col-75">
           <p>{{shippingAddress.company}}</p>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Street
         </div>
         <div class="col col-75">
           <p>{{shippingAddress.street[0]}}</p>
-        </div> 
-       </div>
-       <div class="row">
+        </div>
+      </div>
+      <div class="row">
         <div class="col col-23">
           City
         </div>
         <div class="col col-75">
           <span>{{shippingAddress.city}}</span>,<span>{{shippingAddress.region.region}}</span>,<span>{{shippingAddress.postcode}}</span>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Country
         </div>
         <div class="col col-75">
           <p>{{shippingAddress.country_id}}</p>
         </div>
-       </div>
-       <div class="row">
+      </div>
+      <div class="row">
         <div class="col col-23">
           Telephone
         </div>
         <div class="col col-75">
           <p>{{shippingAddress.telephone}}</p>
         </div>
-       </div>
       </div>
+    </div>
     </div>
     <!-- <div ng-show="netStatus=0">
       <center>Network connection failed</center>
     </div>   -->
-</ion-content>
+  </ion-content>
 
-  <script id="addaddress.html"  type="text/ng-template">
+  <script id="addaddress.html" type="text/ng-template">
     <ion-modal-view cache-view="false">
-          <ion-header-bar>                
-                  <div class="row headercolor">      
-                    <div class="col col-90"> <p class="titlesub">Edit Account Information</p></div>
-                    <div class="col col-10" ng-click="closeaddressmodel()"> <i class="icon ion-close-round"></i></div>
-                  </div>
-          </ion-header-bar>  
-           <ion-content style="background-color: #e0e0e0">
-             <form name="account" novalidate ng-submit="addressput(account)">
-                <p class="qusproduct">First Name</p>
-                <input type="text" name="firstname" ng-model="addresscus.firstname" ng-required="true" class="customerinput">
-                <p class="qusproduct">Last Name</p>
-                <input type="text" name="lastname" ng-model="addresscus.lastname" ng-required="true" class="customerinput">
-                <p class="qusproduct">Email</p>
-                <input type="email" name="email" ng-model="addresscus.email" ng-required="true" class="customerinput">
-                
-                <button  style="background-color: #F69222" type="submit" class="addtocart" >Save</button>
-             </form>
-           </ion-content>
-   </ion-modal-view>
-</script>
+      <ion-header-bar>
+        <div class="row headercolor">
+          <div class="col col-90">
+            <p class="titlesub">Edit Account Information</p>
+          </div>
+          <div class="col col-10" ng-click="closeaddressmodel()"> <i class="icon ion-close-round"></i></div>
+        </div>
+      </ion-header-bar>
+      <ion-content style="background-color: #e0e0e0">
+        <form name="account" novalidate ng-submit="addressput(account)">
+          <p class="qusproduct">First Name</p>
+          <input type="text" name="firstname" ng-model="addresscus.firstname" ng-required="true" class="customerinput">
+          <p class="qusproduct">Last Name</p>
+          <input type="text" name="lastname" ng-model="addresscus.lastname" ng-required="true" class="customerinput">
+          <p class="qusproduct">Email</p>
+          <input type="email" name="email" ng-model="addresscus.email" ng-required="true" class="customerinput">
+
+          <button style="background-color: #F69222" type="submit" class="addtocart">Save</button>
+        </form>
+      </ion-content>
+    </ion-modal-view>
+  </script>
 </ion-view>

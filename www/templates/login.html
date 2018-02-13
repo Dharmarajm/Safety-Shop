@@ -36,7 +36,7 @@
             <input type="text" name="firstname" ng-model="signupData.firstname" ng-required="true" style="width:100%">
           </div>
         </div>
-        
+
         <div class="col col-50">
           <div class="row">
             <p class="p" ng-class="{ 'has-error' : sigupform.lastname.$invalid && submitted }">Last Name *</p>
@@ -60,8 +60,8 @@
         </div>
 
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.dob.$invalid && submitted }">Date of Birth *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.dob.$invalid && submitted }">Date of Birth *</p>
           </div>
           <div class="row">
             <input type="date" name="dob" ng-model="signupData.dob" ng-required="true" style="width:100%">
@@ -72,8 +72,8 @@
 
       <div class="row">
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.gender.$invalid && submitted }">Gender *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.gender.$invalid && submitted }">Gender *</p>
           </div>
           <div class="row">
             <select name="gender" ng-model="signupData.gender" ng-options="test.id as test.name for test in signupData" ng-required="true" style="width:100%">
@@ -82,8 +82,8 @@
           </div>
         </div>
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.company.$invalid && submitted }">Company *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.company.$invalid && submitted }">Company *</p>
           </div>
           <div class="row">
             <input type="text" name="company" ng-model="signupData.company" ng-required="true" style="width:100%">
@@ -98,7 +98,7 @@
       <div class="row">
         <div class="col col-100">
           <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.street.$invalid && submitted }">Street *</p>
+            <p class="p" ng-class="{ 'has-error' : sigupform.street.$invalid && submitted }">Street *</p>
           </div>
           <div class="row">
             <textarea type="text" name="street" row="4" ng-model="signupData.street" ng-required="true" style="width:100%"></textarea>
@@ -108,16 +108,16 @@
 
       <div class="row">
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.city.$invalid && submitted }">City *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.city.$invalid && submitted }">City *</p>
           </div>
           <div class="row">
             <input type="text" name="city" ng-model="signupData.city" ng-required="true" style="width:100%">
           </div>
         </div>
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.postcode.$invalid && submitted }">Postcode *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.postcode.$invalid && submitted }">Postcode *</p>
           </div>
           <div class="row">
             <input type="number" name="postcode" ng-model="signupData.postcode" min="0" ng-minlength="6" ng-required="true" style="width:100%">
@@ -128,19 +128,19 @@
 
       <div class="row">
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.country.$invalid && submitted }">Country *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.country.$invalid && submitted }">Country *</p>
           </div>
-            <!-- <input type="text" name="country" ng-model="signupData.country" ng-required="true"> -->
-            <div class="row" ng-init="signupData.country='IN'">
-            <select name="country" ng-model="signupData.country"  ng-required="true" style="width:100%">
-            <option value="IN">India</option>
+          <!-- <input type="text" name="country" ng-model="signupData.country" ng-required="true"> -->
+          <div class="row" ng-init="signupData.country='IN'">
+            <select name="country" ng-model="signupData.country" ng-required="true" style="width:100%">
+              <option value="IN">India</option>
             </select>
           </div>
         </div>
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.state.$invalid && submitted }">State *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.state.$invalid && submitted }">State *</p>
           </div>
           <div class="row">
             <select name="state" ng-model="signupData.state" ng-options="region.region_id as region.name for region in getregion" ng-required="true" style="width:100%">
@@ -152,16 +152,16 @@
 
       <div class="row">
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.telephone.$invalid && submitted }">Telephone *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.telephone.$invalid && submitted }">Telephone *</p>
           </div>
           <div class="row">
             <input type="number" name="telephone" ng-model="signupData.telephone" min="0" ng-minlength="10" ng-required="true" style="width:100%">
           </div>
         </div>
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.password.$invalid && submitted }">Password *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.password.$invalid && submitted }">Password *</p>
           </div>
           <div class="row">
             <input type="password" name="password" ng-model="signupData.password" ng-required="true" style="width:100%">
@@ -172,8 +172,8 @@
 
       <div class="row">
         <div class="col col-50">
-        <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.confirmpassword.$invalid && submitted }">Confirm Password *</p>
+          <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sigupform.confirmpassword.$invalid && submitted }">Confirm Password *</p>
           </div>
           <div class="row">
             <input type="password" name="confirmpassword" ng-model="signupData.confirmpassword" ng-required="true" style="width:100%">
@@ -182,10 +182,10 @@
       </div>
 
       <div class="row">
-       <div class="col col-offset-33 col-33">
-        <button class="button button-positive button-block button-small" ng-click="dosignup(sigupform)" type="submit">Register</button>
-       </div>
-      </div>   
+        <div class="col col-offset-33 col-33">
+          <button class="button button-positive button-block button-small" ng-click="dosignup(sigupform)" type="submit">Register</button>
+        </div>
+      </div>
 
     </form>
   </ion-content>

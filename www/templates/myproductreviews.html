@@ -1,12 +1,12 @@
 <ion-view title="My Product Reviews" cache-view="false">
- <link href="css/sellerproductreviews.css" rel="stylesheet">
+  <link href="css/sellerproductreviews.css" rel="stylesheet">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
   </ion-nav-buttons>
- <ion-content ng-init="cusprorvcode()">
-  <!-- <div ng-show="netStatus=1"> -->
-   <div class="row header">
+  <ion-content ng-init="cusprorvcode()">
+    <!-- <div ng-show="netStatus=1"> -->
+    <div class="row header">
       <div class="col">Product</div>
       <div class="col">Rating</div>
       <div class="col">Review</div>
@@ -20,11 +20,13 @@
         </span>
       </div>
       <div class="col">{{data.detail}}</div>
-      <div class="col"><button class="button button-small button-positive" ng-click="myReviewdetails(data)">More</button></div>
+      <div class="col">
+        <button class="button button-small button-positive" ng-click="myReviewdetails(data)">More</button>
+      </div>
     </div>
-  <!-- </div>
+    <!-- </div>
   <div ng-show="netStatus=0">
     <center>Network connection failed</center>
   </div> -->
- </ion-content>
+  </ion-content>
 </ion-view>

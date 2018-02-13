@@ -4,24 +4,24 @@
     </button>
   </ion-nav-buttons>
   <ion-content ng-init="sellrevcode()">
-    <div class="card" ng-repeat="review in productsReview"> 
-         <div class="row">
-         <div class="col col-30">          
-             <img ng-src="{{imgurl}}{{review.image}}" style="width: 60px;height: 60px;">
-         </div>
-         <div class="col col-60">
-           <p>{{review.name}}</p>
-           <p>Overall rating:</p>
-           <p><span class="stars alignright">
+    <div class="card" ng-repeat="review in productsReview">
+      <div class="row">
+        <div class="col col-30">
+          <img ng-src="{{imgurl}}{{review.image}}" style="width: 60px;height: 60px;">
+        </div>
+        <div class="col col-60">
+          <p>{{review.name}}</p>
+          <p>Overall rating:</p>
+          <p><span class="stars alignright">
                 <span ng-style="{ 'width': getStars(review.overall_rating)}"></span>
-              </span>
-              &nbsp;(<a href="" ng-click="sellerproductre(review)">{{review.reviews_count}}&nbsp;Reviews</a>)
-           </p>
-         </div>
-         <div class="col col-10 item-center" ng-click="reviewList(review)">
-           <i class="ion-chevron-right"></i>
-         </div>
-         </div>  
+            </span>
+            &nbsp;(<a href="" ng-click="sellerproductre(review)">{{review.reviews_count}}&nbsp;Reviews</a>)
+          </p>
+        </div>
+        <div class="col col-10 item-center" ng-click="reviewList(review)">
+          <i class="ion-chevron-right"></i>
+        </div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

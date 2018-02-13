@@ -1,24 +1,24 @@
-<ion-side-menus >
+<ion-side-menus>
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable">
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-      <ion-nav-buttons side="right">    
-       <img src="img/safety_logo.jpg" style="width: 140px;height: 30px">
+      <ion-nav-buttons side="right">
+        <img src="img/safety_logo.jpg" style="width: 140px;height: 30px">
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-   <ion-header-bar class="bar-profile" ng-show="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-    <div class="profile">
+    <ion-header-bar class="bar-profile" ng-show="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
+      <div class="profile">
         <img class="profile-picture" src="http://ionicframework.com/img/docs/mcfly.jpg" />
         <h3 class="name">{{customerDetails.firstname}}</h3>
-    </div>
-   </ion-header-bar>
+      </div>
+    </ion-header-bar>
     <ion-content>
       <ion-list>
         <!-- <ion-item menu-close href="#/app/login">
@@ -27,7 +27,7 @@
         <ion-item menu-close href="#/app/sellerlogin">
           Seller Sign in
         </ion-item> -->
-       <!--  <ion-item ng-click="showacc=1">
+        <!--  <ion-item ng-click="showacc=1">
           My Account
           <ion-list>
           <ion-item
@@ -42,7 +42,11 @@
          </ion-list>
         </ion-item> -->
         <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-          <div class="row"><div class="col col-40"><a  href="#/app/login" ng-click="validateForm()">Customer Login</a></div><div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;</div><div class="col col-40"><a href="#/app/sellerlogin" ng-click="validateForm()">Seller Login</a></div></div>
+          <div class="row">
+            <div class="col col-40"><a href="#/app/login" ng-click="validateForm()">Customer Login</a></div>
+            <div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;</div>
+            <div class="col col-40"><a href="#/app/sellerlogin" ng-click="validateForm()">Seller Login</a></div>
+          </div>
         </ion-item>
         <ion-item menu-close href="#/app/home">
           Home
@@ -60,18 +64,18 @@
          Products
         </ion-item> -->
         <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-click="IsVisible=IsVisible ? false : true;">
-         Products
-           <ion-list ng-show ="IsVisible">
+          Products
+          <ion-list ng-show="IsVisible">
             <ion-item menu-close href="#/app/sellerproductadd" ng-click="clearLocal()">
               &nbsp; Add a Product
             </ion-item>
             <ion-item menu-close href="#/app/sellerproduct">
               &nbsp; Products List
             </ion-item>
-           </ion-list>
+          </ion-list>
         </ion-item>
         <ion-item ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" menu-close href="#/app/enquirydetails">
-         Enquiry Emails 
+          Enquiry Emails
         </ion-item>
         <ion-item menu-close href="#/app/sellerreviews" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
           Product Reviews
@@ -81,25 +85,25 @@
         </ion-item>
         <ion-item menu-close href="#/app/myenquiries" ng-show="customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4">
           My Enquiries
-         </ion-item>
-        
-         <ion-item menu-close href="#/app/selleradvertisement" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
+        </ion-item>
+
+        <ion-item menu-close href="#/app/selleradvertisement" ng-show="customerDetails.group_id==4" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
           Advertisements
-         </ion-item>
-         <ion-item href="#/app/myinbox" ng-show="customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4" menu-close>
+        </ion-item>
+        <ion-item href="#/app/myinbox" ng-show="customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4" menu-close>
           My Inbox
         </ion-item>
         <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
           About Us
-         </ion-item>
-          <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
+        </ion-item>
+        <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
           Contact Us
-         </ion-item>
-         
-         <ion-item menu-close ng-show="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null" ng-click="signOut()">
+        </ion-item>
+
+        <ion-item menu-close ng-show="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null" ng-click="signOut()">
           sign out
-        </ion-item> 
-         <!-- <ion-item menu-close href="#/app/wishlist">
+        </ion-item>
+        <!-- <ion-item menu-close href="#/app/wishlist">
           Your wishlists
          </ion-item>
           <ion-item menu-close href="#/app/cart">

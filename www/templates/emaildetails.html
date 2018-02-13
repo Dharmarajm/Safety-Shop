@@ -1,321 +1,323 @@
 <ion-view view-title="{{message}}" cache-view="false">
-   <ion-nav-buttons side="left">
-      <button class="button button-clear" ng-click="myGoBack()" >
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="myGoBack()">
       <i class="icon ion-ios-arrow-back"></i>
-      </button>
-   </ion-nav-buttons>
+    </button>
+  </ion-nav-buttons>
   <ion-content>
-      <div class="card" ng-if="message=='Message'">  
-        <div class="row">
-         <div class="col col-50">
+    <div class="card" ng-if="message=='Message'">
+      <div class="row">
+        <div class="col col-50">
           ID
-         </div>
-         <div class="col col-50">
-          {{getinboxId.quickrfq_id}} 
-         </div>
         </div>
-         <div class="row">
-          <div class="col col-50 title-center">
-           Product Image
-          </div>
-          <div class="col col-50">
-            <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getinboxId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
-          </div>
-         </div>
-           <div class="row">
-            <div class="col col-50">
-              Product Name
-            </div>
-            <div class="col col-50">
-              {{getinboxId.product_name}}
-            </div>
-           </div>
-             <div class="row">
-              <div class="col col-50">
-                Product Sku
-              </div>
-              <div class="col col-50">
-                {{getinboxId.product_sku}}
-              </div>
-             </div>
-              <div class="row">
-               <div class="col col-50">
-                 Contact Name
-               </div>
-               <div class="col col-50">
-                {{getinboxId.contact_name}}
-               </div>
-              </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Phone
-                 </div>
-                 <div class="col col-50">
-                  {{getinboxId.phone}}
-                 </div>
-                </div>
-                 <div class="row">
-                  <div class="col col-50">
-                   Email
-                  </div>
-                  <div class="col col-50">
-                   {{getinboxId.email}}
-                  </div>
-                 </div>
-                <div class="row">
-                  <div class="col col-50">
-                   Overview
-                  </div>
-                  <div class="col col-50">
-                   {{getinboxId.overview}}
-                  </div>
-                </div> 
-               <div class="row">
-                <div class="col col-50">
-                 City
-                </div>
-                <div class="col col-50">
-                 {{getinboxId.city}}
-                </div>
-               </div>
-              <div class="row">
-               <div class="col col-50">
-                Status
-               </div>
-               <div class="col col-50">
-                {{getinboxId.status}}
-               </div>
-              </div>
-             <div class="row">
-              <div class="col col-50">
-              Date
-              </div>
-              <div class="col col-50">
-              {{getinboxId.create_date | date}}
-              </div>
-             </div>
-           <div class="row">
-            <div class="col col-50">
-             Action
-            </div>
-            <div class="col col-50">
-              <button  ng-click="msgreply(getinboxId.quickrfq_id)" class="button button-small button-positive" >Reply</button>
-            </div>
-           </div>
+        <div class="col col-50">
+          {{getinboxId.quickrfq_id}}
+        </div>
       </div>
-
-      <div class="card" ng-if="message=='Sent Message'">  
-          <div class="row">
-           <div class="col col-50">
-            ID
-           </div>
-           <div class="col col-50">
-            {{getsentId.quickrfq_id}} 
-           </div>
-          </div>
-           <div class="row">
-            <div class="col col-50 title-center">
-             Product Image
-            </div>
-            <div class="col col-50">
-             <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getsentId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
-            </div>
-           </div>
-              <div class="row">
-               <div class="col col-50">
-                 Product Name
-               </div>
-               <div class="col col-50">
-                 {{getsentId.product_name}}
-               </div>
-              </div>
-                 <div class="row">
-                  <div class="col col-50">
-                    Product Sku
-                  </div>
-                  <div class="col col-50">
-                    {{getsentId.product_sku}}
-                  </div>
-                 </div>
-                <div class="row">
-                 <div class="col col-50">
-                   Contact Name
-                 </div>
-                 <div class="col col-50">
-                  {{getsentId.contact_name}}
-                 </div>
-                </div>
-               <div class="row">
-                <div class="col col-50">
-                  Subject
-                </div>
-                <div class="col col-50">
-                 {{getsentId.reply_subject}}
-                </div>
-               </div>
-              <div class="row">
-               <div class="col col-50">
-                 Message
-               </div>
-               <div class="col col-50">
-                {{getsentId.reply_message}}
-               </div>
-              </div>
-            <div class="row">
-             <div class="col col-50">
-               Date
-             </div>
-             <div class="col col-50">
-              {{getsentId.create_date}}
-             </div>
-            </div>
+      <div class="row">
+        <div class="col col-50 title-center">
+          Product Image
+        </div>
+        <div class="col col-50">
+          <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getinboxId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+        </div>
       </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Name
+        </div>
+        <div class="col col-50">
+          {{getinboxId.product_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Sku
+        </div>
+        <div class="col col-50">
+          {{getinboxId.product_sku}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Contact Name
+        </div>
+        <div class="col col-50">
+          {{getinboxId.contact_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Phone
+        </div>
+        <div class="col col-50">
+          {{getinboxId.phone}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Email
+        </div>
+        <div class="col col-50">
+          {{getinboxId.email}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Overview
+        </div>
+        <div class="col col-50">
+          {{getinboxId.overview}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          City
+        </div>
+        <div class="col col-50">
+          {{getinboxId.city}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Status
+        </div>
+        <div class="col col-50">
+          {{getinboxId.status}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Date
+        </div>
+        <div class="col col-50">
+          {{getinboxId.create_date | date}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Action
+        </div>
+        <div class="col col-50">
+          <button ng-click="msgreply(getinboxId.quickrfq_id)" class="button button-small button-positive">Reply</button>
+        </div>
+      </div>
+    </div>
 
-      <div class="card" ng-if="message=='Important Message'">  
-        <div class="row">
-         <div class="col col-50">
+    <div class="card" ng-if="message=='Sent Message'">
+      <div class="row">
+        <div class="col col-50">
           ID
-         </div>
-         <div class="col col-50">
-          {{getimportantId.quickrfq_id}} 
-         </div>
         </div>
-         <div class="row">
-          <div class="col col-50 title-center">
-           Product Image
-          </div>
-          <div class="col col-50">
-            <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getimportantId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
-          </div>
-         </div>
-           <div class="row">
-            <div class="col col-50">
-              Product Name
-            </div>
-            <div class="col col-50">
-              {{getimportantId.product_name}}
-            </div>
-           </div>
-             <div class="row">
-              <div class="col col-50">
-                Product Sku
-              </div>
-              <div class="col col-50">
-                {{getimportantId.product_sku}}
-              </div>
-             </div>
-              <div class="row">
-               <div class="col col-50">
-                 Contact Name
-               </div>
-               <div class="col col-50">
-                {{getimportantId.contact_name}}
-               </div>
-              </div>
-                <div class="row">
-                 <div class="col col-50">
-                  Phone
-                 </div>
-                 <div class="col col-50">
-                  {{getimportantId.phone}}
-                 </div>
-                </div>
-                 <div class="row">
-                  <div class="col col-50">
-                   Email
-                  </div>
-                  <div class="col col-50">
-                   {{getimportantId.email}}
-                  </div>
-                 </div>
-                <div class="row">
-                  <div class="col col-50">
-                   Overview
-                  </div>
-                  <div class="col col-50">
-                   {{getimportantId.overview}}
-                  </div>
-                </div>  
-               <div class="row">
-                <div class="col col-50">
-                 City
-                </div>
-                <div class="col col-50">
-                 {{getimportantId.city}}
-                </div>
-               </div>
-              <div class="row">
-               <div class="col col-50">
-                Status
-               </div>
-               <div class="col col-50">
-                {{getimportantId.status}}
-               </div>
-              </div>
-             <div class="row">
-              <div class="col col-50">
-              Date
-              </div>
-              <div class="col col-50">
-              {{getimportantId.create_date | date}}
-              </div>
-             </div>
-           <div class="row">
-            <div class="col col-50">
-             Action
-            </div>
-            <div class="col col-50">
-              <button  ng-click="msgreply(getimportantId.quickrfq_id)" class="button button-small button-positive" >Reply</button>
-            </div>
-           </div>
-      </div> 
+        <div class="col col-50">
+          {{getsentId.quickrfq_id}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50 title-center">
+          Product Image
+        </div>
+        <div class="col col-50">
+          <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getsentId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Name
+        </div>
+        <div class="col col-50">
+          {{getsentId.product_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Sku
+        </div>
+        <div class="col col-50">
+          {{getsentId.product_sku}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Contact Name
+        </div>
+        <div class="col col-50">
+          {{getsentId.contact_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Subject
+        </div>
+        <div class="col col-50">
+          {{getsentId.reply_subject}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Message
+        </div>
+        <div class="col col-50">
+          {{getsentId.reply_message}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Date
+        </div>
+        <div class="col col-50">
+          {{getsentId.create_date}}
+        </div>
+      </div>
+    </div>
+
+    <div class="card" ng-if="message=='Important Message'">
+      <div class="row">
+        <div class="col col-50">
+          ID
+        </div>
+        <div class="col col-50">
+          {{getimportantId.quickrfq_id}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50 title-center">
+          Product Image
+        </div>
+        <div class="col col-50">
+          <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{getimportantId.product_image}}" alt="Mountain View" style="width: 60px;height: 60px;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Name
+        </div>
+        <div class="col col-50">
+          {{getimportantId.product_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Product Sku
+        </div>
+        <div class="col col-50">
+          {{getimportantId.product_sku}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Contact Name
+        </div>
+        <div class="col col-50">
+          {{getimportantId.contact_name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Phone
+        </div>
+        <div class="col col-50">
+          {{getimportantId.phone}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Email
+        </div>
+        <div class="col col-50">
+          {{getimportantId.email}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Overview
+        </div>
+        <div class="col col-50">
+          {{getimportantId.overview}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          City
+        </div>
+        <div class="col col-50">
+          {{getimportantId.city}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Status
+        </div>
+        <div class="col col-50">
+          {{getimportantId.status}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Date
+        </div>
+        <div class="col col-50">
+          {{getimportantId.create_date | date}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          Action
+        </div>
+        <div class="col col-50">
+          <button ng-click="msgreply(getimportantId.quickrfq_id)" class="button button-small button-positive">Reply</button>
+        </div>
+      </div>
+    </div>
   </ion-content>
 
-  <script id="actionReply.html"  type="text/ng-template">          
-          <ion-modal-view>
-                  <ion-header-bar>                
-                  <div class="row headercolor">      
-                  <div class="col col-90"> <p class="titlesub">RFQ Reply</p></div>
-                  <div class="col col-10" ng-click="closemsgdetails()"> <i class="icon ion-close-round"></i></div>
-                  </div>
-                  </ion-header-bar>  
-                  <ion-content style="background-color: #e0e0e0">               
+  <script id="actionReply.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar>
+        <div class="row headercolor">
+          <div class="col col-90">
+            <p class="titlesub">RFQ Reply</p>
+          </div>
+          <div class="col col-10" ng-click="closemsgdetails()"> <i class="icon ion-close-round"></i></div>
+        </div>
+      </ion-header-bar>
+      <ion-content style="background-color: #e0e0e0">
 
-                  <form name="message" novalidate>
-                      <!-- <div class="list">
+        <form name="message" novalidate>
+          <!-- <div class="list">
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
-                      <p class="qusproduct">Reply Subject *</p>
-                           <input type="text" name="subject" ng-model="reply.subject" ng-required="true" class="customerinput">
-                           <span style="color:red;margin-left: 19px;" ng-show="message.subject.$error.required && submitted">Subject is required</span>
-                        <!-- </label>   
+          <p class="qusproduct">Reply Subject *</p>
+          <input type="text" name="subject" ng-model="reply.subject" ng-required="true" class="customerinput">
+          <span style="color:red;margin-left: 19px;" ng-show="message.subject.$error.required && submitted">Subject is required</span>
+          <!-- </label>   
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
-                           <p class="qusproduct">Reply Message *</p>
-                           <input type="text" name="message" ng-model="reply.message" ng-required="true" class="customerinput">
-                           <span style="color:red;margin-left: 19px;" ng-show="message.message.$error.required && submitted">Message is required</span>
-                        <!-- </label>   
+          <p class="qusproduct">Reply Message *</p>
+          <input type="text" name="message" ng-model="reply.message" ng-required="true" class="customerinput">
+          <span style="color:red;margin-left: 19px;" ng-show="message.message.$error.required && submitted">Message is required</span>
+          <!-- </label>   
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
-                           <p class="qusproduct">Secondary Email</p>
-                           <input type="email" name="secondarymail" ng-model="reply.secondarymail" class="customerinput">
-                        <!-- </label>
+          <p class="qusproduct">Secondary Email</p>
+          <input type="email" name="secondarymail" ng-model="reply.secondarymail" class="customerinput">
+          <!-- </label>
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span>    -->
-                           <p class="qusproduct">Attachment</p>
-                            <!-- <input type="file" ng-model="reply.attachment" class="msgattach" ng-click="pickfile()"> -->
-                           <!-- <input type="file" id="fileu" style="display:none" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().fileNameChanged(this)" />
+          <p class="qusproduct">Attachment</p>
+          <!-- <input type="file" ng-model="reply.attachment" class="msgattach" ng-click="pickfile()"> -->
+          <!-- <input type="file" id="fileu" style="display:none" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().fileNameChanged(this)" />
                            <button class="msgattach" ng-click="upload()">Choose File</button>
                            <span>{{getattachfilename}}</span> -->
-                          <form name="fileform" novalidate>
-                            <input type="file" ng-model="image" class="msgattach" name="image" id="uploadFile" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().uploadImage(this)" />
-                          </form>  
-                           <button style="background-color: #F69222" ng-click="replySubmit(message,reply,getId)" type="submit" class="addtocart" >Send</button>
-                      <!-- </div> -->
-                  </form>               
+          <form name="fileform" novalidate>
+            <input type="file" ng-model="image" class="msgattach" name="image" id="uploadFile" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().uploadImage(this)" />
+          </form>
+          <button style="background-color: #F69222" ng-click="replySubmit(message,reply,getId)" type="submit" class="addtocart">Send</button>
+          <!-- </div> -->
+        </form>
 
-                  </ion-content>
-         </ion-modal-view>
+      </ion-content>
+    </ion-modal-view>
   </script>
-     
+
 </ion-view>

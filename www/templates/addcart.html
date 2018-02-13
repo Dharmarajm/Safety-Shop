@@ -1,15 +1,15 @@
 <ion-view view-title="Cart" cache-view="false">
- <link href="css/category.css" rel="stylesheet" cache-view="false">  
+  <link href="css/category.css" rel="stylesheet" cache-view="false">
   <ion-content style="background-color: #e0e0e0">
- 
-   <div class="row cardproductlist" >      
-                     <div class="col col-30">  
-                        <img ng-src="http://tools.yantra24x7.com/sample/pub/media/catalog/product{{cardlist.custom_attributes[4].value}}" class="listimg">
-                     </div>
-                     <div class="col col-70"> 
-                        <p class="titleproduct">{{cardlist.name}}</p> 
-                        <button ng-click="cartRemove(carditemlist)">remove</button>  
-                     </div>
-                </div>
-</ion-content>
+
+    <div class="row cardproductlist">
+      <div class="col col-30">
+        <img ng-src="http://tools.yantra24x7.com/sample/pub/media/catalog/product{{cardlist.custom_attributes[4].value}}" class="listimg">
+      </div>
+      <div class="col col-70">
+        <p class="titleproduct">{{cardlist.name}}</p>
+        <button ng-click="cartRemove(carditemlist)">remove</button>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

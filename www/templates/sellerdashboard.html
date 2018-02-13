@@ -10,61 +10,61 @@
           <i class="icon ion-android-cart"></i>
           <h2>Total Products</h2>
           <p>{{selldashboard.total_products}}</p>
-        </div> 
+        </div>
       </div>
       <div class="col col-50">
         <div class="item item-avatar">
           <i class="icon ion-search"></i>
           <h2>Total Enquiries</h2>
           <p>{{selldashboard.total_enquiry}}</p>
-        </div> 
+        </div>
       </div>
     </div>
-    <div class="row">  
+    <div class="row">
       <div class="col col-50">
         <div class="item item-avatar">
           <i class="icon ion-android-share-alt"></i>
           <h2>Enquiry Reply</h2>
           <p>{{selldashboard.total_reply}}</p>
-        </div> 
+        </div>
       </div>
       <div class="col col-50">
         <div class="item item-avatar">
           <i class="icon ion-arrow-graph-up-right"></i>
           <h2>Reviews</h2>
           <p>{{selldashboard.total_review}}</p>
-        </div> 
+        </div>
       </div>
     </div>
     <div class="card">
-        <div class="item item-divider">
-            Top Performing Categories
-        </div>
-        <div class="item item-text-wrap">
-            <canvas id="pie" class="chart chart-pie" chart-data="piedata" chart-labels="pielabels" chart-options="options">
-            </canvas>  
-        </div>
+      <div class="item item-divider">
+        Top Performing Categories
+      </div>
+      <div class="item item-text-wrap">
+        <canvas id="pie" class="chart chart-pie" chart-data="piedata" chart-labels="pielabels" chart-options="options">
+        </canvas>
+      </div>
     </div>
     <div class="card">
-        <div class="item item-divider">
-            Top Performing Categories
+      <div class="item item-divider">
+        Top Performing Categories
+      </div>
+      <div class="item item-text-wrap" ng-repeat="progress in selldashboard.top_review_products">
+        <p class="percent">{{progress.overall_rating}}%</p>
+        <div class="loader" style="width: {{progress.overall_rating}}%;">
+          <!-- <progress max="100" value="80"></progress> -->
         </div>
-        <div class="item item-text-wrap" ng-repeat="progress in selldashboard.top_review_products">
-		    <p class="percent">{{progress.overall_rating}}%</p>
-		    <div class="loader" style="width: {{progress.overall_rating}}%;">
-		    	<!-- <progress max="100" value="80"></progress> -->
-		    </div>
-		    <p class="percent">{{progress.name}}</p>
+        <p class="percent">{{progress.name}}</p>
 
-	    </div>
+      </div>
     </div>
     <div class="card">
-        <div class="item item-divider">
-            Top Performing Categories
-        </div>
-        <div class="item item-text-wrap">
-            <canvas id="bar" class="chart chart-bar" chart-data="databar" chart-labels="labelsbar" chart-series="seriesbar"></canvas>
-        </div>
+      <div class="item item-divider">
+        Top Performing Categories
+      </div>
+      <div class="item item-text-wrap">
+        <canvas id="bar" class="chart chart-bar" chart-data="databar" chart-labels="labelsbar" chart-series="seriesbar"></canvas>
+      </div>
     </div>
   </ion-content>
 </ion-view>
