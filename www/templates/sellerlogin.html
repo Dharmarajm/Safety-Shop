@@ -145,35 +145,60 @@
             <div class="row"> <input  type="text" name="city" ng-model="sell.city" ng-required="true" style="width:100%">
             </div>
           </div>
-          <div class="col col-50">
-          <div class="row"> 
-            <p class="p" ng-class="{ 'has-error' : sellersigupform.state.$invalid && submitted }">State *</p>
-            </div>
-            <div class="row"> <input  type="text" name="state" ng-model="sell.state" ng-required="true" style="width:100%"></div>
-          </div>
-        </div>
 
-        <div class="row">
           <div class="col col-50">
+           <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.country.$invalid && submitted }">Country *</p>
+           </div>
+            <!-- <input type="text" name="country" ng-model="signupData.country" ng-required="true"> -->
+            <div class="row" ng-init="sell.country='India'">
+             <select name="country" ng-model="sell.country"  ng-required="true" style="width:100%">
+              <option value="India">India</option>
+             </select>
+            </div>
+          </div>
+
+          <!-- <div class="col col-50">
           <div class="row"> 
             <p class="p" ng-class="{ 'has-error' : sellersigupform.country.$invalid && submitted }">Country *</p>
             </div>
             <div class="row"> 
             <input  type="text" name="country" ng-model="sell.country" ng-required="true" style="width:100%">
             </div>
-          </div>
+          </div> -->
+        </div>
+
+        <div class="row">
+          <!-- <div class="col col-50">
+            <div class="row"> 
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.state.$invalid && submitted }">State *</p>
+            </div>
+            <div class="row"> <input  type="text" name="state" ng-model="sell.state" ng-required="true" style="width:100%"></div>
+          </div> -->
           <div class="col col-50">
-          <div class="row"> 
-            <p class="p" ng-class="{ 'has-error' : sellersigupform.pinCode.$invalid && submitted }">Pin Code *</p>
+           <div class="row">
+            <p class="p" ng-class="{ 'has-error' : sellersigupform.state.$invalid && submitted }">State *</p>
+           </div>
+           <div class="row">
+             <select name="state" ng-model="sell.state" ng-options="region.default_name as region.name for region in getregion" ng-required="true" style="width:100%">
+              <option value="">Select State</option>
+             </select>
+           </div>
+          </div>
+
+          <div class="col col-50">
+            <div class="row"> 
+             <p class="p" ng-class="{ 'has-error' : sellersigupform.pinCode.$invalid && submitted }">Pin Code *</p>
             </div>
             <div class="row"> 
-            <input  type="number" name="pinCode" ng-model="sell.pinCode" ng-minlength="6" ng-required="true" style="width:100%">
+             <input  type="number" name="pinCode" ng-model="sell.pinCode" ng-minlength="6" ng-required="true" style="width:100%">
             </div>
           </div>
         </div>
+
         <div class="row">
          <div class="col col-offset-33 col-33">
-          <button ng-click="sellerSign(sellersigupform)" class="button button-positive button-block button-small" type="submit">Register</button>
+          <button ng-click="sellerSignup(sellersigupform)" class="button button-positive button-block button-small" type="submit">Register</button>
          </div>
         </div>  
     </form>

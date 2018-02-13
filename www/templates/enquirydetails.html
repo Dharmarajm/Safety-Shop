@@ -56,8 +56,8 @@
                       letters="1"
                       item="{{list}}"
                       ng-repeat="list in enquirylist[0].inbox">
-                <span ng-click="inboxdetail(list)"><h2>{{list.contact_name}}</h2>
-                <p>{{list.overview}}</p></span>
+                <span ng-click="inboxdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
+                <h4 ng-class="{ applybold: list.status == 'New' }">{{list.overview}}</h4></span>
                 <div class="icon item-icon-right" ng-click="moveimportant(list)">
                   <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
                 </div> 
@@ -122,8 +122,8 @@
                       letters="1"
                       item="{{list}}"
                       ng-repeat="list in importantlist[0].important" >
-                <span ng-click="importantdetail(list)"><h2>{{list.contact_name}}</h2>
-                <p>{{list.overview}}</p></span>
+                <span ng-click="importantdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.contact_name}}</h2>
+                <h4 ng-class="{ applybold: list.status == 'New' }">{{list.overview}}</h4></span>
                 <div class="icon item-icon-right" ng-click="moveimportant(list)">
                   <i class="icon ion-ios-star float-right" ng-style ="getStyle(list)"></i>
                 </div> 

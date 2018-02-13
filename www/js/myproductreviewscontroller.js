@@ -4,12 +4,28 @@ angular.module('Myreview', ['ionic-ratings'])
     
     $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
     /*console.log($rootScope.customerDetails)*/
-  	$http.get(baseUrl+'review/customer/reviews/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+  	
+    $scope.cusprorvcode=function(){
+      $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0
+          });
+
+      $http.get(baseUrl+'review/customer/reviews/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){ 
-        console.log(response)
+         console.log(response)
          $rootScope.getMyReviews=response.data[0].reviews;
          console.log($rootScope.getMyReviews)
-        })
+         
+         $timeout(function () {
+          $ionicLoading.hide();
+         });
+        })     
+    }
+    
 
     $scope.getStars = function(rating) {
      var val = parseFloat(rating);

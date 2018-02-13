@@ -5,7 +5,7 @@
     </button>
   </ion-nav-buttons>  
   <ion-content ng-init="categoryinit()">
-              <div ng-repeat="catvalue in resvalue | filter:filtercat" ng-show="catvalue.is_active == true;" >
+              <div ng-repeat="catvalue in resvalue | filter:filtercat" ng-show="catvalue.is_active == true;">
               <button class="mainbutton" type="submit"  ng-click="mainCategory(catvalue.id)">{{catvalue.name}}</button><br>
 
               <div class="subbutton"  ng-repeat="subcat in resvalue1" ng-show ="IsVisible" 
@@ -13,6 +13,9 @@
                 
                  </div> 
              </div>
+             <!-- <div ng-show="netStatus=0">
+               <center>Network connection failed</center>
+             </div> -->
       
        </ion-content>
 

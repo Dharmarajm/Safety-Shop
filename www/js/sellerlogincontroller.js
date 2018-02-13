@@ -4,7 +4,18 @@ angular.module('login', [])
 
 $scope.names=[{id:1,name:"Male"},{id:2,name:"Female"}];
 $scope.submitted=false;
-$scope.sellerSign=function(form){
+
+ $http.get(baseUrl+'country/list',{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+  }).then(function onSuccess(response){
+    $scope.getCountry=response.data[0].countries;
+   // $scope.signupData.country=response.data[0].countries[100].label
+    $scope.getregion=response.data[0].regions;
+    console.log($scope.getregion)
+    console.log($scope.getCountry)
+  })
+
+$scope.sellerSignup=function(form){
+  
  if(form.firstname.$valid && form.lastname.$valid && form.emailId.$valid && form.dob.$valid && form.gender.$valid && form.shopName.$valid && form.shopAddress.$valid && form.city.$valid && form.pinCode.$valid && form.state.$valid && form.country.$valid && form.mobileNo.$valid && form.password.$valid && form.confirmPassword.$valid){  
   if($scope.sell.password==$scope.sell.confirmPassword){
     $ionicLoading.show({
@@ -120,7 +131,7 @@ $scope.sellerloginData = {username :"", password :""};
                                      }).then(function(response){ 
                                     $rootScope.groupID=response.data.group_id;
                                     localStorage.setItem("sscustomer",JSON.stringify(response.data))
-                                 $state.go('app.home');
+                                 $state.go('app.sellerdashboard');
                                 /*$ionicHistory.goBack();*/
                                 
                                })

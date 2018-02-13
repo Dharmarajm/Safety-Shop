@@ -7,7 +7,7 @@
 
 angular.module('starter', ['ionic', 'starter.controllers','address','login','home','wishlist','search','category','cart','productdetail','sellerprod','sellerproductdetail','sellerproductadd','ngCordova','enquiry','review','advertisement','SellerProductreviews','Myreview','Myenquiries','Myinbox','sellerDashboard','chart.js'])
 
-.run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory,$ionicSlideBoxDelegate,$timeout) {
+.run(function($ionicPlatform,$ionicPopup,$rootScope,$state,$ionicHistory,$ionicSlideBoxDelegate,$timeout,$ionicLoading) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -43,6 +43,9 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    document.addEventListener("offline", onOffline, false);
 
      function onOffline() {
+       $timeout(function () {
+         $ionicLoading.hide();
+       });
        $rootScope.netStatus=0;
         // Handle the offline event
         alert('you are offline');
@@ -50,8 +53,12 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
      document.addEventListener("online", isOnline, false);
       function isOnline() {
        $rootScope.netStatus=1;
+       if($state.current.name=='app.home' || $state.current.name=='app.category' || $state.current.name=='app.sellerdashboard' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
+         $state.reload();
+       }
         // Handle the offline event
         alert('you are online');
+        console.log($rootScope.netStatus)
      }
   });
   
@@ -123,7 +130,7 @@ angular.module('starter', ['ionic', 'starter.controllers','address','login','hom
    };
    if($state.current.name=='app.sellerproductadd' && $rootScope.selldata=='Edit'){
       $ionicHistory.goBack();
-   }else if($state.current.name=='app.home' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.category' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
+   }else if($state.current.name=='app.home' || $state.current.name=='app.category' || $state.current.name=='app.sellerdashboard' || $state.current.name=='app.sellerproductadd' || $state.current.name=='app.sellerproduct' || $state.current.name=='app.enquirydetails' || $state.current.name=='app.sellerreviews' || $state.current.name=='app.selleradvertisement' || $state.current.name=='app.myproductreviews' || $state.current.name=='app.myenquiries' || $state.current.name=='app.myinbox' || $state.current.name=='app.address'){
       showConfirm();
    }else{
      $ionicHistory.goBack();

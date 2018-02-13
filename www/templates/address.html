@@ -1,7 +1,11 @@
 <ion-view view-title="My Dashboard" cache-view="false">
  <link href="css/address.css" rel="stylesheet" cache-view="false">  
-
-  <ion-content style="background-color: #e0e0e0">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+  <ion-content style="background-color: #e0e0e0" ng-init="cusdbcode()">
+     <!-- <div ng-show="netStatus=1">      -->
       <h4>Account Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button button-positive button-small" ng-click="addressadd()">Edit</button></h4>
       <div class="card">
        <div class="row">
@@ -142,6 +146,10 @@
         </div>
        </div>
       </div>
+    </div>
+    <!-- <div ng-show="netStatus=0">
+      <center>Network connection failed</center>
+    </div>   -->
 </ion-content>
 
   <script id="addaddress.html"  type="text/ng-template">

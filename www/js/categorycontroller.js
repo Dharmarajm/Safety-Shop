@@ -162,7 +162,6 @@ $rootScope.loadshow=false;
               $rootScope.loadshow=true;
               }                      
               }
-
    
 })
 

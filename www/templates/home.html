@@ -12,6 +12,7 @@
  -->
 
   <ion-content ng-init="dashboardinit()" ng-cloak>
+    <!-- <div ng-show="netStatus=1"> -->
      <div class="search">
                  <label class="item item-input ">
                     <input type="text" ng-click="serachgo()" placeholder="Search">
@@ -99,8 +100,12 @@
             </div> 
           </ion-slide>
         </ion-slide-box>  
-     
-
+     <!-- </div>
+     <div ng-show="netStatus=0">
+       <center>Network connection failed</center>
+     </div> -->
+ </ion-content>
+</ion-view>
 
 
 
@@ -109,5 +114,4 @@
 
 
 
-  </ion-content>
-</ion-view>
+ 

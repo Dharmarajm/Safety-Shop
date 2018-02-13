@@ -2,6 +2,13 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 .controller('EnquiryCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker,$ionicLetterAvatarSelector,$filter) {
  
  $scope.enquiryinit=function(){
+  $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0
+          });
   $scope.datematch= $filter('date')(new Date(), 'yyyy-MM-dd');
   var data={
             "seller_id": $rootScope.customerDetails.id,
@@ -32,9 +39,10 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }).then(function(response){                     
      $rootScope.sentlist=response.data;
      console.log($rootScope.sentlist)
-    }) 
-
-  
+     $timeout(function () {
+       $ionicLoading.hide();
+     });
+    })  
  } 
 
  
@@ -326,7 +334,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
   }*/
 
   $scope.getfile=[];
-
+  $scope.fileform={};
 //   $scope.upload = function(){
 //     $scope.getattachfilename="No file chosen";
 //     $scope.getfile=[];
@@ -368,6 +376,8 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
 //   }
 
   $scope.uploadImage = function (filoename) {
+    $scope.filoename=filoename;
+    console.log(filoename)
     $scope.getfile=[];
     var preview;
     if(filoename.files.length!=0){
@@ -389,9 +399,12 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
         }
       }else{
         $scope.getfile=[];
-        $scope.image="";
-        document.getElementById("uploadFile").value = "";
-        $scope.$apply();
+        $scope.filoename="";
+        /*document.getElementById("uploadFile").reset();*/
+        $scope.image={};
+        alert("Selected file is too big")
+        /*document.getElementById("uploadFile").value = "";*/
+        /*$scope.$apply();*/
         /*function clearFileInput(id) 
         { 
             var oldInput = document.getElementById(id); 
@@ -409,7 +422,7 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
             oldInput.parentNode.replaceChild(newInput, oldInput); 
         }
         clearFileInput("uploadFile");*/
-        alert("Selected file is too big")
+        
       }
     }
   } 

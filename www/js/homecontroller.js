@@ -4,6 +4,9 @@ angular.module('home', [])
 
 
 $scope.submitted=false;
+
+console.log($rootScope.netStatus)
+
 $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
 $rootScope.authCode=localStorage.getItem("ssauthcode");
                       $scope.dashboardinit=function(){ 
@@ -147,6 +150,8 @@ $rootScope.ProductList= response.data.items;
        // $scope.$on('$ionicView.leave', function(){
        //  $scope.slideBox.stop();
        // });
+      
+
       
 
 })

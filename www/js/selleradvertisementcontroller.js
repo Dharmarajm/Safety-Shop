@@ -4,13 +4,27 @@ angular.module('advertisement', [])
   $scope.imgurl=imageUrl;
   $rootScope.authCode=localStorage.getItem("ssauthcode");
   $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
+  $scope.selladcode=function(){
+    
+    $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0
+          });
 
-  $http.get(baseUrl+'seller/share/'+$rootScope.customerDetails.id,{
+    $http.get(baseUrl+'seller/share/'+$rootScope.customerDetails.id,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){
-      	$scope.productadvertise=response.data[0].products;
-      	console.log($scope.productadvertise)
-      })
+        $scope.productadvertise=response.data[0].products;
+        console.log($scope.productadvertise)
+        $timeout(function () {
+          $ionicLoading.hide();
+          });
+      })    
+  }
+  
 
     $scope.advertise=function(list){
        $rootScope.advertiselist=list;

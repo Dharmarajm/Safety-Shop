@@ -4,7 +4,8 @@
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
   </ion-nav-buttons>
- <ion-content>
+ <ion-content ng-init="cusprorvcode()">
+  <!-- <div ng-show="netStatus=1"> -->
    <div class="row header">
       <div class="col">Product</div>
       <div class="col">Rating</div>
@@ -21,5 +22,9 @@
       <div class="col">{{data.detail}}</div>
       <div class="col"><button class="button button-small button-positive" ng-click="myReviewdetails(data)">More</button></div>
     </div>
+  <!-- </div>
+  <div ng-show="netStatus=0">
+    <center>Network connection failed</center>
+  </div> -->
  </ion-content>
 </ion-view>

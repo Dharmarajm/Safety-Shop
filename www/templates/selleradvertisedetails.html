@@ -62,16 +62,14 @@
           {{advertiselist.display_status}}
          </div>
         </div>
-        <div class="row">
+<!--         <div class="row">
          <div class="col col-50">
           Share
          </div>
          <div class="col col-50">
            <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="sharefb('','',advertiselist.url)"><i class="icon ion-social-facebook"></i></button>
-          <!-- <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="shareImg2('','',advertiselist.url)"><i class="icon ion-social-whatsapp"></i></button>
-          <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="shareImg3('','',advertiselist.url)"><i class="icon ion-social-twitter"></i></button> -->
          </div>
-        </div>
+        </div> -->
         <div class="row">
          <div class="col col-50">
           Last Share
@@ -83,14 +81,12 @@
   </div>
 
 
-<!--   <div class="row">
-         <div class="col col-50">
-          Share
-         </div>
-         <div class="col col-50">
-           <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="sharefb('','',advertiselist.url)"><img src="img/facebooksharelogo.png" style="width: 56px;height:55px; top:0px !important"/></button>
-         </div>
-  </div> -->
+  <div class="row">
+        <div class="col text-right">
+          <span>Share with facebook</span>
+          <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="sharefb('','',advertiselist.url)" style="margin-top: -7px;"><img src="img/facebooklogo.png" style="width: 32px;height:25px; top:0px !important"/></button>
+        </div>
+  </div>
 
           <!-- <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="facebookShare('','',advertiselist.url)"><i class="icon ion-social-facebook"></i></button>
           <button class="button button-light" ng-disabled="advertiselist.display_status=='Disabled'" ng-click="whatsappShare()"><i class="icon ion-social-whatsapp"></i></button>

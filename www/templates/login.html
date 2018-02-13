@@ -129,22 +129,22 @@
       <div class="row">
         <div class="col col-50">
         <div class="row">
-          <p class="p" ng-class="{ 'has-error' : sigupform.state.$invalid && submitted }">State *</p>
-          </div>
-          <div class="row">
-            <select name="state" ng-model="signupData.state" ng-options="region.region_id as region.name for region in getregion" ng-required="true" style="width:100%">
-              <option value="">Select State</option>
-            </select>
-          </div>
-        </div>
-        <div class="col col-50">
-        <div class="row">
           <p class="p" ng-class="{ 'has-error' : sigupform.country.$invalid && submitted }">Country *</p>
           </div>
             <!-- <input type="text" name="country" ng-model="signupData.country" ng-required="true"> -->
             <div class="row" ng-init="signupData.country='IN'">
             <select name="country" ng-model="signupData.country"  ng-required="true" style="width:100%">
             <option value="IN">India</option>
+            </select>
+          </div>
+        </div>
+        <div class="col col-50">
+        <div class="row">
+          <p class="p" ng-class="{ 'has-error' : sigupform.state.$invalid && submitted }">State *</p>
+          </div>
+          <div class="row">
+            <select name="state" ng-model="signupData.state" ng-options="region.region_id as region.name for region in getregion" ng-required="true" style="width:100%">
+              <option value="">Select State</option>
             </select>
           </div>
         </div>

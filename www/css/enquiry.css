@@ -22,3 +22,7 @@
      padding-left: 0;
      top: 48px; 
   }*/
+.applybold {
+    font-weight: bold !important;
+    font-color: #010101 !important;
+}

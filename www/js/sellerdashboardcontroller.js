@@ -2,16 +2,23 @@ angular.module('sellerDashboard', ['ionic'])
 .controller('sellerdashboardCtrl', function($scope,$rootScope,$window, $ionicModal, $timeout,$ionicPopup,$http,$state,$ionicLoading,$cordovaFileTransfer,$cordovaImagePicker,$filter) {
  
  $rootScope.customerDetails=JSON.parse(localStorage.getItem("sscustomer"));
-
- $http.get(baseUrl+'seller/dashboard/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
+ $scope.selldbcode=function(){
+    $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0
+                });
+    $http.get(baseUrl+'seller/dashboard/'+$rootScope.customerDetails.id,{ headers: { "Authorization": 'Bearer '+$rootScope.authCode }
    }).then(function(response){
-   	 $rootScope.selldashboard=response.data[0];
-   	 console.log($rootScope.selldashboard)
-   	 console.log($rootScope.selldashboard.enquiry_percentage)
-   	 $scope.barCkey=[];
+     $rootScope.selldashboard=response.data[0];
+     console.log($rootScope.selldashboard)
+     console.log($rootScope.selldashboard.enquiry_percentage)
+     $scope.barCkey=[];
      $scope.barCvalue=[];
 
-   	 for(var key in $rootScope.selldashboard.enquiry_by_month) {
+     for(var key in $rootScope.selldashboard.enquiry_by_month) {
        $scope.barCkey.push(key)
        console.log($scope.barCkey);
        
@@ -25,8 +32,13 @@ angular.module('sellerDashboard', ['ionic'])
      $scope.labelsbar = $scope.barCkey;
      $scope.seriesbar = ['Top Performing Categories'];
 
-     $scope.databar = $scope.barCvalue;  
-   })
+     $scope.databar = $scope.barCvalue;
+     $timeout(function () {
+          $ionicLoading.hide();
+     });   
+   }) 
+ }
+ 
    
    /*$scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
    $scope.series = ['Series A'];

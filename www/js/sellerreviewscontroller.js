@@ -12,12 +12,26 @@ angular.module('review', ['ionic-ratings'])
 			    var size = val/100*100;
 			    return size + '%';
  }
-			       
- $http.get(baseUrl+'seller/review/'+$rootScope.customerDetails.id,{
+ 
+ $scope.sellrevcode=function(){
+   $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0
+          });
+
+   $http.get(baseUrl+'seller/review/'+$rootScope.customerDetails.id,{
       headers: { "Authorization": 'Bearer '+$rootScope.authCode }
       }).then(function(response){
-      	$scope.productsReview=response.data[0].products;
-      })
+        $scope.productsReview=response.data[0].products;
+        $timeout(function () {
+          $ionicLoading.hide();
+        }); 
+      })   
+ }		       
+ 
 
  $scope.reviewList=function(review){
  	$rootScope.reviewdata=review;

@@ -13,7 +13,8 @@
                 ng-click="delete(list)">
         </button>
     </ion-nav-buttons>  
-  <ion-content>
+  <ion-content ng-init="cusinbox()">
+       <!-- <div ng-show="netStatus=1"> -->  
           <ion-list>
             <ion-item class="item-remove-animate"
                       letters-of="{{list.reply_subject[0]}}"
@@ -31,6 +32,10 @@
             <ion-item>
               You have no messages from seller.
             </ion-item>
-          </ion-list> 
+          </ion-list>
+       <!-- </div>
+       <div ng-show="netStatus=0">
+        <center>Network connection failed</center>
+       </div>     -->  
   </ion-content>
 </ion-view>

@@ -10,8 +10,16 @@ angular.module('address', [])
                       
                      }) 
 */
+   $scope.cusdbcode=function(){
+     $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0
+          });
 
-    $http.get(baseUrl+'customers/me',{
+     $http.get(baseUrl+'customers/me',{
            headers: { "Authorization": 'Bearer '+$rootScope.authCode }
             }).then(function onSuccess(response)
          { 
@@ -43,7 +51,13 @@ angular.module('address', [])
                 }
             }
           }
-      }) 
+
+          $timeout(function () {
+            $ionicLoading.hide();
+          });  
+      })
+   }
+     
           
 
 
@@ -63,8 +77,6 @@ angular.module('address', [])
               	$scope.modaladdres.show();
               }
 
-     var deregisterBackButton;
-     var alertPopup;
      
      $scope.addressput=function(account){
       if(account.firstname.$valid && account.lastname.$valid && account.email.$valid){

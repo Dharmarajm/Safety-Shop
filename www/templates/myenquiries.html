@@ -4,7 +4,8 @@
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
     </button>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content ng-init="cusenqcode()">
+   <!-- <div ng-show="netStatus=1">   -->
     <div class="row header">
       <div class="col">Date</div>
       <div class="col">Product</div>
@@ -17,5 +18,9 @@
       <div class="col">{{data.overview}}</div>
       <div class="col"><button class="button button-small button-positive" ng-click="myEnquirydetails(data)">More</button></div>
     </div>
+   <!-- </div>
+   <div ng-show="netStatus=0">
+      <center>Network connection failed</center>
+   </div> --> 
   </ion-content>
 </ion-view>
