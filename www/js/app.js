@@ -58,7 +58,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'address', 'login', '
       }
       // Handle the offline event
       alert('you are online');
-      console.log($rootScope.netStatus)
     }
   });
 

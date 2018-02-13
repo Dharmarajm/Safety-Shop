@@ -1,4 +1,5 @@
 <ion-view view-title="My Inbox" cache-view="false">
+    <link href="css/enquiry.css" rel="stylesheet">
     <ion-nav-buttons side="left">
         <button ng-hide="selectionActive" class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
@@ -24,8 +25,8 @@
                       letters="1"
                       item="{{list}}"
                       ng-repeat="list in getMyinbox[0].inbox" >
-                <span ng-click="inboxdetail(list)"><h2>{{list.reply_subject}}</h2>
-                <p>{{list.reply_message}}</p></span>
+                <span ng-click="inboxdetail(list)"><h2 ng-class="{ applybold: list.status == 'New' }">{{list.reply_subject}}</h2>
+                <h4 ng-class="{ applybold: list.status == 'New' }">{{list.reply_message}}</h4></span>
             </ion-item>
           </ion-list>
           <ion-list ng-show="getMyinbox.length==0">
