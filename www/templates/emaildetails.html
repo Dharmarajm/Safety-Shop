@@ -300,7 +300,8 @@
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span> -->
           <p class="qusproduct">Secondary Email</p>
-          <input type="email" name="secondarymail" ng-model="reply.secondarymail" class="customerinput">
+          <input type="email" name="email" ng-model="reply.secondarymail" class="customerinput" ng-required="true">
+          <span style="color:red;margin-left: 19px;" ng-show="message.email.$invalid && submitted && !message.email.$pristine && !message.email.$error.required" ng-hide="message.email.$error.required && submitted && message.email.$invalid || message.email.$error.required && message.email.$invalid || message.email.$valid || message.email.$error.required || message.email.$invalid || message.email.$error.required && submitted">Email is not valid</span>
           <!-- </label>
                         <label class="item item-input">
                           <span class="input-label">Reply Subject</span>    -->

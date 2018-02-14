@@ -52,13 +52,8 @@ angular.module('sellerprod', [])
 
     $scope.sellerlist = function(sell) {
       $rootScope.sellid = sell;
-      var selldetailid = {
-        "id": sell.id,
-        "name": sell.name
-      };
-      $state.go('app.sellerproductdetails', {
-        selldetailid
-      });
+      var selldetailid = { "id": sell.id,"name": sell.name };
+      $state.go('app.sellerproductdetails',{ selldetailid });
     }
 
     /*$scope.sellproductname=$stateParams.selldetailid.name; */

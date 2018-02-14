@@ -22,7 +22,7 @@ angular.module('sellerproductadd', [])
       var data = JSON.parse(localStorage.getItem('editId'));
       $http.get(baseUrl + 'seller/product/edit/' + data.id, {
         headers: {
-          "Authorization": 'Bearer' + $rootScope.authCode
+          "Authorization": 'Bearer ' + $rootScope.authCode
         }
       }).then(function(res) {
         $scope.proEdit = res.data[0];

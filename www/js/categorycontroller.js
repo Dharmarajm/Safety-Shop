@@ -29,6 +29,7 @@ angular.module('category', [])
   }
 
   $scope.statusColapse = 1;
+  
   $scope.mainCategory = function(id) {
 
 

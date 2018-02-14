@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'address', 'login', '
 
     function isOnline() {
       $rootScope.netStatus = 1;
-      if ($state.current.name == 'app.home' || $state.current.name == 'app.category' || $state.current.name == 'app.sellerdashboard' || $state.current.name == 'app.sellerproduct' || $state.current.name == 'app.enquirydetails' || $state.current.name == 'app.sellerreviews' || $state.current.name == 'app.selleradvertisement' || $state.current.name == 'app.myproductreviews' || $state.current.name == 'app.myenquiries' || $state.current.name == 'app.myinbox' || $state.current.name == 'app.address') {
+      if ($state.current.name == 'app.home' || $state.current.name == 'app.category' || $state.current.name == 'app.sellerdashboard' || $state.current.name == 'app.enquirydetails' || $state.current.name == 'app.sellerreviews' || $state.current.name == 'app.selleradvertisement' || $state.current.name == 'app.myproductreviews' || $state.current.name == 'app.myenquiries' || $state.current.name == 'app.myinbox' || $state.current.name == 'app.address') {
         $state.reload();
       }
       // Handle the offline event

@@ -30,7 +30,7 @@ angular.module('sellerDashboard', ['ionic'])
         }
 
         $scope.pielabels = ["Total Enquiries", "Remaining Categories"];
-        $scope.piedata = [$rootScope.selldashboard.enquiry_percentage, 100 - $rootScope.selldashboard.enquiry_percentage];
+        $scope.piedata = [($rootScope.selldashboard.enquiry_percentage).toFixed(1),(100 - $rootScope.selldashboard.enquiry_percentage).toFixed(1)];
 
         $scope.labelsbar = $scope.barCkey;
         $scope.seriesbar = ['Top Performing Categories'];

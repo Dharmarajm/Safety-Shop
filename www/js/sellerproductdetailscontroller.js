@@ -6,7 +6,9 @@ angular.module('sellerproductdetail', [])
     $rootScope.authCode = localStorage.getItem("ssauthcode");
 
     $scope.sellproductname = $stateParams.selldetailid.name;
-
+    console.log($scope.sellproductname)
+    $scope.sellproductnameid=$stateParams.selldetailid.id
+    console.log($scope.sellproductnameid) 
     if ($scope.sellid.display_status == '1') {
       $scope.sellid.test = true;
     } else if ($scope.sellid.display_status == '2') {

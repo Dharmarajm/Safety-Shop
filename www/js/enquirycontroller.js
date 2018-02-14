@@ -275,7 +275,11 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
     }
 
     $scope.replySubmit = function(msg, reply, id) {
-      if (msg.subject.$valid && msg.message.$valid) {
+      console.log($scope.reply.secondarymail=="")
+      console.log($scope.reply.secondarymail==null)
+      console.log($scope.reply.secondarymail==undefined)
+
+      if (msg.subject.$valid && msg.message.$valid && $scope.reply.secondarymail=="" || msg.subject.$valid && msg.message.$valid && msg.email.$valid) {
         $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',
