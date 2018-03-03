@@ -479,8 +479,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'address', 'login', '
 
 //var baseUrl='http://tools.yantra24x7.com/sample/index.php/rest/V1/';
 
-var baseUrl = 'http://safetyshop.in/home/index.php/rest/V1/';
-var imageUrl = 'http://safetyshop.in/home/pub/media/catalog/product';
+var baseUrl = 'http://www.safetyshop.in/home/index.php/rest/V1/';
+var imageUrl = 'http://www.safetyshop.in/home/pub/media/catalog/product';
 var solrUrl = 'http://45.32.125.151:3030/';
 //var baseUrl='http://192.168.1.173/safetyshop/index.php/rest/V1/';
 //var imageUrl='http://192.168.1.173/safetyshop/pub/media/catalog/product';

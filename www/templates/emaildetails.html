@@ -311,7 +311,7 @@
                            <button class="msgattach" ng-click="upload()">Choose File</button>
                            <span>{{getattachfilename}}</span> -->
           <form name="fileform" novalidate>
-            <input type="file" ng-model="image" class="msgattach" name="image" id="uploadFile" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().uploadImage(this)" />
+            <input type="file" ng-model="image" check-file-size class="msgattach" name="image" id="uploadFile" accept="image/gif,image/jpeg,image/png,.doc,.docx,text/plain,text/html,application/pdf" onchange="angular.element(this).scope().uploadImage(this)" />
           </form>
           <button style="background-color: #F69222" ng-click="replySubmit(message,reply,getId)" type="submit" class="addtocart">Send</button>
           <!-- </div> -->

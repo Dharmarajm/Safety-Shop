@@ -465,4 +465,23 @@ angular.module('enquiry', ['ionicLetterAvatarSelector'])
       }
     }
 
-  })
+  }).directive('checkFileSize', function() {
+  return {
+    link: function(scope, elem, attr, ctrl) {
+      function bindEvent(element, type, handler) {
+        if (element.addEventListener) {
+          element.addEventListener(type, handler, false);
+        } else {
+          element.attachEvent('on' + type, handler);
+        }
+      }
+
+      bindEvent(elem[0], 'change', function() {
+      
+        if(this.files[0].size > 2000000){
+          angular.element(document.getElementById("uploadFile")).val(null);
+        }
+      });
+    }
+  }
+})
