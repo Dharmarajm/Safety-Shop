@@ -174,7 +174,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'address', 'login', '
 
   .state('app.sellerproduct', {
     url: '/sellerproduct',
-
     views: {
       'menuContent': {
         templateUrl: 'templates/sellerproductlist.html',

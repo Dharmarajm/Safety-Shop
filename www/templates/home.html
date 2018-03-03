@@ -37,14 +37,11 @@
 
 
     <ion-scroll direction="x" class="wide-as-needed">
-      <a class="button" ng-click="catagory(cate)" ng-repeat="cate in homevalue[0].category_list">{{cate.name}}
-          </a>
-
-
+      <a class="button" ng-click="catagory(cate)" ng-repeat="cate in homevalue[0].category_list">{{cate.name}}</a>
     </ion-scroll>
 
 
-    <h4>New Arrivals</h4>
+    <center><h5>NEW ARRIVALS</h5></center>
     <!-- {{newarrive}} -->
     <div class="card" style="background-color: #ffffff">
       <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in newarrive  | filter:filterUser" ng-click="productdetails(z.sku,z.name)" ng-hide="showme">
@@ -59,8 +56,22 @@
       <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
     </div>
 
-
-    <h4>Brands</h4>
+    <img ng-src="{{homevalue[0].ad_image}}" style="width:100%;height:150px;" class="gridimg">
+    
+    <center><h5>TESTIMONIALS</h5></center>
+    
+    <div ng-repeat="testi in homevalue[0].testimonials">
+      <div class="item item-body">
+        <center><img ng-src="{{testi.image}}" style="border-radius:50%;height:100px;width:30%"></center>
+        <p>{{testi.description}}</p>
+        <div class="subbuttonadd">
+          <a>{{testi.name}}</a><br>
+          <a>{{testi.designation}}</a>
+        </div>  
+      </div>
+    </div> 
+    
+    <center><h5>BRANDS</h5></center>
 
     <!--    <ion-scroll direction="x" class="wide-as-needed">
           <a ng-repeat="brand in homevalue[0].brand_list">

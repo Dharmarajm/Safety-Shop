@@ -7,7 +7,6 @@ angular.module('starter.controllers', [])
     username: "",
     password: ""
   };
-  console.log($scope.loginData.username)
 
   $scope.submitted = false;
 

@@ -1,11 +1,7 @@
 angular.module('home', [])
   .controller('HomeCtrl', function($scope, $rootScope, $window, $ionicModal, $timeout, $ionicPopup, $http, $state, $ionicLoading, $ionicSlideBoxDelegate) {
 
-
-
     $scope.submitted = false;
-
-    console.log($rootScope.netStatus)
 
     $rootScope.customerDetails = JSON.parse(localStorage.getItem("sscustomer"));
     $rootScope.authCode = localStorage.getItem("ssauthcode");

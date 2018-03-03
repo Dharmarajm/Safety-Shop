@@ -47,6 +47,18 @@
     font-family:"Montserrat";
 }
 
+.subbuttonadd{
+    background-color: #DADADA;
+    width: 95%;
+    padding: 10px;
+    margin-left: 0px;
+    margin-right:10px;
+    border: none;
+    border-bottom: 1px solid white;
+    border-left:solid  5px #F69222;
+    font-family:"Montserrat";
+}
+
 .bar.bar-profile {
     background-color: #444;
     height: 170px;
