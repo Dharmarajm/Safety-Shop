@@ -1,4 +1,4 @@
-<ion-view title="Home" cache-view="false">
+<ion-view cache-view="false">
   <link href="css/home.css" rel="stylesheet" cache-view="false">
 
   <ion-nav-buttons side="left">
@@ -10,28 +10,32 @@
       <img src="img/safety_logo.jpg" style="width: 140px;height: 30px">
 </ion-nav-buttons>
  -->
+ <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-ios-search-strong" ng-click="serachgo()">
+    </button>
+  </ion-nav-buttons>
 
   <ion-content ng-init="dashboardinit()" ng-cloak>
     <!-- <div ng-show="netStatus=1"> -->
-    <div class="search">
+    <!-- <div class="search">
       <label class="item item-input ">
         <input type="text" ng-click="serachgo()" placeholder="Search">
-        <!--  <i class="icon ion-ios-search-strong searchicon" ng-click="searchBtn()"></i> -->
+         <i class="icon ion-ios-search-strong searchicon" ng-click="searchBtn()"></i>
       </label>
-    </div>
+    </div> -->
     <!--  {{homevalue[0].slider_image}} -->
 
     <!--   <div ng-repeat="img in homevalue[0].slider_image">{{img}}</div> -->
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
-      <ion-slide>
-        <img ng-src="{{homevalue[0].slider_image[0]}}" style="width: 100%">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000">
+      <ion-slide ng-repeat="image in homevalue[0].slider_image" dynamic-slides="homevalue[0].slider_image">
+        <img ng-src="{{image}}" style="width: 100%">
       </ion-slide>
-      <ion-slide>
+      <!-- <ion-slide>
         <img ng-src="{{homevalue[0].slider_image[1]}}" style="width: 100%">
       </ion-slide>
       <ion-slide>
         <img ng-src="{{homevalue[0].slider_image[2]}}" style="width: 100%">
-      </ion-slide>
+      </ion-slide> -->
     </ion-slide-box>
 
 
@@ -40,39 +44,43 @@
       <a class="button" ng-click="catagory(cate)" ng-repeat="cate in homevalue[0].category_list">{{cate.name}}</a>
     </ion-scroll>
 
-
-    <center><h5>NEW ARRIVALS</h5></center>
+    <div class="newarr">
+     <h5>NEW ARRIVALS</h5>
+    </div>
     <!-- {{newarrive}} -->
-    <div class="card" style="background-color: #ffffff">
+    <div style="background-color: #ffffff">
       <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in newarrive  | filter:filterUser" ng-click="productdetails(z.sku,z.name)" ng-hide="showme">
-
         <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
+        <!-- <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
         <div class="container">
           <p class="titleproduct overme">{{z.name}}</p>
-        </div>
+        </div> -->
 
       </div>
-      <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button>
+      <!-- <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button> -->
       <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
     </div>
-
-    <img ng-src="{{homevalue[0].ad_image}}" style="width:100%;height:150px;" class="gridimg">
-    
-    <center><h5>TESTIMONIALS</h5></center>
-    
-    <div ng-repeat="testi in homevalue[0].testimonials">
-      <div class="item item-body">
-        <center><img ng-src="{{testi.image}}" style="border-radius:50%;height:100px;width:30%"></center>
-        <p>{{testi.description}}</p>
-        <div class="subbuttonadd">
-          <a>{{testi.name}}</a><br>
-          <a>{{testi.designation}}</a>
-        </div>  
-      </div>
-    </div> 
-    
-    <center><h5>BRANDS</h5></center>
-
+    <div class="newarrimg">
+      <img ng-src="{{homevalue[0].ad_image}}" style="width:100%;height:150px;" class="gridimg">
+    </div>
+    <div class="newarr">
+      <h5>TESTIMONIALS</h5>
+    </div>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="false" show-pager="true" does-continue="false" slide-interval="{{interval}}">
+      <ion-slide ng-repeat="testi in homevalue[0].testimonials" dynamic-slides="homevalue[0].testimonials">
+        <div class="item item-body">
+          <center><img ng-src="{{testi.image}}" style="border-radius:50%;height:100px;width:30%"></center>
+          <p>{{testi.description}}</p>
+          <div class="subbuttonadd">
+            <a>{{testi.name}}</a><br>
+            <a>{{testi.designation}}</a>
+          </div>  
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <div class="newarr">
+     <h5>BRANDS</h5>
+    </div>
     <!--    <ion-scroll direction="x" class="wide-as-needed">
           <a ng-repeat="brand in homevalue[0].brand_list">
             <img ng-src="{{brand.image}}">       

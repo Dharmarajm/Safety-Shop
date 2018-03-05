@@ -39,8 +39,6 @@ angular.module('home', [])
     }
 
     $scope.newarrivemore = function() {
-      $scope.interval = 2000;
-      $scope.slideHasChanged();
       $scope.newarrive = [];
       $scope.newarrstatus = 1;
       for (var i in $scope.homevalue[0].new_arrivals) {
@@ -142,19 +140,32 @@ angular.module('home', [])
       if (($ionicSlideBoxDelegate.count() - 1) == index) {
         $timeout(function() {
           $ionicSlideBoxDelegate.slide(0);
+          $ionicSlideBoxDelegate.update(); 
         }, $scope.interval);
       }
     };
 
-    // $scope.$on('$ionicView.enter', function(){
-    //   $scope.slideHasChanged();
-    // });
+    /*$scope.$on('$ionicView.enter', function(){
+      $scope.slideHasChanged();
+    });
 
-    // $scope.$on('$ionicView.leave', function(){
-    //  $scope.slideBox.stop();
-    // });
-
-
+    $scope.$on('$ionicView.leave', function(){
+     $scope.slideBox.stop();
+    });*/
 
 
-  })
+
+
+  }).directive('dynamicSlides', function() {
+    return {
+        require: ['^ionSlideBox'],
+        link: function(scope, elem, attrs, slider) {
+            scope.$watch(function() {
+                return scope.$eval(attrs.dynamicSlides).length;
+            }, function(val) {
+                console.log(slider[0].__slider.update())
+                slider[0].__slider.update();
+            });
+        }
+    };
+});

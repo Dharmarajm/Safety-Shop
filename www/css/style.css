@@ -48,7 +48,7 @@
 }
 
 .subbuttonadd{
-    background-color: #DADADA;
+    background-color: white;
     width: 95%;
     padding: 10px;
     margin-left: 0px;
@@ -287,4 +287,16 @@ div.row p.p.has-error {
     color:white !important;
     text-align:center;
   }
+}
+
+ion-header-bar{
+  background-color: #333 !important;
+}
+
+button.button-icon.button-clear.ion-navicon,button.button-icon.button-clear.ion-ios-search-strong{
+  color:white;
+}
+ion-scroll.wide-as-needed.scroll-view.ionic-scroll.overflow-scroll.scroll-x,ion-scroll.wide-as-needed.scroll-view.ionic-scroll.overflow-scroll.scroll-x a.button{
+  color:black;
+  background:white;
 }
