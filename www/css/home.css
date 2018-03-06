@@ -241,4 +241,10 @@ div.newarrimg{
   padding-bottom: 0px;
   margin-bottom: -4px;
 } 
-    
+
+button.button.button-positive.button-small.ask{
+  background-color: #FFA200
+}
+/*div.slider-pager{
+  top:200px;
+}*/    

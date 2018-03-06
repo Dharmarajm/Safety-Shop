@@ -28,6 +28,8 @@ angular.module('login', [])
     }];
     $scope.submitted = false;
 
+    $scope.getclasssell=1;
+    
     $http.get(baseUrl + 'country/list', {
       headers: {
         "Authorization": 'Bearer ' + $rootScope.authCode

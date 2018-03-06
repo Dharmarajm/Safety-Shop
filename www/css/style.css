@@ -300,3 +300,47 @@ ion-scroll.wide-as-needed.scroll-view.ionic-scroll.overflow-scroll.scroll-x,ion-
   color:black;
   background:white;
 }
+a i.homeclass,a i.catclass,a i.cusclass,a i.sellclass{
+  color: #FFA200;
+}
+a.tab-item.disable-user-behavior.active.homeclass,a.tab-item.disable-user-behavior.active.catclass,a.tab-item.disable-user-behavior.active.cusclass,a.tab-item.disable-user-behavior.active.sellclass{
+  border-bottom: 3px solid #FFA200;
+}
+
+i.ion-ios-home-outline.menui:before,i.ion-ios-keypad-outline.menui:before{
+    height: 24px;
+    width: 24px;
+    font-size: 26px;
+}
+i.ion-document-text.menui:before,i.ion-ios-contact-outline.menui:before{
+    height: 24px;
+    width: 24px;
+    font-size: 26px; 
+    /*padding-left: 13px;*/
+}
+ion-item.item-complex.item-icon-left .item-content{
+  padding-left:15px;
+}
+ion-item.item-icon-left.item{
+  /*padding-left:15px;*/ 
+}
+ion-item.menu-css{
+  background-color: #FEC013;
+}
+div.col.menulf{
+ text-align:center;
+ font-size:30px;
+ border-right: 1px solid white;
+ color:white;
+}
+div.col.menuls{
+ text-align:center;
+ font-size:30px;
+ color:white;
+}
+div.col.menulf p,div.col.menuls p{
+ color:white; 
+}
+ion-item.item.item-icon-top.menu-css.row{
+  padding:0px !important;
+}

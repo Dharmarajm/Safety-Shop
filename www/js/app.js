@@ -143,10 +143,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'address', 'login', '
 })
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+  
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.platform.android.tabs.position("bottom");
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',

@@ -189,4 +189,22 @@
 
     </form>
   </ion-content>
+  <div class="tabs tabs-icon-top">
+        <a nav-clear class="tab-item disable-user-behavior" title="Home" icon-on="ion-ios-home-outline" icon-off="ion-ios-home-outline" nav-clear ui-sref="app.home">
+          <i class="icon ion-ios-home-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Home
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Categories" icon-on="ion-ios-keypad-outline" icon-off="ion-ios-keypad-outline" ui-sref="app.category">
+          <i class="icon ion-ios-keypad-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Categories
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior active" ng-class="{cusclass:'getclasscus==1'}" title="Customer Login" icon-on="ion-ios-person-outline" icon-off="ion-ios-person-outline" ui-sref="app.login">
+          <i class="icon ion-ios-person-outline" ng-class="{cusclass:'getclasscus==1'}"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Customer Login
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Seller Login" icon-on="ion-ios-unlocked-outline" icon-off="ion-ios-unlocked-outline" ui-sref="app.sellerlogin">
+          <i class="icon ion-ios-unlocked-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Seller Login
+        </a>
+  </div> 
 </ion-view>

@@ -3,7 +3,7 @@ angular.module('category', [])
 .controller('CategoryCtrl', function($scope, $stateParams, $rootScope, $window, $ionicModal, $timeout, $ionicPopup, $http, $state, $ionicLoading) {
 
   $scope.imgurl = imageUrl;
-  
+  $scope.getclasscateg=1;
   $scope.categoryinit = function() {
 
     $ionicLoading.show({

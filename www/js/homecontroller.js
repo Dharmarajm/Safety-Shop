@@ -2,7 +2,7 @@ angular.module('home', [])
   .controller('HomeCtrl', function($scope, $rootScope, $window, $ionicModal, $timeout, $ionicPopup, $http, $state, $ionicLoading, $ionicSlideBoxDelegate) {
 
     $scope.submitted = false;
-
+    $scope.getclasshome=1; 
     $rootScope.customerDetails = JSON.parse(localStorage.getItem("sscustomer"));
     $rootScope.authCode = localStorage.getItem("ssauthcode");
     $scope.dashboardinit = function() {
@@ -135,12 +135,42 @@ angular.module('home', [])
     }
     $scope.interval = 2000;
 
-    $scope.slideHasChanged = function(index) {
+    $scope.slideHasChanged1 = function(index) {
       $scope.slideIndex = index;
       if (($ionicSlideBoxDelegate.count() - 1) == index) {
         $timeout(function() {
+          $ionicSlideBoxDelegate.update();
           $ionicSlideBoxDelegate.slide(0);
-          $ionicSlideBoxDelegate.update(); 
+        }, $scope.interval);
+      }
+    };
+
+    $scope.slideHasChanged2 = function(index) {
+      $scope.slideIndex = index;
+      if (($ionicSlideBoxDelegate.count() - 1) == index) {
+        $timeout(function() {
+          $ionicSlideBoxDelegate.update();
+          $ionicSlideBoxDelegate.slide(0);
+        }, $scope.interval);
+      }
+    };
+
+    $scope.slideHasChanged3 = function(index) {
+      $scope.slideIndex = index;
+      if (($ionicSlideBoxDelegate.count() - 1) == index) {
+        $timeout(function() {
+          $ionicSlideBoxDelegate.update();
+          $ionicSlideBoxDelegate.slide(0);
+        }, $scope.interval);
+      }
+    };
+
+    $scope.slideHasChanged4 = function(index) {
+      $scope.slideIndex = index;
+      if (($ionicSlideBoxDelegate.count() - 1) == index) {
+        $timeout(function() {
+          $ionicSlideBoxDelegate.update();
+          $ionicSlideBoxDelegate.slide(0);
         }, $scope.interval);
       }
     };

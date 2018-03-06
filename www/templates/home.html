@@ -15,7 +15,7 @@
     </button>
   </ion-nav-buttons>
 
-  <ion-content ng-init="dashboardinit()" ng-cloak>
+  <ion-content ng-init="dashboardinit()" ng-cloak class="has-footer">
     <!-- <div ng-show="netStatus=1"> -->
     <!-- <div class="search">
       <label class="item item-input ">
@@ -26,16 +26,16 @@
     <!--  {{homevalue[0].slider_image}} -->
 
     <!--   <div ng-repeat="img in homevalue[0].slider_image">{{img}}</div> -->
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="2000">
-      <ion-slide ng-repeat="image in homevalue[0].slider_image" dynamic-slides="homevalue[0].slider_image">
-        <img ng-src="{{image}}" style="width: 100%">
-      </ion-slide>
-      <!-- <ion-slide>
-        <img ng-src="{{homevalue[0].slider_image[1]}}" style="width: 100%">
+    <ion-slide-box on-slide-changed="slideHasChanged1($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
+      <ion-slide>
+        <img ng-src="{{homevalue[0].slider_image[0]}}" style="width: 100%;height:70%;">
       </ion-slide>
       <ion-slide>
-        <img ng-src="{{homevalue[0].slider_image[2]}}" style="width: 100%">
-      </ion-slide> -->
+        <img ng-src="{{homevalue[0].slider_image[1]}}" style="width: 100%;height:70%;">
+      </ion-slide>
+      <ion-slide>
+        <img ng-src="{{homevalue[0].slider_image[2]}}" style="width: 100%;height:70%;">
+      </ion-slide>
     </ion-slide-box>
 
 
@@ -47,26 +47,34 @@
     <div class="newarr">
      <h5>NEW ARRIVALS</h5>
     </div>
-    <!-- {{newarrive}} -->
-    <div style="background-color: #ffffff">
+<!--     <div style="background-color: #ffffff">
       <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in newarrive  | filter:filterUser" ng-click="productdetails(z.sku,z.name)" ng-hide="showme">
         <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
-        <!-- <img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
         <div class="container">
           <p class="titleproduct overme">{{z.name}}</p>
-        </div> -->
+        </div>
 
       </div>
-      <!-- <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button> -->
-      <!-- <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll> -->
-    </div>
+      <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button>
+    </div> -->
+    <ion-slide-box on-slide-changed="slideHasChanged2($index)" auto-play="true" disable-scroll="true" show-pager="true" does-continue="true" slide-interval="{{interval}}">
+      <ion-slide ng-if="z.visibility == 4" ng-repeat="z in newarrive" dynamic-slides="newarrive" style="background-color: #ffffff">
+       <div class="">
+        <center><img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
+        <div class="container">
+          <p class="titleproduct overme">{{z.name}}</p><br>
+          <button class="button button-positive button-small ask" ng-click="productdetails(z.sku,z.name)">ASK FOR PRICE</button>
+        </div></center><br>
+       </div><br> 
+      </ion-slide>
+    </ion-slide-box>
     <div class="newarrimg">
       <img ng-src="{{homevalue[0].ad_image}}" style="width:100%;height:150px;" class="gridimg">
     </div>
     <div class="newarr">
       <h5>TESTIMONIALS</h5>
     </div>
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="false" show-pager="true" does-continue="false" slide-interval="{{interval}}">
+    <ion-slide-box on-slide-changed="slideHasChanged3($index)" auto-play="false" disable-scroll="true" show-pager="false" does-continue="false">
       <ion-slide ng-repeat="testi in homevalue[0].testimonials" dynamic-slides="homevalue[0].testimonials">
         <div class="item item-body">
           <center><img ng-src="{{testi.image}}" style="border-radius:50%;height:100px;width:30%"></center>
@@ -86,7 +94,7 @@
             <img ng-src="{{brand.image}}">       
           </a>
         </ion-scroll> -->
-    <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
+    <ion-slide-box on-slide-changed="slideHasChanged4($index)" auto-play="true" disable-scroll="true" show-pager="false" does-continue="true" slide-interval="{{interval}}">
       <ion-slide>
         <div class="row">
           <div class="col col-50">
@@ -123,6 +131,25 @@
        <center>Network connection failed</center>
      </div> -->
   </ion-content>
+      <div class="tabs tabs-icon-top">
+        <a nav-clear class="tab-item disable-user-behavior active" ng-class="{homeclass:'getclasshome==1'}" title="Home" icon-on="ion-ios-home-outline" icon-off="ion-ios-home-outline" nav-clear ui-sref="app.home">
+          <i class="icon ion-ios-home-outline" ng-class="{homeclass:'getclasshome==1'}"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Home
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Categories" icon-on="ion-ios-keypad-outline" icon-off="ion-ios-keypad-outline" ui-sref="app.category">
+          <i class="icon ion-ios-keypad-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Categories
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Customer Login" icon-on="ion-ios-person-outline" icon-off="ion-ios-person-outline" ui-sref="app.login">
+          <i class="icon ion-ios-person-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Customer Login
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Seller Login" icon-on="ion-ios-unlocked-outline" icon-off="ion-ios-unlocked-outline" ui-sref="app.sellerlogin">
+          <i class="icon ion-ios-unlocked-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          Seller Login
+        </a>
+    </div> 
+
 </ion-view>
 
 

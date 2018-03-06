@@ -10,17 +10,31 @@
       <i class="icon ion-ios-arrow-back"></i>
     </button>
   </ion-nav-buttons>
-  <div class="row bar bar-subheader" style="background-color: #ffffff">
+  <!-- <div class="row bar bar-subheader" style="background-color: #ffffff">
     <div class="col col-10">
       <i class="icon ion-grid grid" ng-click="showme=true" ng-hide="showme"></i>
       <i class="icon ion-navicon-round list" ng-click="showme=false" ng-show="showme"></i></div>
     <div class="col col-90">
       <input type="text" ng-model="filterUser" placeholder="Search" />
     </div>
-  </div>
+  </div> -->
 
-  <ion-content style="background-color: #e0e0e0" class="padding has-subheader">
-    <div ng-repeat="pro in ProductList">
+  <ion-content style="background-color: #FFFFFF" class="padding">
+    <div class="subname">
+      {{subname}}
+    </div>
+
+    <div class="row" ng-repeat="pro in ProductList">
+        <div class="cardproductgrid col col-50" ng-repeat="z in pro  | filter:filterUser" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)">
+
+        <img ng-src="{{imgurl}}{{z.custom_attributes[3].value}}" class="gridimg">
+        <div class="container">
+          <p class="titleproduct overme">{{z.name}}</p>
+          <button class="button button-positive button-small cat">ASK FOR PRICE</button>
+         </div>
+        </div>
+    </div>
+    <!-- <div ng-repeat="pro in ProductList">
       <div class="cardproductgrid" ng-repeat="z in pro  | filter:filterUser" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)" ng-hide="showme">
 
         <img ng-src="{{imgurl}}{{z.custom_attributes[3].value}}" class="gridimg">
@@ -30,18 +44,18 @@
       </div>
 
     </div>
+ -->
 
 
 
-
-    <div class="row cardproductlist" ng-repeat="z in ProductList[0]" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)" ng-show="showme">
+    <!-- <div class="row cardproductlist" ng-repeat="z in ProductList[0]" ng-if="z.status==1 && visibility!=1" ng-click="productdetails(z.sku,z.name)" ng-show="showme">
       <div class="col col-30">
         <img ng-src="{{imgurl}}{{z.custom_attributes[3].value}}" class="listimg">
       </div>
       <div class="col col-70">
         <p class="titleproduct">{{z.name}}</p>
       </div>
-    </div>
+    </div> -->
 
     <ion-infinite-scroll ng-show="!loadshow" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
 
@@ -51,4 +65,4 @@
     <ion-modal-view cache-view="false">
             
    </ion-modal-view>
-</script -->
+</script

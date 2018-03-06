@@ -1,0 +1,36 @@
+<ion-view title="Home">
+  
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+
+  <div class="tabs tabs-icon-top">
+    <a nav-clear class="tab-item disable-user-behavior" title="Home" icon-on="ion-ios-home-outline" icon-off="ion-ios-home-outline" nav-clear ui-sref="tabs.home">
+      <i class="icon ion-ios-home-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span> Home
+    </a>
+    <a nav-clear class="tab-item disable-user-behavior" title="Categories" icon-on="ion-ios-keypad-outline" icon-off="ion-ios-keypad-outline" ui-sref="tabs.category">
+      <i class="icon ion-ios-keypad-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span> Categories
+    </a>
+    <a nav-clear class="tab-item disable-user-behavior active" ng-class="{cusclass:'getclasscus==1'}" title="Customer Login" icon-on="ion-ios-person-outline" icon-off="ion-ios-person-outline" ui-sref="tabs.login">
+      <i class="icon ion-ios-person-outline" ng-class="{cusclass:'getclasscus==1'}"></i><span class="tab-title ng-binding" ng-bind-html="title"></span> Customer Login
+    </a>
+    <a nav-clear class="tab-item disable-user-behavior" title="Seller Login" icon-on="ion-ios-unlocked-outline" icon-off="ion-ios-unlocked-outline" ui-sref="tabs.sellerlogin">
+      <i class="icon ion-ios-unlocked-outline"></i><span class="tab-title ng-binding" ng-bind-html="title"></span> Seller Login
+    </a>
+  </div>
+ <!--  <ion-tabs class="tabs-icon-top tabs-positive">
+
+      <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Settings" icon="ion-gear-a" href="#/tab/settings" >
+        <ion-nav-view name="settings-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Sign-Out" icon="ion-log-out">
+      </ion-tab>
+
+    </ion-tabs> -->
+</ion-view>

@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
     username: "",
     password: ""
   };
-
+  $scope.getclasscus=1;
   $scope.submitted = false;
 
   $scope.validateForm = function() {

@@ -6,7 +6,7 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-title >
-        <img src="img/Safety_Shop_Logo.jpg" style="width: 140px;height: 30px">
+        <img src="img/Safety_Shop_Logo.jpg" style="width: 200px;height: 42px">
       </ion-nav-title>  
       <ion-nav-buttons side="right">
         <!-- <img src="img/Safety_Shop_Logo.jpg" style="width: 140px;height: 30px"> -->
@@ -44,18 +44,21 @@
           </ion-item>
          </ion-list>
         </ion-item> -->
-        <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-          <div class="row">
-            <div class="col col-40"><a href="#/app/login" ng-click="validateForm()">Customer Login</a></div>
-            <div class="col col-20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;</div>
-            <div class="col col-40"><a href="#/app/sellerlogin" ng-click="validateForm()">Seller Login</a></div>
+        <ion-item class="item item-icon-top menu-css row" menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
+          <div class="col menulf" ng-click="validateForm()" ui-sref="app.login">
+            <i class="ion-ios-person-outline"></i>
+            <p>Customer Login</p>
+          </div>
+          <div class="col menuls" ng-click="validateForm()" ui-sref="app.sellerlogin">
+            <i class="ion-ios-unlocked-outline"></i>
+            <p>Seller Login</p>
           </div>
         </ion-item>
-        <ion-item menu-close href="#/app/home">
-          Home
+        <ion-item class="item-icon-left" menu-close href="#/app/home">
+          <i class="ion-ios-home-outline menui"></i> Home
         </ion-item>
-        <ion-item menu-close href="#/app/category">
-          All Categories
+        <ion-item class="item-icon-left" menu-close href="#/app/category">
+          <i class="ion-ios-keypad-outline menui"></i> All Categories
         </ion-item>
         <ion-item menu-close ng-show="customerDetails.group_id==4" href="#/app/sellerdashboard">
           Dashboard
@@ -96,11 +99,11 @@
         <ion-item href="#/app/myinbox" ng-show="customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null || customerDetails.group_id==4" menu-close>
           My Inbox
         </ion-item>
-        <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-          About Us
+        <ion-item class="item-icon-left" menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" href="#/">
+         <i class="ion-document-text menui"></i> About Us
         </ion-item>
-        <ion-item menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3">
-          Contact Us
+        <ion-item class="item-icon-left" menu-close ng-hide="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" href="#/">
+         <i class="ion-ios-contact-outline menui"></i> Contact Us
         </ion-item>
 
         <ion-item menu-close ng-show="customerDetails.group_id==4 || customerDetails.group_id==1 || customerDetails.group_id==2 || customerDetails.group_id==3" ng-hide="customerDetails=='' || customerDetails==null" ng-click="signOut()">
