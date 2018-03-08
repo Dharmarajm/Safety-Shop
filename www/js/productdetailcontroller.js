@@ -1,6 +1,6 @@
 angular.module('productdetail', ['ionic-ratings'])
 
-.controller('ProductDetailCtrl', function($scope, $sce, $stateParams, $rootScope, $window, $ionicModal, $timeout, $ionicPopup, $http, $state, $ionicLoading) {
+.controller('ProductDetailCtrl', function($scope, $sce, $stateParams, $rootScope, $window, $ionicModal, $timeout, $ionicPopup, $http, $state, $ionicLoading,$ionicSlideBoxDelegate) {
 
 
   $rootScope.customerDetails = JSON.parse(localStorage.getItem("sscustomer"));
@@ -21,6 +21,16 @@ angular.module('productdetail', ['ionic-ratings'])
     }
   };
 
+
+  
+
+
+  $scope.descClick=function(){
+    $scope.IsVisible = $scope.IsVisible ? false : true;
+  }
+  $scope.techClick=function(){
+    $scope.IsVisible1 = $scope.IsVisible1 ? false : true;
+  }
 
   $scope.getStars = function(rating) {
     // Get the value

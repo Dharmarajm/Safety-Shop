@@ -1,4 +1,4 @@
-<ion-view cache-view="false" view-title="{{productname}}">
+<ion-view cache-view="false">
   <link href="css/category.css" rel="stylesheet" cache-view="false">
 
   <!--  <ion-header-bar>                
@@ -10,59 +10,115 @@
             </ion-header-bar>   -->
   <ion-nav-buttons side="left">
     <button class="button button-clear" ng-click="myGoBack()">
-      <i class="icon ion-ios-arrow-back"></i>
+      <i class="icon ion-ios-arrow-back" style="color:#fff"></i>
     </button>
   </ion-nav-buttons>
-  <ion-content style="background-color: #e0e0e0">
+  <ion-content >
 
     <!--  <div style="background-color: #ffffff">
                     <img src="{{Image}}" class="imgproduct">
                     </div> -->
-    <div style="background-color: #ffffff;margin: 6px;">
+    <div style="margin: 6px;">
       <center><img src="{{Image}}" class="imgproduct"></center>
     </div>
-
+    <!-- <div class="row">
+    <div class="col col-20"></div>
+    <div class="col col-10">  <i class="icon ion-ios-arrow-back"></i></div>
+    <div ><ion-scroll direction="x" class="wide-as-needed"></ion-scroll>
+      <a ng-repeat="s in [0,1,2,3,4,5]"><img src="{{Image}}" class="smallimgproduct"></a>
+   </ion-scroll></div>
+    <div class="col col-10">  <i class="icon ion-ios-arrow-back"></i></div>
+    <div class="col col-10"></div>
+    </div> -->
+  
     <center>
-      <p class="productdesc">{{productRes.name}}</p>
+       <i class="icon ion-ios-arrow-back"></i>
+      <!-- <ion-scroll direction="x" class="wide-as-needed" style="width: 150px;">
+      <a ng-repeat="s in [0,1,2,3,4,5]"><img src="{{Image}}" class="smallimgproduct"></a> </ion-scroll> -->
+       <ion-slide-box  show-pager="false">
+          <ion-slide>
+              <img src="{{Image}}" class="smallimgproduct">
+              <img src="{{Image}}" class="smallimgproduct">
+              <img src="{{Image}}" class="smallimgproduct">
+          </ion-slide>
+          <ion-slide>
+              <img src="{{Image}}" class="smallimgproduct">
+              <img src="{{Image}}" class="smallimgproduct">
+          </ion-slide>
+          <ion-slide>
+              <img src="{{Image}}" class="smallimgproduct">
+          </ion-slide>
+        </ion-slide-box>
+      
+  
+   <!-- <i class="icon ion-ios-arrow-back"></i> -->
     </center>
-    <p class="productdesc">{{productRes.sku}}</p>
 
-    <!--    <div ng-repeat=" value in spec">
-                    {{value.label}}  :  {{value.value}}
+   <div class="productdetails">
+      <p class="productdesc">{{productRes.name}}</p>
+      
+      <span class="stars alignright ">
+          <span  ng-style="{ 'width': getStars(ratings[0].number) }"></span>
+           </span> <span style="color:#3D7B93;padding:8px">Be the first to review this product</span>
+           <br>
+           <div class="p"></div>
+         
+          
 
-                    </div> -->
-    <span class="stars alignright">
-                    <span ng-style="{ 'width': getStars(ratings[0].number) }"></span>
-    </span>
-    <div>
-      <div class="row" style="padding: 0px" ng-repeat=" value in spec">
-        <div class="col" style="border: 1px solid">{{value.label}}</div>
-        <div class="col" style="border: 1px solid">{{value.value}}</div>
+    <p class="productdesc p">SKU : {{productRes.sku}}</p>
+
+    <div class="center">
+        <button ng-click="customer()"  class="button login-button">Ask for price</button>
       </div>
     </div>
+      <div class="cardspec">
+                                
+          <div class="row icon-right" ng-click="descClick()">
+            <div class="col col-90">Technical Spec</div>
+        
+            <div class="col col-10" ng-class=" IsVisible  ?  'ion-ios-arrow-down' : 'ion-ios-arrow-forward '"></div>
+          </div>
+            <div ng-show="IsVisible">
+                <div class="row" style="padding: 0px" ng-repeat=" value in spec">
+                  <div class="col" style="border: 1px solid">{{value.label}}</div>
+                  <div class="col" style="border: 1px solid">{{value.value}}</div>
+                </div>
+              </div>
+          
+          </div>
+
+          <div class="cardspec">
+                                
+              <div class="row icon-right" ng-click="techClick()">
+                <div class="col col-90">Description</div>
+            
+                <div class="col col-10" ng-class=" IsVisible1  ?  'ion-ios-arrow-down' : 'ion-ios-arrow-forward '"></div>
+              </div>
+                <div ng-show="desc !=null;IsVisible1">
+
+                    <p ng-bind-html="desc"></p>
+                  </div>
+            
+              </div>
+   
     <!--  <div class="row" >
                       <div class="col" ng-repeat=" specs in spec">{{specs.value}}</div>
                    
                     </div>
  -->
     <br>
-    <div class="card" ng-show="desc !=null">
+ 
 
-      <p ng-bind-html="desc"></p>
-    </div>
-
-
+  
 
 
 
 
     <div class="row">
-      <div class="center">
-        <button ng-click="customer()" class="addtocart">Ask for price</button>
-      </div>
+     
 
     </div>
-    <button ng-click="reviewBtn()" class="addtocart">Review</button>
+    <!-- <button ng-click="reviewBtn()" class="button login-button">Review</button> -->
 
 
   </ion-content>

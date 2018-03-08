@@ -126,9 +126,10 @@ angular.module('home', [])
           $rootScope.ProductList = [];
           $rootScope.size = 1;
           $rootScope.totalcount = response.data.total_count;
-
-          $rootScope.ProductList.push(response.data.items);
-          console.log($rootScope.ProductList)
+        
+          for(var i in response.data.items){ 
+            $rootScope.ProductList.push(response.data.items[i]);
+            }
         })
       }
 

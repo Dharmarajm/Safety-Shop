@@ -46,6 +46,7 @@
 
     <div class="newarr">
      <h5>NEW ARRIVALS</h5>
+     <p class="test"><p>
     </div>
 <!--     <div style="background-color: #ffffff">
       <div class="cardproductgrid" ng-if="z.visibility == 4" ng-repeat="z in newarrive  | filter:filterUser" ng-click="productdetails(z.sku,z.name)" ng-hide="showme">
@@ -58,13 +59,13 @@
       <button ng-show="newarrstatus == 0" ng-click="newarrivemore()">Click More</button>
     </div> -->
     <ion-slide-box on-slide-changed="slideHasChanged2($index)" auto-play="true" disable-scroll="true" show-pager="true" does-continue="true" slide-interval="{{interval}}">
-      <ion-slide ng-if="z.visibility == 4" ng-repeat="z in newarrive" dynamic-slides="newarrive" style="background-color: #ffffff">
+      <ion-slide ng-if="z.visibility == 4" ng-repeat="z in newarrive" dynamic-slides="newarrive" style="background-color: #ffffff;height:250px;">
        <div class="">
         <center><img ng-src="http://safetyshop.in/home/pub/media/catalog/product{{z.thumbnail}}" class="gridimg">
         <div class="container">
-          <p class="titleproduct overme">{{z.name}}</p><br>
+          <p class="titleproduct overme">{{z.name}}</p>
           <button class="button button-positive button-small ask" ng-click="productdetails(z.sku,z.name)">ASK FOR PRICE</button>
-        </div></center><br>
+        </div></center>
        </div><br> 
       </ion-slide>
     </ion-slide-box>
@@ -73,6 +74,7 @@
     </div>
     <div class="newarr">
       <h5>TESTIMONIALS</h5>
+      <p class="test"><p>
     </div>
     <ion-slide-box on-slide-changed="slideHasChanged3($index)" auto-play="false" disable-scroll="true" show-pager="false" does-continue="false">
       <ion-slide ng-repeat="testi in homevalue[0].testimonials" dynamic-slides="homevalue[0].testimonials">
@@ -88,6 +90,7 @@
     </ion-slide-box>
     <div class="newarr">
      <h5>BRANDS</h5>
+     <p class="test"><p>
     </div>
     <!--    <ion-scroll direction="x" class="wide-as-needed">
           <a ng-repeat="brand in homevalue[0].brand_list">

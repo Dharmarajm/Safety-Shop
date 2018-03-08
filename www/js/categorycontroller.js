@@ -112,7 +112,9 @@ angular.module('category', [])
         $rootScope.size = 1;
         $rootScope.totalcount = response.data.total_count;
         $rootScope.ProductList = [];
-        $rootScope.ProductList.push(response.data.items);
+        for(var i in response.data.items){ 
+        $rootScope.ProductList.push(response.data.items[i]);
+        }
         console.log($rootScope.ProductList)
       })
     }
@@ -133,6 +135,7 @@ angular.module('category', [])
 
 
 
+
   $scope.productdetails = function(id, name) {
 
     var prodetail = {
@@ -148,7 +151,7 @@ angular.module('category', [])
 
   $rootScope.loadshow = false;
   $scope.loadMore = function() {
-
+    console.log($rootScope.ProductList)
     $rootScope.size++;
     if ($rootScope.totalcount >= $rootScope.size * 10) {
 
@@ -166,7 +169,9 @@ angular.module('category', [])
 
         })
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        $rootScope.ProductList.push(response.data.items);
+        for(var i in response.data.items){ 
+        $rootScope.ProductList.push(response.data.items[i]);
+        }
       })
     } else {
       $rootScope.loadshow = true;

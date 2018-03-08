@@ -45,6 +45,9 @@
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.ionicframework.safetyshop912113"
+        },
+        "cordova-plugin-ionic-webview": {
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {

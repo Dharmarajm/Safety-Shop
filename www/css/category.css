@@ -54,17 +54,31 @@
     margin-top: 10px;
 }
 
-.cardproductgrid {
-     width: 160px !important;
+.cardgrid {
+     /* width: 160px !important; */
      height: 200px !important;    
-      margin: auto;
+     /* margin: auto;*/
       text-align: center;
       font-family: arial;
       float:left;
-      margin:5px;
+      /*margin:5px;*/
       background-color: white;
-      padding: 10px;
-      margin-bottom:10px;
+      /*padding: 10px;
+      margin-bottom:10px;*/
+      /*border-width: 1px 1px 0px 1px;
+      border-style: solid;
+      border-color: #d7d3d3;*/
+     
+      border-bottom: 2px solid #e3e3e3;
+      border-top: 2px solid #e3e3e3;
+}
+.cardgrid.col.col-50:nth-child(odd) {
+   
+    border-right: 2px solid #e3e3e3;
+}    
+.cardgrid.col.col-50:nth-child(even) {
+   
+    border-left: 2px solid #e3e3e3;
 }
 
 .cardproductlist {
@@ -108,7 +122,7 @@
 }
 .imgproduct{
     width:50%;
-    height:50%;
+    height: 150px;
    /* margin-left: 25%;
     margin-bottom: 10px;*/
     margin-top: 10px;
@@ -196,16 +210,62 @@
 
 div.subname{
   background-color: #F2F2F2;
-  margin-left: -10px;
-  margin-right: -10px;
+  /*margin-left: -10px;
+  margin-right: -10px;*/
   padding-left: 15px;
   font-weight:bold;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+}
+/* div.row{
+  flex-wrap: wrap;
+} */
+div.row.filter{
+  /* padding-bottom:10px; */
+  padding-left:15px; 
+  /* border-bottom: 2px solid #e3e3e3; */
 }
 button.button.button-positive.button-small.cat{
   background-color:#FEC013;
   font-size:10px;
+}
+div.subname p.test {
+    content: '';
+    width: 30px;
+    display: block;
+    background: #d09d26;
+    height: 0px;
+    margin-left: 2px !important;
+    line-height: 1.1;
+    text-align: center;
+    padding-bottom:3px;
+    margin-top: 8px;
+}
+
+.productdetails{
+    margin: 6px;
+    padding: 10px;
+    background: #F2F2F2;
+}
+
+.login-button {
+    background-color:#F9C11E;
+    width: 100%;
+    
+    min-height: 38px!important;
+    color: #fff;
+}
+
+.p{
+    border-bottom: 1px solid #C6C6C6;
+padding: 2px;
+}
+.smallimgproduct{
+        height: 50px;
+}
+.iconfilter{
+    font-size:21px;
+    margin-left:50px;
 }
 /*body {
     cursor: url('http://ionicframework.com/img/finger.png'), auto;
